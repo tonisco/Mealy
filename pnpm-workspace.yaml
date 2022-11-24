@@ -3,6 +3,6 @@ packages:
   - apps/restaurant
   - apps/driver
   - apps/api
-  - packages/eslint-config-custom
+  - packages/esconfig
   - packages/tsconfig
   - packages/ui
