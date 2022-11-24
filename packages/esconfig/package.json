@@ -32,5 +32,10 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "api-eslint.js",
+    "native-eskint.js",
+    "next-eslint.js"
+  ]
 }
