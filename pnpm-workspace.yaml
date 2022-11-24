@@ -2,6 +2,7 @@ packages:
   - apps/food
   - apps/restaurant
   - apps/driver
-  - packages/ui
-  - packages/tsconfig
+  - apps/api
   - packages/eslint-config-custom
+  - packages/tsconfig
+  - packages/ui
