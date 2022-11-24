@@ -1,2 +1,6 @@
 packages:
   - apps/food
+  - apps/restaurant
+  - packages/ui
+  - packages/tsconfig
+  - packages/eslint-config-custom
