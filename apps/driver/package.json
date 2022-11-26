@@ -1,9 +1,9 @@
 {
   "name": "driver",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --host tunnel",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.1.6",
+    "@babel/runtime": "^7.19.0",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.70.6",
     "esconfig": "*",
