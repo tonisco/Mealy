@@ -6,3 +6,4 @@ packages:
   - packages/esconfig
   - packages/tsconfig
   - packages/ui
+  - packages/tailwind-config

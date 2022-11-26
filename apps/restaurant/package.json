@@ -18,7 +18,11 @@
     "typescript": "4.9.3"
   },
   "devDependencies": {
-    "esconfig":"*",
-    "tsconfig":"*"
+    "autoprefixer": "^10.4.13",
+    "esconfig": "workspace:*",
+    "postcss": "^8.4.19",
+    "tailwind-config": "workspace:*",
+    "tailwindcss": "^3.2.4",
+    "tsconfig": "workspace:*"
   }
 }
