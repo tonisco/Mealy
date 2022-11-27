@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,9 +21,11 @@
     "@types/express": "^4.17.14",
     "@types/multer": "^1.4.7",
     "@types/node": "18.11.9",
-    "esconfig":"*",
-    "tsconfig":"*",
+    "concurrently": "^7.6.0",
+    "esconfig": "*",
+    "nodemon": "^2.0.20",
     "ts-node-dev": "^2.0.0",
+    "tsconfig": "*",
     "typescript": "^4.9.3"
   }
 }
