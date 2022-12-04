@@ -173,8 +173,10 @@ importers:
     specifiers:
       '@faker-js/faker': ^7.6.0
       '@prisma/client': ^4.7.1
+      '@types/bcrypt': ^5.0.0
       '@types/node': 18.11.9
       bcrypt: ^5.1.0
+      dotenv: ^16.0.3
       prisma: ^4.7.1
       ts-node: ^10.9.1
       typescript: ^4.9.3
@@ -183,7 +185,9 @@ importers:
       '@prisma/client': 4.7.1_prisma@4.7.1
       bcrypt: 5.1.0
     devDependencies:
+      '@types/bcrypt': 5.0.0
       '@types/node': 18.11.9
+      dotenv: 16.0.3
       prisma: 4.7.1
       ts-node: 10.9.1_wup25etrarvlqkprac7h35hj7u
       typescript: 4.9.3
@@ -2742,6 +2746,12 @@ packages:
   /@types/aria-query/4.2.2:
     resolution: {integrity: sha512-HnYpAE1Y6kRyKM/XkEuiRQhTHvkzMBurTHnpFLYLBGPIylZNPs9jJcuOOYWxPLJCSEtmZT0Y8rHDokKN7rRTig==}
     dev: false
+
+  /@types/bcrypt/5.0.0:
+    resolution: {integrity: sha512-agtcFKaruL8TmcvqbndlqHPSJgsolhf/qPWchFlgnW1gECTN/nKbFcoFnvKAQRFfKbh+BO6A3SWdJu9t+xF3Lw==}
+    dependencies:
+      '@types/node': 18.11.9
+    dev: true
 
   /@types/body-parser/1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
@@ -5611,7 +5621,6 @@ packages:
   /dotenv/16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: false
 
   /duplexer/0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}

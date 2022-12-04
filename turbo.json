@@ -18,6 +18,7 @@
       "cache": false
     },
     "db:migrate":{
+      "inputs": ["prisma/schema.prisma"],
       "cache": false
     },
     "db:push" :{

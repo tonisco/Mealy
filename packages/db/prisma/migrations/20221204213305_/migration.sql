@@ -72,7 +72,7 @@ CREATE TABLE "Food" (
     "description" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
-    "resturantId" TEXT NOT NULL,
+    "restaurantId" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -92,7 +92,7 @@ CREATE TABLE "BasketFood" (
 CREATE TABLE "Basket" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "resturantId" TEXT NOT NULL,
+    "restaurantId" TEXT NOT NULL,
 
     CONSTRAINT "Basket_pkey" PRIMARY KEY ("id")
 );
@@ -117,7 +117,7 @@ CREATE TABLE "Order" (
     "payment" "Payment" NOT NULL,
     "userId" TEXT NOT NULL,
     "courierId" TEXT NOT NULL,
-    "resturantId" TEXT NOT NULL,
+    "restaurantId" TEXT NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
@@ -150,7 +150,7 @@ CREATE UNIQUE INDEX "Courier_email_key" ON "Courier"("email");
 CREATE UNIQUE INDEX "Basket_userId_key" ON "Basket"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Basket_resturantId_key" ON "Basket"("resturantId");
+CREATE UNIQUE INDEX "Basket_restaurantId_key" ON "Basket"("restaurantId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_FoodToFoodOrdered_AB_unique" ON "_FoodToFoodOrdered"("A", "B");
@@ -165,7 +165,7 @@ CREATE UNIQUE INDEX "_BasketFoodToFood_AB_unique" ON "_BasketFoodToFood"("A", "B
 CREATE INDEX "_BasketFoodToFood_B_index" ON "_BasketFoodToFood"("B");
 
 -- AddForeignKey
-ALTER TABLE "Food" ADD CONSTRAINT "Food_resturantId_fkey" FOREIGN KEY ("resturantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Food" ADD CONSTRAINT "Food_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "BasketFood" ADD CONSTRAINT "BasketFood_basketId_fkey" FOREIGN KEY ("basketId") REFERENCES "Basket"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -174,7 +174,7 @@ ALTER TABLE "BasketFood" ADD CONSTRAINT "BasketFood_basketId_fkey" FOREIGN KEY (
 ALTER TABLE "Basket" ADD CONSTRAINT "Basket_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Basket" ADD CONSTRAINT "Basket_resturantId_fkey" FOREIGN KEY ("resturantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Basket" ADD CONSTRAINT "Basket_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "FoodOrdered" ADD CONSTRAINT "FoodOrdered_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -186,7 +186,7 @@ ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") RE
 ALTER TABLE "Order" ADD CONSTRAINT "Order_courierId_fkey" FOREIGN KEY ("courierId") REFERENCES "Courier"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Order" ADD CONSTRAINT "Order_resturantId_fkey" FOREIGN KEY ("resturantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Order" ADD CONSTRAINT "Order_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_FoodToFoodOrdered" ADD CONSTRAINT "_FoodToFoodOrdered_A_fkey" FOREIGN KEY ("A") REFERENCES "Food"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -7,13 +7,14 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma push --skip-generate",
-    "db:seed": "ts-node src",
+    "db:seed": "ts-node src/seed/index.ts",
     "db:studio": "prisma studio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "18.11.9",
     "prisma": "^4.7.1",
     "ts-node": "^10.9.1",
