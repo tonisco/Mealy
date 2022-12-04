@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15-bullseye
+    container_name: psql
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=4321
+      - POSTGRES_USER=root
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
