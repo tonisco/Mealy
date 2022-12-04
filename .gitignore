@@ -13,6 +13,9 @@ coverage
 out/
 build
 
+# db
+prisma/*-journal
+
 # misc
 .DS_Store
 *.pem

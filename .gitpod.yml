@@ -3,7 +3,7 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - init: pnpm install && docker compose -f packages/db/psql.yaml up -d
-    command: pnpm run dev
+  - init: pnpm install 
+    command: pnpm i && docker compose -f packages/db/psql.yaml up -d && docker ps
 
 

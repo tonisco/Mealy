@@ -1,0 +1,12 @@
+{
+    "extends": "../tsconfig/api.json",
+    "compilerOptions": {
+      "rootDir": ".",
+      "outDir": "dist",
+      "lib": ["ESNext"],
+      "esModuleInterop": true
+    },
+    "include": ["src/"],
+    "exclude": ["node_modules", ".turbo", "coverage", "dist", "src/**/*.test.ts"]
+  }
+  

@@ -8,6 +8,9 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "[prisma]": {
       "editor.defaultFormatter": "Prisma.prisma"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
     }
   }
   
