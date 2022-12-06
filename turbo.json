@@ -29,6 +29,7 @@
     },
     "db:studio":{
       "cache": false
-    }
+    },
+    "start:food":{}
   }
 }
