@@ -2,7 +2,7 @@
   "name": "mobile-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@react-native-masked-view/masked-view": "0.2.8",
+    "expo": "~47.0.7",
+    "expo-linear-gradient": "~12.0.1",
+    "nativewind": "^2.0.11",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5"
