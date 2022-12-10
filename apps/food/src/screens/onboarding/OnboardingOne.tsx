@@ -1,13 +1,21 @@
 import React from 'react'
 import { Text, View, Image, SafeAreaView, TouchableOpacity } from 'react-native'
-import { GradientBackground, GradientButton, TextClip, } from 'mobile-ui'
+import { GradientBackground, GradientButton, Onboarding, TextClip, } from 'mobile-ui'
 
 const OnboardingOne = () => {
+const nextPage = ()=>{}
+
   return (
+    // <Onboarding 
+    //   heading='Order a Tasty Dish'
+    //   description='Discover the best foods from over 1,000 restaurants and fast delivery to your doorstep'
+    //   page={1}
+    //   onPress={nextPage}
+    //   Image={<Image className='h-56 w-48' source={require('../../../assets/onboarding4.png')} resizeMode={'contain'}/>}/>
     <SafeAreaView className='justify-center items-center flex-1 bg-color mb-7'>
       <View className='justify-center items-center gap-y-20'>
         <View className='items-center p-3.5 gap-y-5'>
-          <Image className='h-44 w-48' source={require('../../../assets/onboarding4.png')} />
+        <Image className='h-48 w-48' source={require('../../../assets/onboarding4.png')} resizeMode={'contain'} resizeMethod={'resize'}/>
           <View className='items-center'>
             <TextClip>
               <Text style={{ color: 'black' }} className='text-4xl uppercase w-full font-bold'>Order a Tasty Dish</Text>

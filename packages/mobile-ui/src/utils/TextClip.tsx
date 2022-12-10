@@ -4,9 +4,9 @@ import GradientBackground from './GradientBackground'
 import { View } from 'react-native'
 
 const TextClip = ({ children }: { children: React.ReactElement }) => {
-    return ( 
-        <MaskedView
-      style={{ flex: 1, flexDirection: 'row', maxHeight:37 }}
+  return (
+    <MaskedView
+      style={{ flex: 1, flexDirection: 'row', maxHeight: 37 }}
       maskElement={
         <View
           style={{
@@ -21,9 +21,9 @@ const TextClip = ({ children }: { children: React.ReactElement }) => {
         </View>
       }
     >
-      <GradientBackground style={{flex:1}}/>
+      <GradientBackground style={{ flex: 1 }} />
     </MaskedView>
-    )
+  )
 }
 
 export default TextClip
