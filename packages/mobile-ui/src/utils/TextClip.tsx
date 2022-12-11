@@ -1,30 +1,37 @@
-import React from 'react'
-import MaskedView from '@react-native-masked-view/masked-view'
-import GradientBackground from './GradientBackground'
-import { View } from 'react-native'
+import MaskedView from "@react-native-masked-view/masked-view"
+import TextSize from "mobile-constants/src/TextSize"
+import React from "react"
+import { Text, StyleSheet } from "react-native"
 
-const TextClip = ({ children }: { children: React.ReactElement }) => {
+import GradientBackground from "./GradientBackground"
+
+const TextClip = ({ text }: { text?: string }) => {
   return (
     <MaskedView
-      style={{ flex: 1, flexDirection: 'row', maxHeight: 37 }}
       maskElement={
-        <View
-          style={{
-            // Transparent background because mask is based off alpha channel.
-            backgroundColor: 'transparent',
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {children}
-        </View>
+        <Text style={[styles.main, styles.rmBackground]}>{text}</Text>
       }
     >
-      <GradientBackground style={{ flex: 1 }} />
+      <GradientBackground>
+        <Text style={[styles.main, styles.opacity]}>{text}</Text>
+      </GradientBackground>
     </MaskedView>
   )
 }
 
-export default TextClip
+const styles = StyleSheet.create({
+  main: {
+    fontSize: TextSize.large,
+    fontWeight: "bold",
+    textAlign: "center",
+    textTransform: "uppercase",
+  },
+  rmBackground: {
+    backgroundColor: "transparent",
+  },
+  opacity: {
+    opacity: 0,
+  },
+})
 
+export default TextClip

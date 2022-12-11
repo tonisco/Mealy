@@ -127,10 +127,10 @@ importers:
       eslint: 8.29.0
       eslint-config-universe: 11.1.1
       expo: ~47.0.7
+      expo-constants: ^14.0.2
       expo-linear-gradient: ~12.0.1
       expo-status-bar: ~1.4.2
       mobile-ui: workspace:*
-      nativewind: ^2.0.11
       prettier: 2.8.1
       react: 18.1.0
       react-dom: 18.1.0
@@ -139,8 +139,6 @@ importers:
       react-native-safe-area-context: 4.4.1
       react-native-screens: ~3.18.0
       react-native-web: ~0.18.9
-      tailwind-config: workspace:*
-      tailwindcss: ^3.2.4
       tsconfig: workspace:*
       typescript: ^4.6.3
     dependencies:
@@ -149,10 +147,10 @@ importers:
       '@react-navigation/native': 6.0.16_tj3nonr5gneraukzjkxpsiy7yu
       '@react-navigation/stack': 6.3.7_cjkx3vsu2z73thaose67iblj7e
       expo: 47.0.7_@babel+core@7.20.2
+      expo-constants: 14.0.2_expo@47.0.7
       expo-linear-gradient: 12.0.1_expo@47.0.7
       expo-status-bar: 1.4.2
       mobile-ui: link:../../packages/mobile-ui
-      nativewind: 2.0.11_f3xea42f6zrwqyr5c6mbkdauxa
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-native: 0.70.5_54md7p3jw3ru3lahxqgw5vptci
@@ -170,8 +168,6 @@ importers:
       eslint: 8.29.0
       eslint-config-universe: 11.1.1_gom25qhbkdhcypbouexpt6hn3a
       prettier: 2.8.1
-      tailwind-config: link:../../packages/tailwind-config
-      tailwindcss: 3.2.4
       tsconfig: link:../../packages/tsconfig
       typescript: 4.9.3
 
@@ -287,6 +283,12 @@ importers:
       typescript: 4.9.3
       typescript-eslint: 0.0.1-alpha.0
 
+  packages/mobile-constants:
+    specifiers:
+      esconfig: workspace:*
+    devDependencies:
+      esconfig: link:../esconfig
+
   packages/mobile-ui:
     specifiers:
       '@babel/core': ^7.12.9
@@ -298,19 +300,17 @@ importers:
       esconfig: workspace:*
       expo: ~47.0.7
       expo-linear-gradient: ~12.0.1
-      nativewind: ^2.0.11
+      mobile-constants: workspace:*
       react: 18.1.0
       react-dom: 18.1.0
       react-native: 0.70.5
-      tailwind-config: workspace:*
-      tailwindcss: ^3.2.4
       tsconfig: workspace:*
       typescript: ^4.6.3
     dependencies:
       '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
       expo: 47.0.8_@babel+core@7.20.2
       expo-linear-gradient: 12.0.1_expo@47.0.8
-      nativewind: 2.0.11_f3xea42f6zrwqyr5c6mbkdauxa
+      mobile-constants: link:../mobile-constants
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-native: 0.70.5_54md7p3jw3ru3lahxqgw5vptci
@@ -321,8 +321,6 @@ importers:
       '@types/react': 18.0.25
       '@types/react-native': 0.70.6
       esconfig: link:../esconfig
-      tailwind-config: link:../tailwind-config
-      tailwindcss: 3.2.4
       tsconfig: link:../tsconfig
       typescript: 4.9.3
 
