@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     shadowColor: "black",
     shadowOffset: { height: 4, width: 3 },
-    elevation: 3,
+    elevation: 4,
     shadowOpacity: 0.9,
-    shadowRadius: 3,
-    minWidth: 130,
+    shadowRadius: 4,
+    minWidth: 120,
     alignItems: "center",
   },
 })

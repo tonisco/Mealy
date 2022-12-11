@@ -7,7 +7,7 @@ import { OnboardingStack } from "../../constants/screen"
 
 type Props = StackScreenProps<OnboardingStack, "Onboarding 2">
 
-const OnboardingOne = ({ navigation }: Props) => {
+const OnboardingTwo = ({ navigation }: Props) => {
   const nextPage = () => {
     navigation.navigate("Onboarding 3")
   }
@@ -29,4 +29,4 @@ const OnboardingOne = ({ navigation }: Props) => {
   )
 }
 
-export default OnboardingOne
+export default OnboardingTwo
