@@ -65,6 +65,7 @@ const style = StyleSheet.create({
     textTransform: "uppercase",
     fontSize: TextSize.tiny,
     color: Colors.dark,
+    textAlign: "center",
   },
   points: {
     flexDirection: "row",

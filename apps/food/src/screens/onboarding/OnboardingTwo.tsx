@@ -1,12 +1,32 @@
+import { StackScreenProps } from "@react-navigation/stack"
+import { Onboarding } from "mobile-ui"
 import React from "react"
-import { View, Text } from "react-native"
+import { Image } from "react-native"
 
-const OnboardingTwo = () => {
+import { OnboardingStack } from "../../constants/screen"
+
+type Props = StackScreenProps<OnboardingStack, "Onboarding 2">
+
+const OnboardingOne = ({ navigation }: Props) => {
+  const nextPage = () => {
+    navigation.navigate("Onboarding 3")
+  }
+
   return (
-    <View>
-      <Text>This is Onboarding Two</Text>
-    </View>
+    <Onboarding
+      heading="Fast Delivery"
+      description="Fast food delivery to your home, office wherever you are"
+      page={2}
+      onPress={nextPage}
+      Image={
+        <Image
+          style={{ height: 184, width: 184 }}
+          source={require("../../../assets/onboarding4.png")}
+          resizeMode={"contain"}
+        />
+      }
+    />
   )
 }
 
-export default OnboardingTwo
+export default OnboardingOne
