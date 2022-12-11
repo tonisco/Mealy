@@ -1,10 +1,15 @@
+import { StackScreenProps } from "@react-navigation/stack"
 import { Onboarding } from "mobile-ui"
 import React from "react"
 import { Image } from "react-native"
 
-const OnboardingOne = () => {
+import { OnboardingStack } from "../../constants/screen"
+
+type Props = StackScreenProps<OnboardingStack, "Onboarding 1">
+
+const OnboardingOne = ({ navigation }: Props) => {
   const nextPage = () => {
-    console.log("first")
+    navigation.navigate("Onboarding 2")
   }
 
   return (
