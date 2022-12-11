@@ -19,7 +19,10 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
-    "esconfig": "workspace:*",
+    "eslint": "^8.28.0",
+    "eslint-config-next": "13.0.4",
+    "eslint-import-resolver-typescript": "3.5.2",
+    "eslint-plugin-import": "2.26.0",
     "postcss": "^8.4.19",
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.2.4",

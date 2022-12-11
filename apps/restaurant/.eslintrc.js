@@ -1,7 +1,4 @@
-module.exports={
-  ...require('esconfig/next-eslint'),
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: './tsconfig.json',
-  },
+/** @type {import("eslint").Linter.Config} */
+module.exports = {
+  extends: ["../../.eslintrc.cjs", "next/core-web-vitals"],
 }

@@ -35,7 +35,6 @@
   },
   "files": [
     "api-eslint.js",
-    "native-eskint.js",
-    "next-eslint.js"
+    "native-eskint.js"
   ]
 }
