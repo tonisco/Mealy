@@ -4,12 +4,12 @@ import {
 } from "@react-navigation/stack"
 import * as React from "react"
 
-import { OnboardingStack } from "../../constants/screen"
+import { OnboardingStack } from "../constants/screen"
 import {
   OnboardingOne,
   OnboardingThree,
   OnboardingTwo,
-} from "../../screens/onboarding"
+} from "../screens/onboarding"
 
 const Stack = createStackNavigator<OnboardingStack>()
 
