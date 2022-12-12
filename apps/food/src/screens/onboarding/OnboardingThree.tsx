@@ -20,8 +20,8 @@ const OnboardingThree = ({ navigation }: Props) => {
       onPress={nextPage}
       Image={
         <Image
-          style={{ height: 184, width: 184 }}
-          source={require("../../../assets/onboarding4.png")}
+          style={{ height: 200, width: 200 }}
+          source={require("../../../assets/Onboarding3.png")}
           resizeMode={"contain"}
         />
       }
