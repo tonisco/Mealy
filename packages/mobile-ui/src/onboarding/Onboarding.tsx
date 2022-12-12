@@ -90,6 +90,4 @@ const style = StyleSheet.create({
   },
 })
 
-// className="mt-1 text-xs capitalize text-dark"
-
 export default onboarding

@@ -1,8 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { useFonts } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
-import { useCallback } from "react"
-import { View } from "react-native"
 
 import OnboardingNavigator from "./navigation/onboarding/OnboardingNavigator"
 
@@ -15,19 +13,12 @@ export default function App() {
     "font-regular": require("../assets/font/BentonSansRegular.otf"),
   })
 
-  const appReady = useCallback(async () => {
-    if (FontsLoaded) {
-      await SplashScreen.hideAsync()
-    }
-  }, [FontsLoaded])
-
   if (!FontsLoaded) return null
+  else SplashScreen.hideAsync()
 
   return (
-    <View onLayout={appReady}>
-      <NavigationContainer>
-        <OnboardingNavigator />
-      </NavigationContainer>
-    </View>
+    <NavigationContainer>
+      <OnboardingNavigator />
+    </NavigationContainer>
   )
 }

@@ -12,7 +12,7 @@ const GradientButton = ({ children }: { children: React.ReactElement }) => {
 const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 30,
     shadowColor: "black",
     shadowOffset: { height: 4, width: 3 },
