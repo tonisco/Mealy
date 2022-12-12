@@ -10,9 +10,9 @@ SplashScreen.preventAutoHideAsync()
 
 export default function App() {
   const [FontsLoaded] = useFonts({
-    "font-bold": require("../assets/font/BentonSans Bold.otf"),
-    "font-medium": require("../assets/font/BentonSans Medium.otf"),
-    "font-regular": require("../assets/font/BentonSans Regular.otf"),
+    "font-bold": require("../assets/font/BentonSansBold.otf"),
+    "font-medium": require("../assets/font/BentonSansMedium.otf"),
+    "font-regular": require("../assets/font/BentonSansRegular.otf"),
   })
 
   const appReady = useCallback(async () => {
