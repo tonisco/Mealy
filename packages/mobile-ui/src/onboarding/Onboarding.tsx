@@ -58,7 +58,7 @@ const style = StyleSheet.create({
   },
   main: {
     alignItems: "center",
-    paddingHorizontal: 17,
+    paddingHorizontal: 10,
     marginBottom: 40,
   },
   description: {
@@ -66,6 +66,9 @@ const style = StyleSheet.create({
     fontSize: TextSize.tiny,
     color: Colors.dark,
     textAlign: "center",
+    fontFamily: "font-regular",
+    lineHeight: 13,
+    marginTop: 3,
   },
   points: {
     flexDirection: "row",
@@ -85,8 +88,9 @@ const style = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    textTransform: "uppercase",
+    textTransform: "capitalize",
     fontSize: TextSize.small,
+    fontFamily: "font-bold",
   },
 })
 

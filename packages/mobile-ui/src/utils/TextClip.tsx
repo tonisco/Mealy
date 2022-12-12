@@ -22,9 +22,9 @@ const TextClip = ({ text }: { text?: string }) => {
 const styles = StyleSheet.create({
   main: {
     fontSize: TextSize.large,
-    fontWeight: "bold",
     textAlign: "center",
     textTransform: "uppercase",
+    fontFamily: "font-bold",
   },
   rmBackground: {
     backgroundColor: "transparent",
