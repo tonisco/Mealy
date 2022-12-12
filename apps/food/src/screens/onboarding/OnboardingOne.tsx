@@ -21,7 +21,7 @@ const OnboardingOne = ({ navigation }: Props) => {
       Image={
         <Image
           style={{ height: 200, width: 200 }}
-          source={require("../../../assets/Onboarding1.png")}
+          source={require("../../../assets/images/Onboarding1.png")}
           resizeMode={"contain"}
         />
       }
