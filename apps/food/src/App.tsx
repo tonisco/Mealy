@@ -2,7 +2,9 @@ import { NavigationContainer } from "@react-navigation/native"
 import { useFonts } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 
-import OnboardingNavigator from "./navigation/OnboardingNavigator"
+import AuthNavigator from "./navigation/AuthNavigator"
+
+// import OnboardingNavigator from "./navigation/OnboardingNavigator"
 
 SplashScreen.preventAutoHideAsync()
 
@@ -18,7 +20,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <OnboardingNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   )
 }
