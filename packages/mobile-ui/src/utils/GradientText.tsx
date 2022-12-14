@@ -1,19 +1,24 @@
 import MaskedView from "@react-native-masked-view/masked-view"
-import TextSize from "mobile-constants/src/TextSize"
 import React from "react"
-import { Text, StyleSheet } from "react-native"
+import { Text, StyleSheet, TextStyle } from "react-native"
 
 import GradientBackground from "./GradientBackground"
 
-const TextClip = ({ text }: { text?: string }) => {
+const GradientText = ({
+  text,
+  style,
+}: {
+  text?: string
+  style?: TextStyle
+}) => {
   return (
     <MaskedView
       maskElement={
-        <Text style={[styles.main, styles.rmBackground]}>{text}</Text>
+        <Text style={[styles.main, styles.rmBackground, style]}>{text}</Text>
       }
     >
       <GradientBackground>
-        <Text style={[styles.main, styles.opacity]}>{text}</Text>
+        <Text style={[styles.main, styles.opacity, style]}>{text}</Text>
       </GradientBackground>
     </MaskedView>
   )
@@ -21,9 +26,7 @@ const TextClip = ({ text }: { text?: string }) => {
 
 const styles = StyleSheet.create({
   main: {
-    fontSize: TextSize.large,
     textAlign: "center",
-    textTransform: "uppercase",
     fontFamily: "font-bold",
   },
   rmBackground: {
@@ -34,4 +37,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default TextClip
+export default GradientText
