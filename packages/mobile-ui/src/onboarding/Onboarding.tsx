@@ -1,18 +1,11 @@
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import React from "react"
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  Pressable,
-  StyleSheet,
-} from "react-native"
+import { View, Text, SafeAreaView, Image, StyleSheet } from "react-native"
 
 import GradientButton from "../ui/GradientButton"
 import GradientBackground from "../utils/GradientBackground"
-import TextClip from "../utils/TextClip"
+import GradientText from "../utils/GradientText"
 
 type Props = {
   heading: string
@@ -24,33 +17,31 @@ type Props = {
 
 const onboarding = ({ heading, description, onPress, page, Image }: Props) => {
   return (
-    <SafeAreaView style={style.container}>
-      <View style={style.main}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.main}>
         {Image}
-        <TextClip text={heading} />
+        <GradientText style={styles.headingText} text={heading} />
         <View>
-          <Text style={style.description}>{description}</Text>
+          <Text style={styles.description}>{description}</Text>
         </View>
       </View>
-      <View style={style.points}>
+      <View style={styles.points}>
         {Array.from({ length: 3 }, (_, i) =>
           i + 1 === page ? (
-            <GradientBackground key={i + 1} style={style.point} />
+            <GradientBackground key={i + 1} style={styles.point} />
           ) : (
-            <View key={i + 1} style={[style.point, style.bg_gray]}></View>
+            <View key={i + 1} style={[styles.point, styles.bg_gray]}></View>
           ),
         )}
       </View>
-      <Pressable onPress={onPress} style={style.buttonContainer}>
-        <GradientButton>
-          <Text style={style.buttonText}>next</Text>
-        </GradientButton>
-      </Pressable>
+      <View style={styles.buttonContainer}>
+        <GradientButton text="next" onPress={onPress} />
+      </View>
     </SafeAreaView>
   )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
@@ -60,6 +51,10 @@ const style = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 10,
     marginBottom: 40,
+  },
+  headingText: {
+    fontSize: TextSize.large,
+    textTransform: "uppercase",
   },
   description: {
     textTransform: "uppercase",
@@ -85,12 +80,6 @@ const style = StyleSheet.create({
   buttonContainer: {
     position: "absolute",
     bottom: 50,
-  },
-  buttonText: {
-    color: "white",
-    textTransform: "capitalize",
-    fontSize: TextSize.small,
-    fontFamily: "font-bold",
   },
 })
 

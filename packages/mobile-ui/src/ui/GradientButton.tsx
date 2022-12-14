@@ -1,11 +1,21 @@
+import TextSize from "mobile-constants/src/TextSize"
 import React from "react"
-import { StyleSheet } from "react-native"
+import { Pressable, StyleSheet, Text } from "react-native"
 
 import GradientBackground from "../utils/GradientBackground"
 
-const GradientButton = ({ children }: { children: React.ReactElement }) => {
+type Props = {
+  text: string
+  onPress: () => void
+}
+
+const GradientButton = ({ text, onPress }: Props) => {
   return (
-    <GradientBackground style={styles.button}>{children}</GradientBackground>
+    <GradientBackground style={styles.button}>
+      <Pressable onPress={onPress}>
+        <Text style={styles.buttonText}>{text}</Text>
+      </Pressable>
+    </GradientBackground>
   )
 }
 
@@ -21,6 +31,12 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     minWidth: 120,
     alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    textTransform: "capitalize",
+    fontSize: TextSize.small,
+    fontFamily: "font-bold",
   },
 })
 
