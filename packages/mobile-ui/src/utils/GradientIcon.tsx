@@ -1,33 +1,49 @@
-import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient"
+import { Ionicons } from "@expo/vector-icons"
+import MaskedView from "@react-native-masked-view/masked-view"
 import React from "react"
-import { StyleProp, ViewStyle } from "react-native"
+import { StyleSheet, TextStyle } from "react-native"
+
+import GradientBackground from "./GradientBackground"
 
 type Props = {
-  children?: React.ReactNode
-  style?: StyleProp<ViewStyle>
-  start?: LinearGradientPoint
-  end?: LinearGradientPoint
-  locations?: number[]
+  iconstyle?: TextStyle
+  name: keyof typeof Ionicons.glyphMap
+  size?: number
 }
 
-const GradientBackground = ({
-  children,
-  style,
-  start,
-  end,
-  locations,
-}: Props) => {
+const GradientIcon = ({ iconstyle, name, size }: Props) => {
   return (
-    <LinearGradient
-      style={style}
-      colors={["#53E88B", "#15BE77"]}
-      start={start ?? { x: 0, y: -0.24 }}
-      end={end ?? { x: 1, y: 0.24 }}
-      locations={locations ?? [0.33, 0.67]}
+    <MaskedView
+      maskElement={
+        <Ionicons
+          name={name}
+          size={size ?? 20}
+          style={[iconstyle, styles.rmBackground]}
+        />
+      }
     >
-      {children}
-    </LinearGradient>
+      <GradientBackground
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={{ opacity: 0.7 }}
+      >
+        <Ionicons
+          name={name}
+          size={size ?? 20}
+          style={[iconstyle, styles.opacity]}
+        />
+      </GradientBackground>
+    </MaskedView>
   )
 }
 
-export default GradientBackground
+const styles = StyleSheet.create({
+  rmBackground: {
+    backgroundColor: "transparent",
+  },
+  opacity: {
+    opacity: 0,
+  },
+})
+
+export default GradientIcon
