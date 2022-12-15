@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "@react-native-masked-view/masked-view": "0.2.8",
     "expo": "~47.0.7",
     "expo-linear-gradient": "~12.0.1",

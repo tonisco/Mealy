@@ -117,7 +117,6 @@ importers:
       '@babel/core': ^7.12.9
       '@babel/preset-env': ^7.1.6
       '@babel/runtime': ^7.19.0
-      '@expo/vector-icons': ^13.0.0
       '@expo/webpack-config': ^0.17.2
       '@hookform/resolvers': ^2.9.10
       '@react-native-masked-view/masked-view': 0.2.8
@@ -149,7 +148,6 @@ importers:
       typescript: ^4.6.3
       zod: ^3.19.1
     dependencies:
-      '@expo/vector-icons': 13.0.0
       '@expo/webpack-config': 0.17.3_vdfaurmfqrxz57gqzzs7itnl3i
       '@hookform/resolvers': 2.9.10_react-hook-form@7.40.0
       '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
@@ -308,6 +306,7 @@ importers:
       '@babel/core': ^7.12.9
       '@babel/preset-env': ^7.1.6
       '@babel/runtime': ^7.19.0
+      '@expo/vector-icons': ^13.0.0
       '@react-native-masked-view/masked-view': 0.2.8
       '@types/react': ~18.0.14
       '@types/react-native': ~0.70.6
@@ -321,6 +320,7 @@ importers:
       tsconfig: workspace:*
       typescript: ^4.6.3
     dependencies:
+      '@expo/vector-icons': 13.0.0
       '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
       expo: 47.0.8_@babel+core@7.20.2
       expo-linear-gradient: 12.0.1_expo@47.0.8
@@ -4513,7 +4513,7 @@ packages:
       minipass-pipeline: 1.2.4
       mkdirp: 1.0.4
       p-map: 4.0.0
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 3.0.2
       ssri: 8.0.1
       tar: 6.1.12
@@ -11639,6 +11639,15 @@ packages:
   /progress/2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
     engines: {node: '>=0.4.0'}
+    dev: false
+
+  /promise-inflight/1.0.1:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
     dev: false
 
   /promise-inflight/1.0.1_bluebird@3.7.2:

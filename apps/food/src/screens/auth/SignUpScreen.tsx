@@ -1,7 +1,6 @@
-import Ionicons from "@expo/vector-icons/Ionicons"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
-import { GradientButton, GradientText } from "mobile-ui"
+import { GradientButton, GradientIcon, GradientText } from "mobile-ui"
 import React from "react"
 import { View, Text, StyleSheet, Image, TextInput } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
@@ -25,15 +24,21 @@ const SignUpScreen = () => {
         <View style={styles.form}>
           <View style={styles.inputContainer}>
             <TextInput style={styles.input} placeholder="Email" />
-            <Ionicons name="mail" style={styles.icon} size={20} />
+            <View style={styles.icon}>
+              <GradientIcon name="mail" />
+            </View>
           </View>
           <View style={styles.inputContainer}>
             <TextInput style={styles.input} placeholder="Password" />
-            <Ionicons name="lock-closed" style={styles.icon} size={20} />
+            <View style={styles.icon}>
+              <GradientIcon name="lock-closed" />
+            </View>
           </View>
           <View style={styles.inputContainer}>
             <TextInput style={styles.input} placeholder="Confirm Password" />
-            <Ionicons name="lock-closed" style={styles.icon} size={20} />
+            <View style={styles.icon}>
+              <GradientIcon name="lock-closed" />
+            </View>
           </View>
         </View>
         <View style={styles.buttonContainer}>
