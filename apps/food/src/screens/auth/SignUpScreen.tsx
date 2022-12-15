@@ -1,13 +1,47 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import { GradientButton, GradientIcon, GradientText } from "mobile-ui"
 import React from "react"
+import { useForm, Controller } from "react-hook-form"
 import { View, Text, StyleSheet, Image, TextInput } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import * as z from "zod"
+
+type FormData = {
+  email: string
+  password: string
+  confirmPassword: string
+}
 
 const SignUpScreen = () => {
-  const createAccount = () => {
-    console.log("clicked")
+  const schema = z
+    .object({
+      email: z
+        .string()
+        .email()
+        .trim()
+        .refine((val) => val.toLocaleLowerCase()),
+      password: z.string().min(6),
+      confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      path: ["confirmPassword"],
+      message: "Passwords do not match",
+    })
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { email: "", password: "", confirmPassword: "" },
+    resolver: zodResolver(schema),
+  })
+
+  const createAccount = (data: FormData) => {
+    console.log("yes")
+    console.log(data)
   }
 
   return (
@@ -23,26 +57,67 @@ const SignUpScreen = () => {
         <Text style={styles.heading}>Sign up for Free</Text>
         <View style={styles.form}>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.input} placeholder="Email" />
+            <Controller
+              name="email"
+              control={control}
+              rules={{ required: true }}
+              render={({ field: { value, onBlur, onChange } }) => (
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+            />
+            <Text>{errors.email?.message}</Text>
             <View style={styles.icon}>
               <GradientIcon name="mail" />
             </View>
           </View>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.input} placeholder="Password" />
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onBlur, onChange, value } }) => (
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+            />
             <View style={styles.icon}>
               <GradientIcon name="lock-closed" />
             </View>
           </View>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.input} placeholder="Confirm Password" />
+            <Controller
+              name="confirmPassword"
+              control={control}
+              render={({ field: { onBlur, onChange, value } }) => (
+                <TextInput
+                  style={styles.input}
+                  placeholder="Confirm Password"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+            />
             <View style={styles.icon}>
               <GradientIcon name="lock-closed" />
             </View>
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <GradientButton text="Create Account" onPress={createAccount} />
+          <GradientButton
+            text="Create Account"
+            onPress={handleSubmit(createAccount)}
+          />
         </View>
 
         <View style={styles.other}>
