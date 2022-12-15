@@ -1,12 +1,24 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { StackScreenProps } from "@react-navigation/stack"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
-import { GradientButton, GradientIcon, GradientText } from "mobile-ui"
+import { GradientButton, GradientText, Input } from "mobile-ui"
 import React from "react"
-import { useForm, Controller } from "react-hook-form"
-import { View, Text, StyleSheet, Image, TextInput } from "react-native"
+import { useForm } from "react-hook-form"
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Pressable,
+} from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
+
+import { AuthStack } from "../../constants/screen"
+
+type Props = StackScreenProps<AuthStack, "Sign Up">
 
 type FormData = {
   email: string
@@ -14,7 +26,8 @@ type FormData = {
   confirmPassword: string
 }
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }: Props) => {
+  const { navigate } = navigation
   const schema = z
     .object({
       email: z
@@ -46,97 +59,72 @@ const SignUpScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logoImage}
-          source={require("../../../assets/images/Asset2.png")}
-        />
-        <GradientText style={styles.logoText} text="Mealy Food" />
-      </View>
-      <View style={styles.details}>
-        <Text style={styles.heading}>Sign up for Free</Text>
-        <View style={styles.form}>
-          <View style={styles.inputContainer}>
-            <Controller
-              name="email"
-              control={control}
-              rules={{ required: true }}
-              render={({ field: { value, onBlur, onChange } }) => (
-                <TextInput
-                  style={styles.input}
-                  placeholder="Email"
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                />
-              )}
-            />
-            <Text>{errors.email?.message}</Text>
-            <View style={styles.icon}>
-              <GradientIcon name="mail" />
-            </View>
-          </View>
-          <View style={styles.inputContainer}>
-            <Controller
-              name="password"
-              control={control}
-              render={({ field: { onBlur, onChange, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  placeholder="Password"
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                />
-              )}
-            />
-            <View style={styles.icon}>
-              <GradientIcon name="lock-closed" />
-            </View>
-          </View>
-          <View style={styles.inputContainer}>
-            <Controller
-              name="confirmPassword"
-              control={control}
-              render={({ field: { onBlur, onChange, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  placeholder="Confirm Password"
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                />
-              )}
-            />
-            <View style={styles.icon}>
-              <GradientIcon name="lock-closed" />
-            </View>
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <GradientButton
-            text="Create Account"
-            onPress={handleSubmit(createAccount)}
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.logoContainer}>
+          <Image
+            style={styles.logoImage}
+            source={require("../../../assets/images/Asset2.png")}
           />
+          <GradientText style={styles.logoText} text="Mealy Food" />
         </View>
+        <View style={styles.details}>
+          <Text style={styles.heading}>Sign up for Free</Text>
+          <View style={styles.form}>
+            <Input
+              control={control}
+              error={errors.email?.message}
+              inputName="email"
+              placeholder="Email"
+              iconName="mail"
+            />
+            <Input
+              control={control}
+              error={errors.password?.message}
+              inputName="password"
+              placeholder="Password"
+              iconName="lock-closed"
+              encrypt
+            />
+            <Input
+              control={control}
+              error={errors.confirmPassword?.message}
+              inputName="confirmPassword"
+              placeholder="Confirm Password"
+              iconName="lock-closed"
+              encrypt
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <GradientButton
+              text="Create Account"
+              onPress={handleSubmit(createAccount)}
+            />
+          </View>
 
-        <View style={styles.other}>
-          <Text style={styles.continueText}>Or Continue With</Text>
-          <View style={styles.googleContainer}>
-            <Image
-              source={require("../../../assets/images/google.png")}
-              style={styles.googleImage}
-            />
-            <Text style={styles.googleText}>Google</Text>
-          </View>
-          <View style={styles.optionsContainer}>
-            <GradientText
-              style={styles.accountText}
-              text="Already have an account? Login"
-            />
+          <View style={styles.other}>
+            <Text style={styles.continueText}>Or Continue With</Text>
+            <View style={styles.googleContainer}>
+              <Image
+                source={require("../../../assets/images/google.png")}
+                style={styles.googleImage}
+              />
+              <Text style={styles.googleText}>Google</Text>
+            </View>
+            <Pressable
+              style={styles.optionsContainer}
+              onPress={() => navigate("Log In", { animation: false })}
+            >
+              <GradientText
+                style={styles.accountText}
+                text="Already have an account? Login"
+              />
+            </Pressable>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -146,7 +134,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
   },
   logoContainer: {
     alignItems: "center",
@@ -174,24 +161,6 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: 20,
-  },
-  inputContainer: {
-    position: "relative",
-  },
-  input: {
-    height: 50,
-    width: 300,
-    borderRadius: 10,
-    marginVertical: 10,
-    paddingLeft: 50,
-    paddingRight: 20,
-    fontFamily: "font-medium",
-    backgroundColor: "#fff",
-  },
-  icon: {
-    position: "absolute",
-    top: 24,
-    left: 20,
   },
   buttonContainer: {
     marginTop: 15,

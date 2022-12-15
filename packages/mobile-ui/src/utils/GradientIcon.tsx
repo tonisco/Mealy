@@ -6,19 +6,19 @@ import { StyleSheet, TextStyle } from "react-native"
 import GradientBackground from "./GradientBackground"
 
 type Props = {
-  iconstyle?: TextStyle
+  iconStyle?: TextStyle
   name: keyof typeof Ionicons.glyphMap
   size?: number
 }
 
-const GradientIcon = ({ iconstyle, name, size }: Props) => {
+const GradientIcon = ({ iconStyle, name, size }: Props) => {
   return (
     <MaskedView
       maskElement={
         <Ionicons
           name={name}
           size={size ?? 20}
-          style={[iconstyle, styles.rmBackground]}
+          style={[iconStyle, styles.rmBackground]}
         />
       }
     >
@@ -30,7 +30,7 @@ const GradientIcon = ({ iconstyle, name, size }: Props) => {
         <Ionicons
           name={name}
           size={size ?? 20}
-          style={[iconstyle, styles.opacity]}
+          style={[iconStyle, styles.opacity]}
         />
       </GradientBackground>
     </MaskedView>
