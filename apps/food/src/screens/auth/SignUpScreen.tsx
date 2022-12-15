@@ -1,9 +1,9 @@
+import Ionicons from "@expo/vector-icons/Ionicons"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import { GradientButton, GradientText } from "mobile-ui"
 import React from "react"
-import { View, Text, StyleSheet, Image } from "react-native"
-import { TextInput } from "react-native-gesture-handler"
+import { View, Text, StyleSheet, Image, TextInput } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 const SignUpScreen = () => {
@@ -23,9 +23,18 @@ const SignUpScreen = () => {
       <View style={styles.details}>
         <Text style={styles.heading}>Sign up for Free</Text>
         <View style={styles.form}>
-          <TextInput style={styles.input} placeholder="Email" />
-          <TextInput style={styles.input} placeholder="Password" />
-          <TextInput style={styles.input} placeholder="Confirm Password" />
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.input} placeholder="Email" />
+            <Ionicons name="mail" style={styles.icon} size={20} />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.input} placeholder="Password" />
+            <Ionicons name="lock-closed" style={styles.icon} size={20} />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.input} placeholder="Confirm Password" />
+            <Ionicons name="lock-closed" style={styles.icon} size={20} />
+          </View>
         </View>
         <View style={styles.buttonContainer}>
           <GradientButton text="Create Account" onPress={createAccount} />
@@ -86,14 +95,23 @@ const styles = StyleSheet.create({
   form: {
     marginVertical: 20,
   },
+  inputContainer: {
+    position: "relative",
+  },
   input: {
     height: 50,
     width: 300,
     borderRadius: 10,
     marginVertical: 10,
-    paddingHorizontal: 30,
+    paddingLeft: 50,
+    paddingRight: 20,
     fontFamily: "font-medium",
     backgroundColor: "#fff",
+  },
+  icon: {
+    position: "absolute",
+    top: 24,
+    left: 20,
   },
   buttonContainer: {
     marginTop: 15,

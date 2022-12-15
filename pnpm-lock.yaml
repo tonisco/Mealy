@@ -117,6 +117,7 @@ importers:
       '@babel/core': ^7.12.9
       '@babel/preset-env': ^7.1.6
       '@babel/runtime': ^7.19.0
+      '@expo/vector-icons': ^13.0.0
       '@expo/webpack-config': ^0.17.2
       '@hookform/resolvers': ^2.9.10
       '@react-native-masked-view/masked-view': 0.2.8
@@ -148,6 +149,7 @@ importers:
       typescript: ^4.6.3
       zod: ^3.19.1
     dependencies:
+      '@expo/vector-icons': 13.0.0
       '@expo/webpack-config': 0.17.3_vdfaurmfqrxz57gqzzs7itnl3i
       '@hookform/resolvers': 2.9.10_react-hook-form@7.40.0
       '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
