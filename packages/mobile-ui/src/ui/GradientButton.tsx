@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     textTransform: "capitalize",
-    fontSize: TextSize.small,
+    fontSize: TextSize.regular,
     fontFamily: "font-bold",
   },
 })

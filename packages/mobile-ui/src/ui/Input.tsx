@@ -3,7 +3,7 @@ import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import React, { useState } from "react"
 import { Controller } from "react-hook-form"
-import { StyleSheet, Text, TextInput, View, ViewStyle } from "react-native"
+import { StyleSheet, Text, TextInput, View } from "react-native"
 
 import GradientIcon from "../utils/GradientIcon"
 
@@ -13,7 +13,7 @@ type DefaultProps = {
   encrypt?: boolean
 }
 
-type Other = {
+type SecureProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any
   inputName: string
@@ -21,54 +21,51 @@ type Other = {
   check: true
 }
 
-type someValue = {
+type UnsecureProps = {
   value: string
   check: false
 }
 
-type Secure = DefaultProps & Other
-type Unsecure = DefaultProps & someValue
+type Secure = DefaultProps & SecureProps
+type Unsecure = DefaultProps & UnsecureProps
 
-type Props = {
-  style?: ViewStyle
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control?: any
-  iconName: keyof typeof Ionicons.glyphMap
-  inputName?: string
-  placeholder: string
-  error?: string
-  encrypt?: boolean
-}
+type Props = Secure | Unsecure
 
-const Input = (props: Secure | Unsecure) => {
+const Input = (props: Props) => {
   const [hidden, setHidden] = useState(true)
 
   return (
     <View style={styles.inputContainer}>
       {props?.check ? (
-        <Controller
-          name={props.inputName ?? ""}
-          control={props.control}
-          rules={{ required: true }}
-          render={({ field: { value, onBlur, onChange } }) => (
-            <TextInput
-              style={styles.input}
-              placeholder={props.placeholder}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              secureTextEntry={props.encrypt && hidden}
-            />
-          )}
-        />
+        <>
+          <Controller
+            name={props.inputName ?? ""}
+            control={props.control}
+            rules={{ required: true }}
+            render={({ field: { value, onBlur, onChange } }) => (
+              <TextInput
+                style={styles.input}
+                placeholder={props.placeholder}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                secureTextEntry={props.encrypt && hidden}
+              />
+            )}
+          />
+
+          <Text style={styles.errorMessage}>
+            {props.check ? props.error : ""}
+          </Text>
+        </>
       ) : (
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.unsecureInput]}
           placeholder={props.placeholder}
           secureTextEntry={props.encrypt && hidden}
+          value={props.value}
         />
       )}
-      <Text style={styles.errorMessage}>{props.check ? props.error : ""}</Text>
       <View style={[styles.icon, styles.iconLeft]}>
         <GradientIcon name={props.iconName} />
       </View>
@@ -104,6 +101,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     fontFamily: "font-medium",
     backgroundColor: "#fff",
+  },
+  unsecureInput: {
+    marginVertical: 15,
   },
   errorMessage: {
     fontFamily: "font-medium",

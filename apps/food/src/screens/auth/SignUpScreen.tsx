@@ -204,11 +204,12 @@ const styles = StyleSheet.create({
   },
   googleText: {
     fontFamily: "font-medium",
-    fontSize: TextSize.small,
+    fontSize: TextSize.regular,
     marginHorizontal: 5,
   },
   accountText: {
-    fontSize: TextSize.tiny,
+    fontSize: TextSize.small,
+    fontFamily: "font-bold",
     textTransform: "capitalize",
   },
 })

@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   continueText: {
-    fontSize: TextSize.tiny,
+    fontSize: TextSize.small,
     fontFamily: "font-bold",
     marginVertical: 10,
     textTransform: "capitalize",
@@ -161,11 +161,11 @@ const styles = StyleSheet.create({
   },
   googleText: {
     fontFamily: "font-medium",
-    fontSize: TextSize.small,
+    fontSize: TextSize.regular,
     marginHorizontal: 5,
   },
   accountText: {
-    fontSize: TextSize.tiny,
+    fontSize: TextSize.small,
     textTransform: "capitalize",
   },
 })

@@ -1,7 +1,8 @@
 const Text = {
   large: 33,
   medium: 20,
-  small: 15,
+  regular: 15,
+  small: 12,
   tiny: 10,
 }
 
