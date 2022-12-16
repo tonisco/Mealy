@@ -3,7 +3,7 @@ import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import React, { useState } from "react"
 import { Controller } from "react-hook-form"
-import { StyleSheet, Text, TextInput, View } from "react-native"
+import { Platform, StyleSheet, Text, TextInput, View } from "react-native"
 
 import GradientIcon from "../utils/GradientIcon"
 
@@ -24,6 +24,7 @@ type SecureProps = {
 type UnsecureProps = {
   value: string
   check: false
+  changeText: React.Dispatch<React.SetStateAction<string>>
 }
 
 type Secure = DefaultProps & SecureProps
@@ -64,6 +65,7 @@ const Input = (props: Props) => {
           placeholder={props.placeholder}
           secureTextEntry={props.encrypt && hidden}
           value={props.value}
+          onChangeText={props.changeText}
         />
       )}
       <View style={[styles.icon, styles.iconLeft]}>
@@ -74,14 +76,14 @@ const Input = (props: Props) => {
           <Ionicons
             style={[styles.icon, styles.iconRight]}
             size={20}
-            name="eye-off"
+            name={Platform.OS === "ios" ? "ios-eye-off" : "eye-off"}
             onPress={() => setHidden(!hidden)}
           />
         ) : (
           <Ionicons
             style={[styles.icon, styles.iconRight]}
             size={20}
-            name="eye"
+            name={Platform.OS === "ios" ? "ios-eye" : "eye"}
             onPress={() => setHidden(!hidden)}
           />
         ))}

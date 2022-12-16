@@ -12,6 +12,7 @@ import {
   Image,
   ScrollView,
   Pressable,
+  Platform,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
@@ -79,7 +80,7 @@ const SignUpScreen = ({ navigation }: Props) => {
               inputName="email"
               check={true}
               placeholder="Email"
-              iconName="mail"
+              iconName={Platform.OS === "ios" ? "ios-mail" : "mail"}
             />
             <Input
               control={control}
@@ -87,7 +88,9 @@ const SignUpScreen = ({ navigation }: Props) => {
               error={errors.password?.message}
               inputName="password"
               placeholder="Password"
-              iconName="lock-closed"
+              iconName={
+                Platform.OS === "ios" ? "ios-lock-closed" : "lock-closed"
+              }
               encrypt
             />
             <Input
@@ -96,7 +99,9 @@ const SignUpScreen = ({ navigation }: Props) => {
               error={errors.confirmPassword?.message}
               inputName="confirmPassword"
               placeholder="Confirm Password"
-              iconName="lock-closed"
+              iconName={
+                Platform.OS === "ios" ? "ios-lock-closed" : "lock-closed"
+              }
               encrypt
             />
           </View>

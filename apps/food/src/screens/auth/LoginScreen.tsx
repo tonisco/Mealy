@@ -2,7 +2,7 @@ import { StackScreenProps } from "@react-navigation/stack"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import { GradientButton, GradientText, Input } from "mobile-ui"
-import React from "react"
+import React, { useState } from "react"
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   Image,
   ScrollView,
   Pressable,
+  Platform,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
@@ -19,6 +20,9 @@ type Props = StackScreenProps<AuthStack, "Log In">
 
 const SignUpScreen = ({ navigation }: Props) => {
   const { navigate } = navigation
+
+  const [email, changeEmail] = useState("")
+  const [password, changePassword] = useState("")
 
   const createAccount = () => {
     console.log("yes")
@@ -42,16 +46,20 @@ const SignUpScreen = ({ navigation }: Props) => {
           <View style={styles.form}>
             <Input
               placeholder="Email"
-              iconName="mail"
+              iconName={Platform.OS === "ios" ? "ios-mail" : "mail"}
               check={false}
-              value={""}
+              value={email}
+              changeText={changeEmail}
             />
             <Input
               placeholder="Password"
-              iconName="lock-closed"
+              iconName={
+                Platform.OS === "ios" ? "ios-lock-closed" : "lock-closed"
+              }
               encrypt
               check={false}
-              value={""}
+              value={password}
+              changeText={changePassword}
             />
           </View>
           <View style={styles.buttonContainer}>
