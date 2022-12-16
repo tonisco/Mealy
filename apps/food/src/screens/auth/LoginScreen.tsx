@@ -1,4 +1,4 @@
-import { StackScreenProps } from "@react-navigation/stack"
+import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import { GradientButton, GradientText, Input } from "mobile-ui"
@@ -16,7 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 
 import { AuthStack } from "../../constants/screen"
 
-type Props = StackScreenProps<AuthStack, "Log In">
+type Props = NativeStackScreenProps<AuthStack, "Log In">
 
 const SignUpScreen = ({ navigation }: Props) => {
   const { navigate } = navigation

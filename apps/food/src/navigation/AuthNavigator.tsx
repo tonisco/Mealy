@@ -1,7 +1,4 @@
-import {
-  createStackNavigator,
-  TransitionPresets,
-} from "@react-navigation/stack"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import { AuthStack } from "../constants/screen"
 import {
@@ -14,19 +11,23 @@ import {
   SignUpScreen,
 } from "../screens/auth"
 
-const Stack = createStackNavigator<AuthStack>()
+const Stack = createNativeStackNavigator<AuthStack>()
 
 const AuthNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        ...TransitionPresets.SlideFromRightIOS,
+        animation: "slide_from_right",
       }}
     >
       <Stack.Screen name="Sign Up" component={SignUpScreen} />
       <Stack.Screen name="Log In" component={LoginScreen} />
-      <Stack.Screen name="Reset Password" component={ResetPasswordScreen} />
+      <Stack.Screen
+        name="Reset Password"
+        component={ResetPasswordScreen}
+        options={{}}
+      />
       <Stack.Screen name="Change Password" component={ChangePasswordScreen} />
       <Stack.Screen name="Details Form" component={DetailsFormScreen} />
       <Stack.Screen name="OTP Form" component={OTPFormScreen} />

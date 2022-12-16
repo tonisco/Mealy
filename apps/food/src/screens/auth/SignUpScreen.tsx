@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { StackScreenProps } from "@react-navigation/stack"
+import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import { GradientButton, GradientText, Input } from "mobile-ui"
@@ -19,7 +19,7 @@ import * as z from "zod"
 
 import { AuthStack } from "../../constants/screen"
 
-type Props = StackScreenProps<AuthStack, "Sign Up">
+type Props = NativeStackScreenProps<AuthStack, "Sign Up">
 
 type FormData = {
   email: string

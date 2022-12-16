@@ -1,7 +1,4 @@
-import {
-  createStackNavigator,
-  TransitionPresets,
-} from "@react-navigation/stack"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import * as React from "react"
 
 import { OnboardingStack } from "../constants/screen"
@@ -11,14 +8,14 @@ import {
   OnboardingTwo,
 } from "../screens/onboarding"
 
-const Stack = createStackNavigator<OnboardingStack>()
+const Stack = createNativeStackNavigator<OnboardingStack>()
 
 const OnboardingNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        ...TransitionPresets.SlideFromRightIOS,
+        animation: "slide_from_right",
       }}
     >
       <Stack.Screen name="Onboarding 1" component={OnboardingOne} />
