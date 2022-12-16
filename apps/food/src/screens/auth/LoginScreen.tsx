@@ -1,10 +1,8 @@
-import { zodResolver } from "@hookform/resolvers/zod"
 import { StackScreenProps } from "@react-navigation/stack"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
 import { GradientButton, GradientText, Input } from "mobile-ui"
 import React from "react"
-import { useForm } from "react-hook-form"
 import {
   View,
   Text,
@@ -14,47 +12,16 @@ import {
   Pressable,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import * as z from "zod"
 
 import { AuthStack } from "../../constants/screen"
 
 type Props = StackScreenProps<AuthStack, "Log In">
 
-type FormData = {
-  email: string
-  password: string
-  confirmPassword: string
-}
-
 const SignUpScreen = ({ navigation }: Props) => {
   const { navigate } = navigation
-  const schema = z
-    .object({
-      email: z
-        .string()
-        .email()
-        .trim()
-        .refine((val) => val.toLocaleLowerCase()),
-      password: z.string().min(6),
-      confirmPassword: z.string(),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-      path: ["confirmPassword"],
-      message: "Passwords do not match",
-    })
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: { email: "", password: "", confirmPassword: "" },
-    resolver: zodResolver(schema),
-  })
-
-  const createAccount = (data: FormData) => {
+  const createAccount = () => {
     console.log("yes")
-    console.log(data)
   }
 
   return (
@@ -74,26 +41,21 @@ const SignUpScreen = ({ navigation }: Props) => {
           <Text style={styles.heading}>Login to your account</Text>
           <View style={styles.form}>
             <Input
-              control={control}
-              error={errors.email?.message}
-              inputName="email"
               placeholder="Email"
               iconName="mail"
+              check={false}
+              value={""}
             />
             <Input
-              control={control}
-              error={errors.password?.message}
-              inputName="password"
               placeholder="Password"
               iconName="lock-closed"
               encrypt
+              check={false}
+              value={""}
             />
           </View>
           <View style={styles.buttonContainer}>
-            <GradientButton
-              text="Login"
-              onPress={handleSubmit(createAccount)}
-            />
+            <GradientButton text="Login" onPress={createAccount} />
           </View>
 
           <View style={styles.other}>

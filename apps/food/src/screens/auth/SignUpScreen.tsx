@@ -77,11 +77,13 @@ const SignUpScreen = ({ navigation }: Props) => {
               control={control}
               error={errors.email?.message}
               inputName="email"
+              check={true}
               placeholder="Email"
               iconName="mail"
             />
             <Input
               control={control}
+              check={true}
               error={errors.password?.message}
               inputName="password"
               placeholder="Password"
@@ -90,6 +92,7 @@ const SignUpScreen = ({ navigation }: Props) => {
             />
             <Input
               control={control}
+              check={true}
               error={errors.confirmPassword?.message}
               inputName="confirmPassword"
               placeholder="Confirm Password"
