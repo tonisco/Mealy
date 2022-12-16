@@ -23,11 +23,7 @@ const AuthNavigator = () => {
     >
       <Stack.Screen name="Sign Up" component={SignUpScreen} />
       <Stack.Screen name="Log In" component={LoginScreen} />
-      <Stack.Screen
-        name="Reset Password"
-        component={ResetPasswordScreen}
-        options={{}}
-      />
+      <Stack.Screen name="Reset Password" component={ResetPasswordScreen} />
       <Stack.Screen name="Change Password" component={ChangePasswordScreen} />
       <Stack.Screen name="Details Form" component={DetailsFormScreen} />
       <Stack.Screen name="OTP Form" component={OTPFormScreen} />

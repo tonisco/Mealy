@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
-import { GradientButton, GradientText, Input } from "mobile-ui"
+import { GradientButton, GradientText, Input, IsIos } from "mobile-ui"
 import React, { useState } from "react"
 import {
   View,
@@ -10,7 +10,6 @@ import {
   Image,
   ScrollView,
   Pressable,
-  Platform,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
@@ -46,16 +45,14 @@ const SignUpScreen = ({ navigation }: Props) => {
           <View style={styles.form}>
             <Input
               placeholder="Email"
-              iconName={Platform.OS === "ios" ? "ios-mail" : "mail"}
+              iconName={IsIos ? "ios-mail" : "mail"}
               check={false}
               value={email}
               changeText={changeEmail}
             />
             <Input
               placeholder="Password"
-              iconName={
-                Platform.OS === "ios" ? "ios-lock-closed" : "lock-closed"
-              }
+              iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
               encrypt
               check={false}
               value={password}
@@ -113,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logoText: {
-    fontSize: TextSize.large,
+    fontSize: TextSize.x_large,
     textTransform: "uppercase",
   },
   details: {

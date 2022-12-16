@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   headingText: {
-    fontSize: TextSize.large,
+    fontSize: TextSize.x_large,
     textTransform: "uppercase",
   },
   description: {

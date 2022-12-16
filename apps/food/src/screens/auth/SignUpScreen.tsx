@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import Colors from "mobile-constants/src/Colors"
 import TextSize from "mobile-constants/src/TextSize"
-import { GradientButton, GradientText, Input } from "mobile-ui"
+import { GradientButton, GradientText, Input, IsIos } from "mobile-ui"
 import React from "react"
 import { useForm } from "react-hook-form"
 import {
@@ -12,7 +12,6 @@ import {
   Image,
   ScrollView,
   Pressable,
-  Platform,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
@@ -80,7 +79,7 @@ const SignUpScreen = ({ navigation }: Props) => {
               inputName="email"
               check={true}
               placeholder="Email"
-              iconName={Platform.OS === "ios" ? "ios-mail" : "mail"}
+              iconName={IsIos ? "ios-mail" : "mail"}
             />
             <Input
               control={control}
@@ -88,9 +87,7 @@ const SignUpScreen = ({ navigation }: Props) => {
               error={errors.password?.message}
               inputName="password"
               placeholder="Password"
-              iconName={
-                Platform.OS === "ios" ? "ios-lock-closed" : "lock-closed"
-              }
+              iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
               encrypt
             />
             <Input
@@ -99,9 +96,7 @@ const SignUpScreen = ({ navigation }: Props) => {
               error={errors.confirmPassword?.message}
               inputName="confirmPassword"
               placeholder="Confirm Password"
-              iconName={
-                Platform.OS === "ios" ? "ios-lock-closed" : "lock-closed"
-              }
+              iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
               encrypt
             />
           </View>
@@ -153,7 +148,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logoText: {
-    fontSize: TextSize.large,
+    fontSize: TextSize.x_large,
     textTransform: "uppercase",
   },
   details: {
