@@ -133,7 +133,6 @@ importers:
       expo-modules-autolinking: ^1.0.0
       expo-splash-screen: ^0.17.5
       expo-status-bar: ~1.4.2
-      mobile-constants: workspace:*
       mobile-ui: workspace:*
       prettier: 2.8.1
       react: 18.1.0
@@ -159,7 +158,6 @@ importers:
       expo-modules-autolinking: 1.0.0
       expo-splash-screen: 0.17.5_7lpdrurijevouenna3j2mkxsgq
       expo-status-bar: 1.4.2
-      mobile-constants: link:../../packages/mobile-constants
       mobile-ui: link:../../packages/mobile-ui
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
@@ -295,12 +293,6 @@ importers:
       typescript: 4.9.3
       typescript-eslint: 0.0.1-alpha.0
 
-  packages/mobile-constants:
-    specifiers:
-      esconfig: workspace:*
-    devDependencies:
-      esconfig: link:../esconfig
-
   packages/mobile-ui:
     specifiers:
       '@babel/core': ^7.12.9
@@ -313,7 +305,6 @@ importers:
       esconfig: workspace:*
       expo: ~47.0.7
       expo-linear-gradient: ~12.0.1
-      mobile-constants: workspace:*
       react: 18.1.0
       react-dom: 18.1.0
       react-native: 0.70.5
@@ -324,7 +315,6 @@ importers:
       '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
       expo: 47.0.8_@babel+core@7.20.2
       expo-linear-gradient: 12.0.1_expo@47.0.8
-      mobile-constants: link:../mobile-constants
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-native: 0.70.5_54md7p3jw3ru3lahxqgw5vptci

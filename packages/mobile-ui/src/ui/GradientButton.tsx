@@ -1,8 +1,8 @@
-import TextSize from "mobile-constants/src/TextSize"
 import React from "react"
 import { Pressable, StyleSheet, Text } from "react-native"
 
-import GradientBackground from "../utils/GradientBackground"
+import TextSize from "../utils/TextSize"
+import GradientBackground from "./GradientBackground"
 
 type Props = {
   text: string

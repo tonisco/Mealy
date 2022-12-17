@@ -1,9 +1,9 @@
 import { Ionicons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
-import Colors from "mobile-constants/src/Colors"
 import React from "react"
 import { StyleSheet, Pressable } from "react-native"
 
+import Colors from "../utils/Colors"
 import IsIos from "../utils/IsIos"
 
 const BackButton = () => {

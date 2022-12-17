@@ -1,11 +1,11 @@
-import Colors from "mobile-constants/src/Colors"
-import TextSize from "mobile-constants/src/TextSize"
 import React from "react"
 import { View, Text, SafeAreaView, Image, StyleSheet } from "react-native"
 
+import GradientBackground from "../ui/GradientBackground"
 import GradientButton from "../ui/GradientButton"
-import GradientBackground from "../utils/GradientBackground"
-import GradientText from "../utils/GradientText"
+import GradientText from "../ui/GradientText"
+import Colors from "../utils/Colors"
+import TextSize from "../utils/TextSize"
 
 type Props = {
   heading: string

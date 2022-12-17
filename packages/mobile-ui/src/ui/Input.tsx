@@ -1,11 +1,11 @@
 import { Ionicons } from "@expo/vector-icons"
-import Colors from "mobile-constants/src/Colors"
-import TextSize from "mobile-constants/src/TextSize"
 import React, { useState } from "react"
 import { Controller } from "react-hook-form"
 import { Platform, StyleSheet, Text, TextInput, View } from "react-native"
 
-import GradientIcon from "../utils/GradientIcon"
+import Colors from "../utils/Colors"
+import TextSize from "../utils/TextSize"
+import GradientIcon from "./GradientIcon"
 
 type DefaultProps = {
   placeholder: string

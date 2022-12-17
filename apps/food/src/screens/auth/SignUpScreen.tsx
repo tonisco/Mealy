@@ -1,8 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import Colors from "mobile-constants/src/Colors"
-import TextSize from "mobile-constants/src/TextSize"
-import { GradientButton, GradientText, Input, IsIos } from "mobile-ui"
+import {
+  GradientButton,
+  GradientText,
+  Input,
+  IsIos,
+  Colors,
+  TextSize,
+} from "mobile-ui"
 import React from "react"
 import { useForm } from "react-hook-form"
 import {

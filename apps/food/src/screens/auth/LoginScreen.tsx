@@ -1,7 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import Colors from "mobile-constants/src/Colors"
-import TextSize from "mobile-constants/src/TextSize"
-import { GradientButton, GradientText, Input, IsIos } from "mobile-ui"
+import {
+  GradientButton,
+  GradientText,
+  Input,
+  IsIos,
+  Colors,
+  TextSize,
+} from "mobile-ui"
 import React, { useState } from "react"
 import {
   View,

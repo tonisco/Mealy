@@ -1,8 +1,12 @@
-// import {} from '@react-navigation/'
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import Colors from "mobile-constants/src/Colors"
-import TextSize from "mobile-constants/src/TextSize"
-import { BackButton, GradientButton, Input, IsIos } from "mobile-ui"
+import {
+  BackButton,
+  GradientButton,
+  Input,
+  IsIos,
+  Colors,
+  TextSize,
+} from "mobile-ui"
 import React, { useState } from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
