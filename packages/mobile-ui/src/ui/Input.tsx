@@ -1,7 +1,15 @@
 import { Ionicons } from "@expo/vector-icons"
 import React, { useState } from "react"
 import { Controller } from "react-hook-form"
-import { Platform, StyleSheet, Text, TextInput, View } from "react-native"
+import {
+  Platform,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextStyle,
+  View,
+} from "react-native"
 
 import Colors from "../utils/Colors"
 import TextSize from "../utils/TextSize"
@@ -11,6 +19,7 @@ type DefaultProps = {
   placeholder: string
   iconName: keyof typeof Ionicons.glyphMap
   encrypt?: boolean
+  style?: StyleProp<TextStyle>
 }
 
 type SecureProps = {
@@ -45,7 +54,7 @@ const Input = (props: Props) => {
             rules={{ required: true }}
             render={({ field: { value, onBlur, onChange } }) => (
               <TextInput
-                style={styles.input}
+                style={[styles.input, props.style]}
                 placeholder={props.placeholder}
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -61,7 +70,7 @@ const Input = (props: Props) => {
         </>
       ) : (
         <TextInput
-          style={[styles.input, styles.unsecureInput]}
+          style={[styles.input, styles.marginV, props.style]}
           placeholder={props.placeholder}
           secureTextEntry={props.encrypt && hidden}
           value={props.value}
@@ -104,7 +113,7 @@ const styles = StyleSheet.create({
     fontFamily: "font-medium",
     backgroundColor: "#fff",
   },
-  unsecureInput: {
+  marginV: {
     marginVertical: 15,
   },
   errorMessage: {

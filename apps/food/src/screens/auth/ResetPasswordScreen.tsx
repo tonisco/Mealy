@@ -19,7 +19,7 @@ const ResetPasswordScreen = ({ navigation }: Props) => {
   const [email, changeEmail] = useState("")
 
   const sendPin = () => {
-    console.log("yes")
+    console.log("Leaving Reset Password")
     navigation.navigate("OTP Form")
   }
 
@@ -39,6 +39,7 @@ const ResetPasswordScreen = ({ navigation }: Props) => {
         check={false}
         value={email}
         changeText={changeEmail}
+        style={{ width: "100%" }}
       />
 
       <View style={styles.buttonContainer}>
