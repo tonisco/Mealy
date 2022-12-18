@@ -12,4 +12,5 @@ export type AuthStack = {
   "Reset Password": undefined
   "OTP Form": undefined
   "Change Password": undefined
+  "Success Screen": undefined
 }

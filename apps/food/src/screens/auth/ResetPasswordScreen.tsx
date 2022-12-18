@@ -8,7 +8,7 @@ import {
   TextSize,
 } from "mobile-ui"
 import React, { useState } from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 import { AuthStack } from "../../constants/screen"
@@ -25,26 +25,31 @@ const ResetPasswordScreen = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <BackButton />
-      <View style={styles.textContainer}>
-        <Text style={styles.heading}>Reset Password</Text>
-        <Text style={styles.description}>
-          Please enter your email to receive a 4 digit code to reset your
-          password
-        </Text>
-      </View>
-      <Input
-        placeholder="Email"
-        iconName={IsIos ? "ios-mail" : "mail"}
-        check={false}
-        value={email}
-        changeText={changeEmail}
-        style={{ width: "100%" }}
-      />
+      <ScrollView
+        contentContainerStyle={styles.scroll}
+        keyboardShouldPersistTaps="handled"
+      >
+        <BackButton />
+        <View style={styles.textContainer}>
+          <Text style={styles.heading}>Reset Password</Text>
+          <Text style={styles.description}>
+            Please enter your email to receive a 4 digit code to reset your
+            password
+          </Text>
+        </View>
+        <Input
+          placeholder="Email"
+          iconName={IsIos ? "ios-mail" : "mail"}
+          check={false}
+          value={email}
+          changeText={changeEmail}
+          style={{ width: "100%" }}
+        />
 
-      <View style={styles.buttonContainer}>
-        <GradientButton text="send" onPress={sendPin} />
-      </View>
+        <View style={styles.buttonContainer}>
+          <GradientButton text="send" onPress={sendPin} />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -54,6 +59,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 25,
     paddingHorizontal: 25,
+  },
+  scroll: {
+    flex: 1,
   },
   textContainer: {
     alignItems: "flex-start",

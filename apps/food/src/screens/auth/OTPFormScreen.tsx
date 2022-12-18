@@ -7,14 +7,21 @@ import {
   SquareInput,
 } from "mobile-ui"
 import React, { useRef, useState } from "react"
-import { View, Text, StyleSheet, TextInput, Keyboard } from "react-native"
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Keyboard,
+  ScrollView,
+} from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 import { AuthStack } from "../../constants/screen"
 
-type Props = NativeStackScreenProps<AuthStack, "Reset Password">
+type Props = NativeStackScreenProps<AuthStack, "OTP Form">
 
-const ResetPasswordScreen = ({ navigation }: Props) => {
+const OTPFormScreen = ({ navigation }: Props) => {
   const [pin1, changePin1] = useState("")
   const [pin2, changePin2] = useState("")
   const [pin3, changePin3] = useState("")
@@ -49,26 +56,31 @@ const ResetPasswordScreen = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <BackButton />
+      <ScrollView
+        contentContainerStyle={styles.scroll}
+        keyboardShouldPersistTaps="handled"
+      >
+        <BackButton />
 
-      <View style={styles.textContainer}>
-        <Text style={styles.heading}>We have sent an OTP to your Email</Text>
-        <Text style={styles.description}>
-          Please check your Email for your otp, to continue to reset your
-          password
-        </Text>
-      </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.heading}>We have sent an OTP to your Email</Text>
+          <Text style={styles.description}>
+            Please check your Email for your otp, to continue to reset your
+            password
+          </Text>
+        </View>
 
-      <View style={styles.inputContainer}>
-        <SquareInput value={pin1} onChangeText={pinChange1} ref={pin1Ref} />
-        <SquareInput value={pin2} onChangeText={pinChange2} ref={pin2Ref} />
-        <SquareInput value={pin3} onChangeText={pinChange3} ref={pin3Ref} />
-        <SquareInput value={pin4} onChangeText={pinChange4} ref={pin4Ref} />
-      </View>
+        <View style={styles.inputContainer}>
+          <SquareInput value={pin1} onChangeText={pinChange1} ref={pin1Ref} />
+          <SquareInput value={pin2} onChangeText={pinChange2} ref={pin2Ref} />
+          <SquareInput value={pin3} onChangeText={pinChange3} ref={pin3Ref} />
+          <SquareInput value={pin4} onChangeText={pinChange4} ref={pin4Ref} />
+        </View>
 
-      <View style={styles.buttonContainer}>
-        <GradientButton text="next" onPress={sendPin} />
-      </View>
+        <View style={styles.buttonContainer}>
+          <GradientButton text="next" onPress={sendPin} />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -78,6 +90,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 25,
     paddingHorizontal: 25,
+  },
+  scroll: {
+    flex: 1,
   },
   textContainer: {
     alignItems: "flex-start",
@@ -109,4 +124,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ResetPasswordScreen
+export default OTPFormScreen
