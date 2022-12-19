@@ -1,4 +1,6 @@
-export { default as Onboarding } from "./src/onboarding/Onboarding"
+export { default as Onboarding } from "./src/components/Onboarding"
+export { default as FailureScreen } from "./src/screen/FailureScreen"
+export { default as SuccessScreen } from "./src/screen/SuccessScreen"
 export { default as BackButton } from "./src/ui/BackButton"
 export { default as GradientButton } from "./src/ui/GradientButton"
 export { default as Input } from "./src/ui/Input"

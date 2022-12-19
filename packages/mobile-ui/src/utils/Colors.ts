@@ -4,6 +4,8 @@ const Colors = {
   liteGray: "#D9D9D9",
   bgColor: "#F9F9F9",
   dark: "#3B3B3B",
+  red: "#ff0000",
+  darkRed: "#B10000",
 }
 
 export default Colors

@@ -4,20 +4,20 @@ import { Text, StyleSheet, TextStyle } from "react-native"
 
 import GradientBackground from "./GradientBackground"
 
-const GradientText = ({
-  text,
-  style,
-}: {
+type Props = {
   text?: string
   style?: TextStyle
-}) => {
+  colors?: string[]
+}
+
+const GradientText = ({ text, style, colors }: Props) => {
   return (
     <MaskedView
       maskElement={
         <Text style={[styles.main, styles.rmBackground, style]}>{text}</Text>
       }
     >
-      <GradientBackground>
+      <GradientBackground colors={colors}>
         <Text style={[styles.main, styles.opacity, style]}>{text}</Text>
       </GradientBackground>
     </MaskedView>

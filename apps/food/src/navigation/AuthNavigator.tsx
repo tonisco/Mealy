@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { FailureScreen, SuccessScreen } from "mobile-ui"
 
 import { AuthStack } from "../constants/screen"
 import {
@@ -9,7 +10,6 @@ import {
   OTPFormScreen,
   ResetPasswordScreen,
   SignUpScreen,
-  SuccessScreen,
 } from "../screens/auth"
 
 const Stack = createNativeStackNavigator<AuthStack>()
@@ -29,6 +29,7 @@ const AuthNavigator = () => {
       <Stack.Screen name="Details Form" component={DetailsFormScreen} />
       <Stack.Screen name="OTP Form" component={OTPFormScreen} />
       <Stack.Screen name="Location Form" component={LocationFormScreen} />
+      <Stack.Screen name="Failure Screen" component={FailureScreen} />
       <Stack.Screen name="Success Screen" component={SuccessScreen} />
     </Stack.Navigator>
   )
