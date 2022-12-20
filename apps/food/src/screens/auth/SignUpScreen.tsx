@@ -22,6 +22,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
 
 import { AuthStack } from "../../constants/screen"
+import { UseSignUpState } from "../../store/SignUpStore"
 
 type Props = NativeStackScreenProps<AuthStack, "Sign Up">
 
@@ -33,6 +34,9 @@ type FormData = {
 
 const SignUpScreen = ({ navigation }: Props) => {
   const { navigate } = navigation
+
+  const { setSignUpState, signUpState } = UseSignUpState()
+
   const schema = z
     .object({
       email: z
@@ -53,13 +57,15 @@ const SignUpScreen = ({ navigation }: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { email: "", password: "", confirmPassword: "" },
+    defaultValues: signUpState,
     resolver: zodResolver(schema),
   })
 
   const createAccount = (data: FormData) => {
-    console.log("yes")
+    console.log(signUpState)
     console.log(data)
+    setSignUpState({ ...signUpState, ...data })
+    navigate("Details Form")
   }
 
   return (

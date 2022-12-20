@@ -13,8 +13,8 @@ type FormContextType = {
 }
 
 type SignUpContextType = {
-  value: FormContextType
-  saveValue: React.Dispatch<React.SetStateAction<FormContextType>>
+  signUpState: FormContextType
+  setSignUpState: React.Dispatch<React.SetStateAction<FormContextType>>
 }
 
 const SignUpContext = createContext<SignUpContextType | null>(null)
@@ -33,7 +33,9 @@ const SignUpStore = ({ children }: { children: ReactNode }) => {
   })
 
   return (
-    <SignUpContext.Provider value={{ value: state, saveValue: setState }}>
+    <SignUpContext.Provider
+      value={{ signUpState: state, setSignUpState: setState }}
+    >
       {children}
     </SignUpContext.Provider>
   )

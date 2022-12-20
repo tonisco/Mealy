@@ -15,6 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
 
 import { AuthStack } from "../../constants/screen"
+import { UseSignUpState } from "../../store/SignUpStore"
 
 type FormData = {
   street: string
@@ -25,6 +26,8 @@ type FormData = {
 type Props = NativeStackScreenProps<AuthStack, "Location Form">
 
 const LocationFormScreen = ({ navigation }: Props) => {
+  const { setSignUpState, signUpState } = UseSignUpState()
+
   const schema = z.object({
     street: z.string(),
     city: z.string(),
@@ -36,12 +39,14 @@ const LocationFormScreen = ({ navigation }: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { street: "", city: "", country: "" },
+    defaultValues: signUpState,
     resolver: zodResolver(schema),
   })
 
   const createProfile = (data: FormData) => {
     console.log(data)
+    console.log(signUpState)
+    setSignUpState({ ...signUpState, ...data })
     console.log("Leaving Reset Password")
     navigation.navigate("Location Form")
   }
@@ -54,7 +59,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
       >
         <BackButton />
         <View style={styles.textContainer}>
-          <Text style={styles.heading}>Fill in your bio to get started</Text>
+          <Text style={styles.heading}>Set Your Location</Text>
           <Text style={styles.description}>
             This data will be displayed in your account profile for security
           </Text>
@@ -90,7 +95,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
         />
 
         <View style={styles.buttonContainer}>
-          <GradientButton text="next" onPress={handleSubmit(createProfile)} />
+          <GradientButton text="finish" onPress={handleSubmit(createProfile)} />
         </View>
       </ScrollView>
     </SafeAreaView>
