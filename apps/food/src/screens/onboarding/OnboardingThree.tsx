@@ -3,7 +3,7 @@ import { Onboarding } from "mobile-ui"
 import React from "react"
 import { Image, StyleSheet } from "react-native"
 
-import { OnboardingStack } from "../../constants/screen"
+import { OnboardingStack } from "../types"
 
 type Props = NativeStackScreenProps<OnboardingStack, "Onboarding 3">
 

@@ -14,8 +14,8 @@ import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
 
-import { AuthStack } from "../../constants/screen"
 import { UseSignUpState } from "../../store/SignUpStore"
+import { AuthStack } from "../types"
 
 type FormData = {
   street: string

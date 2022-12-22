@@ -11,7 +11,7 @@ import React, { useState } from "react"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
-import { AuthStack } from "../../constants/screen"
+import { AuthStack } from "../types"
 
 type Props = NativeStackScreenProps<AuthStack, "Reset Password">
 

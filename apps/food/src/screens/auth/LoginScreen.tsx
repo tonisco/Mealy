@@ -18,7 +18,7 @@ import {
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
-import { AuthStack } from "../../constants/screen"
+import { AuthStack } from "../types"
 
 type Props = NativeStackScreenProps<AuthStack, "Log In">
 
