@@ -2,12 +2,12 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import React from "react"
 import { View, Image, StyleSheet, Text } from "react-native"
 
-import { AuthStack } from "../types/screen"
+import { AuthScreenType } from "../screenTypes/default"
 import GradientButton from "../ui/GradientButton"
 import GradientText from "../ui/GradientText"
 import TextSize from "../utils/TextSize"
 
-type Props = NativeStackScreenProps<AuthStack, "Success Screen">
+type Props = NativeStackScreenProps<AuthScreenType, "Success Screen">
 
 const SuccessScreen = ({ navigation, route }: Props) => {
   return (
