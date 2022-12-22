@@ -10,8 +10,11 @@ module.exports = {
       "./packages/*/tsconfig.json",
     ],
   },
-  plugins: ["@typescript-eslint", "prettier"],
-  extends: ["plugin:@typescript-eslint/recommended"],
+  plugins: ["@typescript-eslint", "prettier", "import"],
+  extends: [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+  ],
   rules: {
     "prettier/prettier": [
       "error",
