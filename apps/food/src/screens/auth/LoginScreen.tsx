@@ -28,7 +28,7 @@ const SignUpScreen = ({ navigation }: Props) => {
   const [email, changeEmail] = useState("")
   const [password, changePassword] = useState("")
 
-  const createAccount = () => {
+  const loginAccount = () => {
     console.log("yes")
   }
 
@@ -65,7 +65,7 @@ const SignUpScreen = ({ navigation }: Props) => {
             />
           </View>
           <View style={styles.buttonContainer}>
-            <GradientButton text="Login" onPress={createAccount} />
+            <GradientButton text="Login" onPress={loginAccount} />
           </View>
 
           <View style={styles.other}>
@@ -85,7 +85,7 @@ const SignUpScreen = ({ navigation }: Props) => {
             </Pressable>
             <Pressable
               style={styles.optionsContainer}
-              onPress={() => navigate("Sign Up", { animation: false })}
+              onPress={() => navigate("Sign Up")}
             >
               <GradientText
                 style={styles.accountText}

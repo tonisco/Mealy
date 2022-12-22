@@ -129,7 +129,7 @@ const SignUpScreen = ({ navigation }: Props) => {
             </View>
             <Pressable
               style={styles.optionsContainer}
-              onPress={() => navigate("Log In", { animation: false })}
+              onPress={() => navigate("Log In")}
             >
               <GradientText
                 style={styles.accountText}

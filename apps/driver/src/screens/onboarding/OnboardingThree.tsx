@@ -9,7 +9,7 @@ type Props = NativeStackScreenProps<OnboardingStack, "Onboarding 3">
 
 const OnboardingThree = ({ navigation }: Props) => {
   const nextPage = () => {
-    navigation.navigate("Onboarding 1")
+    navigation.navigate("Auth", { screen: "Sign Up" })
   }
 
   return (
