@@ -16,4 +16,17 @@ module.exports = {
       files: ["*.ts", "*.tsx", "*.d.ts"],
     },
   ],
+  rules: {
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: false,
+      },
+    ],
+  },
+  settings: {
+    "import/ignore": ["react-native"],
+  },
 }

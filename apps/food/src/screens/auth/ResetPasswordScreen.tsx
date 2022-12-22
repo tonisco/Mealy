@@ -43,7 +43,7 @@ const ResetPasswordScreen = ({ navigation }: Props) => {
           check={false}
           value={email}
           changeText={changeEmail}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
         />
 
         <View style={styles.buttonContainer}>
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     bottom: 50,
     alignSelf: "center",
   },
+  widthFull: { width: "100%" },
 })
 
 export default ResetPasswordScreen

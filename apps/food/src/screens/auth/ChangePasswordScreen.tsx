@@ -80,7 +80,7 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
           error={errors.password?.message}
           encrypt
           iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
         />
 
         <Input
@@ -91,7 +91,7 @@ const ChangePasswordScreen = ({ navigation }: Props) => {
           encrypt
           error={errors.confirmPassword?.message}
           iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
         />
 
         <View style={styles.buttonContainer}>
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     bottom: 50,
     alignSelf: "center",
   },
+  widthFull: { width: "100%" },
 })
 
 export default ChangePasswordScreen

@@ -70,7 +70,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
           inputName="street"
           placeholder="Street Address"
           iconName={IsIos ? "ios-location" : "location"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
           error={errors.street?.message}
         />
 
@@ -80,7 +80,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
           inputName="city"
           placeholder="City"
           iconName={IsIos ? "ios-location" : "location"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
           error={errors.city?.message}
         />
 
@@ -90,7 +90,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
           inputName="country"
           placeholder="Country"
           iconName={IsIos ? "ios-location" : "location"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
           error={errors.country?.message}
         />
 
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     bottom: 50,
     alignSelf: "center",
   },
+  widthFull: { width: "100%" },
 })
 
 export default LocationFormScreen

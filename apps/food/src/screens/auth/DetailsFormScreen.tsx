@@ -75,7 +75,7 @@ const DetailsFormScreen = ({ navigation }: Props) => {
           inputName="firstName"
           placeholder="First Name"
           iconName={IsIos ? "ios-person" : "person"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
           error={errors.firstName?.message}
         />
 
@@ -85,7 +85,7 @@ const DetailsFormScreen = ({ navigation }: Props) => {
           inputName="lastName"
           placeholder="Last Name"
           iconName={IsIos ? "ios-person" : "person"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
           error={errors.lastName?.message}
         />
 
@@ -95,7 +95,7 @@ const DetailsFormScreen = ({ navigation }: Props) => {
           inputName="phone"
           placeholder="Mobile Number"
           iconName={IsIos ? "ios-call" : "call"}
-          style={{ width: "100%" }}
+          style={styles.widthFull}
           error={errors.phone?.message}
         />
 
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     bottom: 50,
     alignSelf: "center",
   },
+  widthFull: { width: "100%" },
 })
 
 export default DetailsFormScreen

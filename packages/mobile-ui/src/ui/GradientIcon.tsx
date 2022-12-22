@@ -25,6 +25,7 @@ const GradientIcon = ({ iconStyle, name, size }: Props) => {
       <GradientBackground
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{ opacity: 0.7 }}
       >
         <Ionicons

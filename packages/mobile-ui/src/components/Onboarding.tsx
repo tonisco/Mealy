@@ -12,14 +12,20 @@ type Props = {
   description: string
   onPress: () => void
   page: number
-  Image: React.ReactElement<Image>
+  ImageComponent: React.ReactElement<Image>
 }
 
-const onboarding = ({ heading, description, onPress, page, Image }: Props) => {
+const onboarding = ({
+  heading,
+  description,
+  onPress,
+  page,
+  ImageComponent,
+}: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
-        {Image}
+        {ImageComponent}
         <GradientText style={styles.headingText} text={heading} />
         <View>
           <Text style={styles.description}>{description}</Text>
@@ -30,7 +36,7 @@ const onboarding = ({ heading, description, onPress, page, Image }: Props) => {
           i + 1 === page ? (
             <GradientBackground key={i + 1} style={styles.point} />
           ) : (
-            <View key={i + 1} style={[styles.point, styles.bg_gray]}></View>
+            <View key={i + 1} style={[styles.point, styles.bg_gray]} />
           ),
         )}
       </View>
