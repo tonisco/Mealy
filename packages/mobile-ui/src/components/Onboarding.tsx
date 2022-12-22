@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   main: {
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     marginBottom: 40,
   },
   headingText: {

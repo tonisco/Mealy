@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import * as React from "react"
 
-import { OnboardingStack } from "../screens/types"
 import {
   OnboardingOne,
   OnboardingThree,
   OnboardingTwo,
 } from "../screens/onboarding"
+import { OnboardingStack } from "../screens/types"
 
 const Stack = createNativeStackNavigator<OnboardingStack>()
 

@@ -5,23 +5,23 @@ import { Image, StyleSheet } from "react-native"
 
 import { OnboardingStack } from "../types"
 
-type Props = NativeStackScreenProps<OnboardingStack, "Onboarding 1">
+type Props = NativeStackScreenProps<OnboardingStack, "Onboarding 3">
 
-const OnboardingOne = ({ navigation }: Props) => {
+const OnboardingThree = ({ navigation }: Props) => {
   const nextPage = () => {
-    navigation.navigate("Onboarding 2")
+    navigation.navigate("Onboarding 1")
   }
 
   return (
     <Onboarding
-      heading="high commission"
-      description="Earn a fair commission on every delivery based on the distance"
-      page={1}
+      heading="free work hours"
+      description="free time during work hours"
+      page={3}
       onPress={nextPage}
       ImageComponent={
         <Image
           style={styles.imageSize}
-          source={require("../../../assets/images/Onboarding1.png")}
+          source={require("../../../assets/images/Onboarding3.png")}
           resizeMode="contain"
         />
       }
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   imageSize: { height: 200, width: 200 },
 })
 
-export default OnboardingOne
+export default OnboardingThree

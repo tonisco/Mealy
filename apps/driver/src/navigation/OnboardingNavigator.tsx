@@ -1,7 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import * as React from "react"
 
-import { OnboardingOne } from "../screens/onboarding"
+import {
+  OnboardingOne,
+  OnboardingThree,
+  OnboardingTwo,
+} from "../screens/onboarding"
 import { OnboardingStack } from "../screens/types"
 
 const Stack = createNativeStackNavigator<OnboardingStack>()
@@ -15,6 +19,8 @@ const OnboardingNavigator = () => {
       }}
     >
       <Stack.Screen name="Onboarding 1" component={OnboardingOne} />
+      <Stack.Screen name="Onboarding 2" component={OnboardingTwo} />
+      <Stack.Screen name="Onboarding 3" component={OnboardingThree} />
     </Stack.Navigator>
   )
 }
