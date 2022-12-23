@@ -80,7 +80,11 @@ const SignUpScreenUI = ({
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.logoContainer}>
-          <Image style={styles.logoImage} source={logoImageSource} />
+          <Image
+            style={styles.logoImage}
+            source={logoImageSource}
+            resizeMode="contain"
+          />
           <GradientText style={styles.logoText} text={logoText} />
         </View>
         <View style={styles.details}>
@@ -123,7 +127,11 @@ const SignUpScreenUI = ({
           <View style={styles.other}>
             <Text style={styles.continueText}>Or Continue With</Text>
             <View style={styles.googleContainer}>
-              <Image source={googleImageSource} style={styles.googleImage} />
+              <Image
+                source={googleImageSource}
+                style={styles.googleImage}
+                resizeMode="contain"
+              />
               <Text style={styles.googleText}>Google</Text>
             </View>
             <Pressable

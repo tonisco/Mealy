@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { OnboardingScreenType } from "mobile-ui/src/screenTypes/default"
 import * as React from "react"
 
 import {
@@ -6,10 +7,9 @@ import {
   OnboardingThree,
   OnboardingTwo,
 } from "../screens/onboarding"
-import { OnboardingStack } from "../screens/types"
 import AuthNavigator from "./AuthNavigator"
 
-const Stack = createNativeStackNavigator<OnboardingStack>()
+const Stack = createNativeStackNavigator<OnboardingScreenType>()
 
 const OnboardingNavigator = () => {
   return (

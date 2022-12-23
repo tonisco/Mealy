@@ -17,11 +17,11 @@ const LoginScreen = (props: Props) => {
       {...props}
       email={email}
       changeEmail={changeEmail}
-      logoText="Mealy Food"
       password={password}
+      logoText="Mealy Driver"
       changePassword={changePassword}
       loginAccount={loginAccount}
-      logoImageSource={require("../../../assets/images/Asset2.png")}
+      logoImageSource={require("../../../assets/images/Asset1.png")}
       googleImageSource={require("../../../assets/images/google.png")}
     />
   )

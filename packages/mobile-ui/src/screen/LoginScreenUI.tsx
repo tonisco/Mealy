@@ -20,6 +20,7 @@ type Props = NativeStackScreenProps<AuthScreenType, "Log In"> & {
   changeEmail: Dispatch<React.SetStateAction<string>>
   password: string
   changePassword: Dispatch<React.SetStateAction<string>>
+  logoText: string
   loginAccount: () => void
   logoImageSource: ImageSourcePropType
   googleImageSource: ImageSourcePropType
@@ -31,6 +32,7 @@ const LoginScreenUI = ({
   changeEmail,
   password,
   changePassword,
+  logoText,
   loginAccount,
   googleImageSource,
   logoImageSource,
@@ -44,8 +46,12 @@ const LoginScreenUI = ({
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.logoContainer}>
-          <Image style={styles.logoImage} source={logoImageSource} />
-          <GradientText style={styles.logoText} text="Mealy Food" />
+          <Image
+            style={styles.logoImage}
+            source={logoImageSource}
+            resizeMode="contain"
+          />
+          <GradientText style={styles.logoText} text={logoText} />
         </View>
         <View style={styles.details}>
           <Text style={styles.heading}>Login to your account</Text>
