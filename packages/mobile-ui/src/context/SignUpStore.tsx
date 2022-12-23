@@ -15,26 +15,31 @@ type FormContextType = {
 type SignUpContextType = {
   signUpState: FormContextType
   setSignUpState: React.Dispatch<React.SetStateAction<FormContextType>>
+  clearState: () => void
+}
+
+const initialState = {
+  city: "",
+  confirmPassword: "",
+  country: "",
+  email: "",
+  firstName: "",
+  lastName: "",
+  password: "",
+  phone: "",
+  street: "",
 }
 
 const SignUpContext = createContext<SignUpContextType | null>(null)
 
 const SignUpStore = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState<FormContextType>({
-    city: "",
-    confirmPassword: "",
-    country: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-    password: "",
-    phone: "",
-    street: "",
-  })
+  const [state, setState] = useState<FormContextType>(initialState)
+
+  const clearState = () => setState(initialState)
 
   return (
     <SignUpContext.Provider
-      value={{ signUpState: state, setSignUpState: setState }}
+      value={{ signUpState: state, setSignUpState: setState, clearState }}
     >
       {children}
     </SignUpContext.Provider>
