@@ -9,6 +9,7 @@ import {
   Image,
   ScrollView,
   Pressable,
+  ImageSourcePropType,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
@@ -18,7 +19,11 @@ import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
 import { Colors, IsIos, TextSize } from "../utils"
 
-type Props = NativeStackScreenProps<AuthScreenType, "Sign Up">
+type Props = NativeStackScreenProps<AuthScreenType, "Sign Up"> & {
+  logoText: string
+  logoImageSource: ImageSourcePropType
+  googleImageSource: ImageSourcePropType
+}
 
 type FormData = {
   email: string
@@ -26,7 +31,12 @@ type FormData = {
   confirmPassword: string
 }
 
-const SignUpScreen = ({ navigation }: Props) => {
+const SignUpScreenUI = ({
+  navigation,
+  logoText,
+  logoImageSource,
+  googleImageSource,
+}: Props) => {
   const { navigate } = navigation
 
   const { setSignUpState, signUpState } = UseSignUpState()
@@ -59,6 +69,7 @@ const SignUpScreen = ({ navigation }: Props) => {
     console.log(signUpState)
     console.log(data)
     setSignUpState({ ...signUpState, ...data })
+    console.log(signUpState)
     navigate("Details Form")
   }
 
@@ -69,11 +80,8 @@ const SignUpScreen = ({ navigation }: Props) => {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.logoContainer}>
-          <Image
-            style={styles.logoImage}
-            source={require("../../../assets/images/Asset2.png")}
-          />
-          <GradientText style={styles.logoText} text="Mealy Food" />
+          <Image style={styles.logoImage} source={logoImageSource} />
+          <GradientText style={styles.logoText} text={logoText} />
         </View>
         <View style={styles.details}>
           <Text style={styles.heading}>Sign up for Free</Text>
@@ -115,10 +123,7 @@ const SignUpScreen = ({ navigation }: Props) => {
           <View style={styles.other}>
             <Text style={styles.continueText}>Or Continue With</Text>
             <View style={styles.googleContainer}>
-              <Image
-                source={require("../../../assets/images/google.png")}
-                style={styles.googleImage}
-              />
+              <Image source={googleImageSource} style={styles.googleImage} />
               <Text style={styles.googleText}>Google</Text>
             </View>
             <Pressable
@@ -219,4 +224,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default SignUpScreen
+export default SignUpScreenUI

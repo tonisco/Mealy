@@ -7,6 +7,7 @@ import {
   IsIos,
   Colors,
   TextSize,
+  UseSignUpState,
 } from "mobile-ui"
 import React from "react"
 import { useForm } from "react-hook-form"
@@ -14,7 +15,6 @@ import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
 
-import { UseSignUpState } from "../../store/SignUpStore"
 import { AuthStack } from "../types"
 
 type FormData = {
