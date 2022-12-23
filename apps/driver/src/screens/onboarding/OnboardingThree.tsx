@@ -1,7 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { Onboarding } from "mobile-ui"
 import React from "react"
-import { Image, StyleSheet } from "react-native"
 
 import { OnboardingStack } from "../types"
 
@@ -18,19 +17,9 @@ const OnboardingThree = ({ navigation }: Props) => {
       description="free time during work hours"
       page={3}
       onPress={nextPage}
-      ImageComponent={
-        <Image
-          style={styles.imageSize}
-          source={require("../../../assets/images/Onboarding3.png")}
-          resizeMode="contain"
-        />
-      }
+      ImageLink={require("../../../assets/images/Onboarding3.png")}
     />
   )
 }
-
-const styles = StyleSheet.create({
-  imageSize: { height: 200, width: 200 },
-})
 
 export default OnboardingThree

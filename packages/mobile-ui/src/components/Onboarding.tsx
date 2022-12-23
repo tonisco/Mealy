@@ -1,5 +1,13 @@
 import React from "react"
-import { View, Text, SafeAreaView, Image, StyleSheet } from "react-native"
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  StyleSheet,
+  ImageSourcePropType,
+  ImageStyle,
+} from "react-native"
 
 import GradientBackground from "../ui/GradientBackground"
 import GradientButton from "../ui/GradientButton"
@@ -12,7 +20,8 @@ type Props = {
   description: string
   onPress: () => void
   page: number
-  ImageComponent: React.ReactElement<Image>
+  ImageLink: ImageSourcePropType
+  ImageStyleProp?: ImageStyle
 }
 
 const onboarding = ({
@@ -20,12 +29,17 @@ const onboarding = ({
   description,
   onPress,
   page,
-  ImageComponent,
+  ImageLink,
+  ImageStyleProp,
 }: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
-        {ImageComponent}
+        <Image
+          style={[styles.imageSize, ImageStyleProp]}
+          source={ImageLink}
+          resizeMode="contain"
+        />
         <GradientText style={styles.headingText} text={heading} />
         <View>
           <Text style={styles.description}>{description}</Text>
@@ -57,6 +71,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 15,
     marginBottom: 40,
+  },
+  imageSize: {
+    height: 200,
+    width: 200,
   },
   headingText: {
     fontSize: TextSize.x_large,
