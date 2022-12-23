@@ -7,6 +7,7 @@ import {
   Colors,
   TextSize,
 } from "mobile-ui"
+import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React, { useState } from "react"
 import {
   View,
@@ -18,9 +19,7 @@ import {
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
-import { AuthStack } from "../types"
-
-type Props = NativeStackScreenProps<AuthStack, "Log In">
+type Props = NativeStackScreenProps<AuthScreenType, "Log In">
 
 const SignUpScreen = ({ navigation }: Props) => {
   const { navigate } = navigation
