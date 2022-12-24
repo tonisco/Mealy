@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["PORT","DATABASE_URL"],
+  "globalEnv": ["PORT", "DATABASE_URL", "NODE_ENV"],
   "globalDependencies": [".env"],
   "pipeline": {
     "build": {
@@ -14,22 +14,22 @@
     "dev": {
       "cache": false
     },
-    "db:generate":{
+    "db:generate": {
       "cache": false
     },
-    "db:migrate":{
+    "db:migrate": {
       "inputs": ["prisma/schema.prisma"],
       "cache": false
     },
-    "db:push" :{
+    "db:push": {
       "cache": false
     },
-    "db:seed" :{
+    "db:seed": {
       "cache": false
     },
-    "db:studio":{
+    "db:studio": {
       "cache": false
     },
-    "start:food":{}
+    "start:food": {}
   }
 }

@@ -1,13 +1,18 @@
+import * as trpcExpress from "@trpc/server/adapters/express"
+import cors from "cors"
 import * as dotenv from "dotenv"
 import express from "express"
-import cors from "cors"
 import morgan from "morgan"
-import * as trpcExpress from "@trpc/server/adapters/express"
 
-import { procedure, router } from "./trpc"
 import { foodRouter } from "./food"
+import { procedure, router } from "./trpc"
 
 dotenv.config()
+
+const app = express()
+
+app.use(express.json())
+app.use(cors())
 
 export const appRouter = router({
   home: procedure.query((req) => {
@@ -18,11 +23,6 @@ export const appRouter = router({
 })
 
 export type AppRouter = typeof appRouter
-
-const app = express()
-
-app.use(express.json())
-app.use(cors())
 
 if (process.env.NODE_ENV !== "production") app.use(morgan("dev"))
 
