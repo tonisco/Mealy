@@ -3,11 +3,12 @@ import cors from "cors"
 import * as dotenv from "dotenv"
 import express from "express"
 import morgan from "morgan"
+import path from "path"
 
 import { foodRouter } from "./food"
 import { procedure, router } from "./trpc"
 
-dotenv.config()
+dotenv.config({ path: path.join(__dirname, "../../../.env") })
 
 const app = express()
 

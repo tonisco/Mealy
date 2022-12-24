@@ -1,7 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { useFonts } from "expo-font"
+import Constants from "expo-constants"
 import * as SplashScreen from "expo-splash-screen"
 import React from "react"
+import { TrpcProvider } from "trpc-client/src/TrpcProvider"
 
 import AuthNavigator from "./navigation/AuthNavigator"
 
@@ -9,6 +11,13 @@ import AuthNavigator from "./navigation/AuthNavigator"
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 SplashScreen.preventAutoHideAsync()
+
+const getBaseUrl = () => {
+  const localhost = Constants.manifest?.debuggerHost?.split(":")[0]
+  if (!localhost)
+    throw new Error("failed to get localhost, configure it manually")
+  return `http://${localhost}:3000`
+}
 
 export default function App() {
   const [FontsLoaded] = useFonts({
@@ -22,8 +31,10 @@ export default function App() {
   else SplashScreen.hideAsync()
 
   return (
-    <NavigationContainer>
-      <AuthNavigator />
-    </NavigationContainer>
+    <TrpcProvider port={getBaseUrl()}>
+      <NavigationContainer>
+        <AuthNavigator />
+      </NavigationContainer>
+    </TrpcProvider>
   )
 }
