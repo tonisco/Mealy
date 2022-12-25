@@ -7,6 +7,7 @@ import path from "path"
 
 import { foodRouter } from "./food"
 import { procedure, router } from "./trpc"
+import { createContext } from "./trpc/context"
 
 dotenv.config({ path: path.join(__dirname, "../../../.env") })
 
@@ -16,10 +17,7 @@ app.use(express.json())
 app.use(cors())
 
 export const appRouter = router({
-  home: procedure.query((req) => {
-    console.log(req.ctx)
-    return { message: "Welcome to Mealy" }
-  }),
+  home: procedure.query(() => ({ message: "Welcome to Mealy" })),
   food: foodRouter,
 })
 
@@ -31,8 +29,12 @@ app.get("/", (_req, res) => {
   res.status(200).json({ message: "Welcome to Mealy" })
 })
 
-app.use("/api/trpc", trpcExpress.createExpressMiddleware({ router: appRouter }))
+app.use(
+  "/api/trpc",
+  trpcExpress.createExpressMiddleware({ router: appRouter, createContext }),
+)
 
 app.listen(process.env.PORT, () => {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   console.log(`api is listening on port ${process.env.PORT}`)
 })

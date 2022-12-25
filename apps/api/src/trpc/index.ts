@@ -1,6 +1,11 @@
 import { initTRPC } from "@trpc/server"
+import superjson from "superjson"
 
-const t = initTRPC.create()
+import { Context } from "./context"
+
+const transformer = superjson
+
+const t = initTRPC.context<Context>().create({ transformer })
 
 export const { router } = t
 
