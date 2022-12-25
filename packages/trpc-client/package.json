@@ -16,7 +16,8 @@
     "@trpc/server": "^10.4.0",
     "api": "workspace:*",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "superjson": "^1.12.1"
   },
   "devDependencies": {
     "esconfig": "workspace:*",
