@@ -1,15 +1,64 @@
 import { TRPCError } from "@trpc/server"
 import { comparePasswords } from "db/src/encrypt"
 
-import { emailExistSchema, loginSchema, signUpSchema } from "../../schema/auth"
+import {
+  changePasswordSchema,
+  confirmOTPSchema,
+  emailExistSchema,
+  loginSchema,
+  signUpSchema,
+} from "../../schema/auth"
 import { procedure, router } from "../../trpc"
 import { signJwt } from "../../utils/jwt"
 
 export const authRouter = router({
+  changePassword: procedure
+    .input(changePasswordSchema)
+    .mutation(async ({ ctx, input }) => {
+      const { email, password } = input
+
+      try {
+        await ctx.prisma.user.update({
+          where: { email },
+          data: { userAuth: { update: { password } } },
+        })
+
+        return { message: "Your password has been changed" }
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Your new password was not saved",
+        })
+      }
+    }),
+  confirmOTP: procedure
+    .input(confirmOTPSchema)
+    .mutation(async ({ ctx, input }) => {
+      const { email, otp } = input
+
+      const user = await ctx.prisma.user.findUnique({
+        where: { email },
+        include: { userAuth: true },
+      })
+
+      if (!user)
+        throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
+
+      console.log(user)
+
+      const userAuth = await ctx.prisma.userAuth.findUnique({
+        where: { userId: user.id },
+      })
+
+      if (!userAuth)
+        throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
+
+      return userAuth.OTP?.toString() === otp
+    }),
   emailExist: procedure
     .input(emailExistSchema)
     .query(async ({ ctx, input }) => {
-      const emailUsed = await ctx.prisma.user.findFirst({
+      const emailUsed = await ctx.prisma.user.findUnique({
         where: { email: input.email },
       })
       return !!emailUsed
@@ -25,9 +74,13 @@ export const authRouter = router({
         message: "Wrong Email or Password",
       })
 
+    const userAuth = await ctx.prisma.userAuth.findUnique({
+      where: { userId: user.id },
+    })
+
     const passwordMatches = await comparePasswords(
       input.password,
-      user.password,
+      userAuth?.password ?? "",
     )
 
     if (!passwordMatches)
@@ -38,14 +91,30 @@ export const authRouter = router({
 
     const token = signJwt({ id: user.id })
 
+    console.log(user)
+
     return { ...user, token }
   }),
   signUp: procedure.input(signUpSchema).mutation(async ({ input, ctx }) => {
+    const { city, country, email, fullName, password, phone, state, street } =
+      input
+
     const user = await ctx.prisma.user.create({
-      data: { ...input },
+      data: {
+        city,
+        country,
+        email,
+        fullName,
+        phone,
+        state,
+        street,
+        userAuth: { create: { password } },
+      },
     })
 
     const token = signJwt({ id: user.id })
+    console.log(user)
     return { ...user, token }
   }),
+  // sendOTP,
 })

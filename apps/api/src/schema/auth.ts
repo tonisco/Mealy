@@ -1,5 +1,23 @@
 import { z } from "zod"
 
+export const changePasswordSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .trim()
+    .refine((val) => val.toLocaleLowerCase()),
+  password: z.string().min(6),
+})
+
+export const confirmOTPSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .trim()
+    .refine((val) => val.toLocaleLowerCase()),
+  otp: z.string().length(4),
+})
+
 export const emailExistSchema = z.object({
   email: z
     .string()
