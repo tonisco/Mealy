@@ -30,10 +30,10 @@ model User {
 
 model UserAuth {
   id       String  @id @default(cuid())
-  user     User    @relation(fields: [userId], references: [id])
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   String  @unique
   password String?
-  OTP      String
+  OTP      String?
 }
 
 model Restaurant {
@@ -63,10 +63,10 @@ model Restaurant {
 
 model RestaurantAuth {
   id           String     @id @default(cuid())
-  restaurant   Restaurant @relation(references: [id], fields: [restaurantId])
+  restaurant   Restaurant @relation(references: [id], fields: [restaurantId], onDelete: Cascade)
   restaurantId String     @unique
   password     String?
-  OTPpin       String?
+  OTP          String?
 }
 
 model Courier {
@@ -87,10 +87,10 @@ model Courier {
 
 model CourierAuth {
   id        String  @id @default(cuid())
-  courier   Courier @relation(fields: [courierId], references: [id])
+  courier   Courier @relation(fields: [courierId], references: [id], onDelete: Cascade)
   courierId String  @unique
   password  String?
-  OTPpin    String?
+  OTP       String?
 }
 
 model Food {
