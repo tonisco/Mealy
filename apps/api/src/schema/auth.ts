@@ -35,6 +35,14 @@ export const loginSchema = z.object({
   password: z.string().min(6),
 })
 
+export const sendOTPSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .trim()
+    .refine((val) => val.toLocaleLowerCase()),
+})
+
 export const signUpSchema = z.object({
   email: z
     .string()

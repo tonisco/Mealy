@@ -39,6 +39,7 @@ importers:
       '@types/morgan': ^1.9.3
       '@types/multer': ^1.4.7
       '@types/node': 18.11.9
+      '@types/nodemailer': ^6.4.7
       '@typescript-eslint/eslint-plugin': ^5.44.0
       '@typescript-eslint/parser': ^5.44.0
       concurrently: ^7.6.0
@@ -57,6 +58,7 @@ importers:
       jsonwebtoken: ^9.0.0
       morgan: ^1.10.0
       multer: 1.4.5-lts.1
+      nodemailer: ^6.8.0
       nodemon: ^2.0.20
       superjson: ^1.12.1
       ts-node-dev: ^2.0.0
@@ -72,6 +74,7 @@ importers:
       jsonwebtoken: 9.0.0
       morgan: 1.10.0
       multer: 1.4.5-lts.1
+      nodemailer: 6.8.0
       superjson: 1.12.1
       zod: 3.19.1
     devDependencies:
@@ -81,6 +84,7 @@ importers:
       '@types/morgan': 1.9.3
       '@types/multer': 1.4.7
       '@types/node': 18.11.9
+      '@types/nodemailer': 6.4.7
       '@typescript-eslint/eslint-plugin': 5.44.0_jevmf2vlpxbyyhd3lmuw4ahrwa
       '@typescript-eslint/parser': 5.44.0_f5jcydormhcqaoeadqwgqigppy
       concurrently: 7.6.0
@@ -3161,6 +3165,12 @@ packages:
 
   /@types/node/18.11.9:
     resolution: {integrity: sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==}
+
+  /@types/nodemailer/6.4.7:
+    resolution: {integrity: sha512-f5qCBGAn/f0qtRcd4SEn88c8Fp3Swct1731X4ryPKqS61/A3LmmzN8zaEz7hneJvpjFbUUgY7lru/B/7ODTazg==}
+    dependencies:
+      '@types/node': 18.11.9
+    dev: true
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -10501,6 +10511,11 @@ packages:
   /node-stream-zip/1.15.0:
     resolution: {integrity: sha512-LN4fydt9TqhZhThkZIVQnF9cwjU3qmUH9h78Mx/K7d3VvfRqqwthLwJEUOEL0QPZ0XQmNN7be5Ggit5+4dq3Bw==}
     engines: {node: '>=0.12.0'}
+    dev: false
+
+  /nodemailer/6.8.0:
+    resolution: {integrity: sha512-EjYvSmHzekz6VNkNd12aUqAco+bOkRe3Of5jVhltqKhEsjw/y0PYPJfp83+s9Wzh1dspYAkUW/YNQ350NATbSQ==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nodemon/2.0.20:

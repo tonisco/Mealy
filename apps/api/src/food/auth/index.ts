@@ -6,10 +6,13 @@ import {
   confirmOTPSchema,
   emailExistSchema,
   loginSchema,
+  sendOTPSchema,
   signUpSchema,
 } from "../../schema/auth"
 import { procedure, router } from "../../trpc"
 import { signJwt } from "../../utils/jwt"
+import { recoverPasswordMail } from "../../utils/mail"
+import { generateOTP, hasOtpExpired, otpExpires } from "../../utils/otp"
 
 export const authRouter = router({
   changePassword: procedure
@@ -20,7 +23,9 @@ export const authRouter = router({
       try {
         await ctx.prisma.user.update({
           where: { email },
-          data: { userAuth: { update: { password } } },
+          data: {
+            userAuth: { update: { password, OTP: null, OTPExpires: null } },
+          },
         })
 
         return { message: "Your password has been changed" }
@@ -50,10 +55,12 @@ export const authRouter = router({
         where: { userId: user.id },
       })
 
-      if (!userAuth)
+      if (!userAuth || !userAuth?.OTP || !userAuth.OTPExpires)
         throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
 
-      return userAuth.OTP?.toString() === otp
+      return (
+        userAuth.OTP.toString() === otp && !hasOtpExpired(userAuth.OTPExpires)
+      )
     }),
   emailExist: procedure
     .input(emailExistSchema)
@@ -95,6 +102,31 @@ export const authRouter = router({
 
     return { ...user, token }
   }),
+  sendOTP: procedure.input(sendOTPSchema).mutation(async ({ ctx, input }) => {
+    const { email } = input
+    const user = await ctx.prisma.user.findUnique({ where: { email } })
+    if (user) {
+      const OTP = generateOTP()
+      try {
+        await ctx.prisma.userAuth.update({
+          where: {
+            userId: user.id,
+          },
+          data: {
+            OTP,
+            OTPExpires: otpExpires(),
+          },
+        })
+        await recoverPasswordMail({
+          from: "Mealy Food",
+          to: user.email,
+          otp: OTP,
+        })
+      } catch (error) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
+      }
+    }
+  }),
   signUp: procedure.input(signUpSchema).mutation(async ({ input, ctx }) => {
     const { city, country, email, fullName, password, phone, state, street } =
       input
@@ -116,5 +148,4 @@ export const authRouter = router({
     console.log(user)
     return { ...user, token }
   }),
-  // sendOTP,
 })
