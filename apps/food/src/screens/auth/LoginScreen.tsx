@@ -1,63 +1,41 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import { LocationFormScreenUI, UseSignUpState } from "mobile-ui"
+import { LoginScreenUI } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
-import React from "react"
+import React, { useState } from "react"
 import { Alert } from "react-native"
 import { trpc } from "trpc-client"
 
-type Props = NativeStackScreenProps<AuthScreenType, "Location Form">
+type Props = NativeStackScreenProps<AuthScreenType, "Log In">
 
-type FormData = {
-  street: string
-  city: string
-  country: string
-  state: string
-}
+const LoginScreen = (props: Props) => {
+  const [email, changeEmail] = useState("")
+  const [password, changePassword] = useState("")
 
-const LocationFormScreen = ({ navigation }: Props) => {
-  const {
-    clearState,
-    signUpState: { email, firstName, lastName, password, phone },
-  } = UseSignUpState()
-
-  const { mutate } = trpc.food.auth.signUp.useMutation({
-    onError(error) {
-      failedCreateProfile({ message: error.message })
-    },
+  const { mutate } = trpc.food.auth.login.useMutation({
     onSuccess(data) {
-      // TODO: save data
-      console.log(data)
-      successCreateProfile()
+      console.log(data, "data")
+    },
+    onError(error) {
+      Alert.alert("Login Error", error.message)
     },
   })
 
-  const createProfile = (data: FormData) => {
-    const { city, country, street, state } = data
-    mutate({
-      city,
-      country,
-      email,
-      phone,
-      state,
-      street,
-      password,
-      fullName: `${firstName} ${lastName}`,
-    })
+  const loginAccount = () => {
+    mutate({ email, password })
   }
-
-  const successCreateProfile = () => {
-    // clear state
-    clearState()
-    navigation.navigate("Success Screen", {
-      message: "Your account has successfully been created",
-      nextScreen: "Log In",
-    })
-  }
-
-  const failedCreateProfile = ({ message }: { message: string }) =>
-    Alert.alert("Failed to create password", message)
-
-  return <LocationFormScreenUI createProfile={createProfile} />
+  return (
+    <LoginScreenUI
+      {...props}
+      email={email}
+      changeEmail={changeEmail}
+      logoText="Mealy Food"
+      password={password}
+      changePassword={changePassword}
+      loginAccount={loginAccount}
+      logoImageSource={require("../../../assets/images/Asset2.png")}
+      googleImageSource={require("../../../assets/images/google.png")}
+    />
+  )
 }
 
-export default LocationFormScreen
+export default LoginScreen
