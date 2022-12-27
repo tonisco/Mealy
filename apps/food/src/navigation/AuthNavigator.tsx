@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { FailureScreen, SuccessScreen, SignUpStore } from "mobile-ui"
+import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 
 import {
@@ -11,9 +12,8 @@ import {
   ResetPasswordScreen,
   SignUpScreen,
 } from "../screens/auth"
-import { AuthStack } from "../screens/types"
 
-const Stack = createNativeStackNavigator<AuthStack>()
+const Stack = createNativeStackNavigator<AuthScreenType>()
 
 const AuthNavigator = () => {
   return (
