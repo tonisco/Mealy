@@ -1,9 +1,10 @@
+import { API_URL } from "@env"
 import { NavigationContainer } from "@react-navigation/native"
 import Constants from "expo-constants"
 import { useFonts } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import React from "react"
-import { TrpcProvider } from "trpc-client"
+import { TrpcProvider } from "trpc-client/index"
 
 import AuthNavigator from "./navigation/AuthNavigator"
 
@@ -16,7 +17,8 @@ const getBaseUrl = () => {
   const localhost = Constants.manifest?.debuggerHost?.split(":")[0]
   if (!localhost)
     throw new Error("failed to get localhost, configure it manually")
-  return `http://${localhost}:3000`
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  return API_URL ? `${API_URL}` : `http://${localhost}:3456`
 }
 
 export default function App() {
