@@ -46,20 +46,12 @@ export const authRouter = router({
         include: { userAuth: true },
       })
 
-      if (!user)
-        throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
-
-      console.log(user)
-
-      const userAuth = await ctx.prisma.userAuth.findUnique({
-        where: { userId: user.id },
-      })
-
-      if (!userAuth || !userAuth?.OTP || !userAuth.OTPExpires)
+      if (!user || !user.userAuth?.OTP || !user.userAuth.OTPExpires)
         throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
 
       return (
-        userAuth.OTP.toString() === otp && !hasOtpExpired(userAuth.OTPExpires)
+        user.userAuth.OTP.toString() === otp &&
+        !hasOtpExpired(user.userAuth.OTPExpires)
       )
     }),
   emailExist: procedure
@@ -68,26 +60,23 @@ export const authRouter = router({
       const emailUsed = await ctx.prisma.user.findUnique({
         where: { email: input.email },
       })
-      return !!emailUsed
+      return { emailUsed: !!emailUsed }
     }),
   login: procedure.input(loginSchema).mutation(async ({ input, ctx }) => {
     const user = await ctx.prisma.user.findFirst({
       where: { email: input.email },
+      include: { userAuth: true },
     })
 
-    if (!user)
+    if (!user || !user.userAuth?.password)
       throw new TRPCError({
         code: "NOT_FOUND",
         message: "Wrong Email or Password",
       })
 
-    const userAuth = await ctx.prisma.userAuth.findUnique({
-      where: { userId: user.id },
-    })
-
     const passwordMatches = await comparePasswords(
       input.password,
-      userAuth?.password ?? "",
+      user.userAuth.password,
     )
 
     if (!passwordMatches)
@@ -97,8 +86,6 @@ export const authRouter = router({
       })
 
     const token = signJwt({ id: user.id })
-
-    console.log(user)
 
     return { ...user, token }
   }),
@@ -150,7 +137,7 @@ export const authRouter = router({
     })
 
     const token = signJwt({ id: user.id })
-    console.log(user)
+
     return { ...user, token }
   }),
 })

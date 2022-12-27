@@ -9,7 +9,7 @@ export const allUsers = async (password: string): Promise<User[]> =>
       const user = await prisma.user.create({
         data: {
           fullName: `${first_name} ${last_name}`,
-          email: faker.internet.email(first_name, last_name),
+          email: faker.internet.email(first_name, last_name).toLowerCase(),
           city: "Ikeja",
           country: "Nigeria",
           phone: faker.phone.number(),

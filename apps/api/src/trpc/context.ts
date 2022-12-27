@@ -13,6 +13,7 @@ export const createContext = ({
 
   const getUser = () => {
     const hasToken = req.headers.authorization
+
     if (hasToken && hasToken.startsWith("Bearer")) {
       try {
         token = hasToken.split(" ")
