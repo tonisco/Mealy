@@ -10,7 +10,6 @@ import {
   ScrollView,
   Pressable,
   ImageSourcePropType,
-  Alert,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
@@ -20,17 +19,17 @@ import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
 import { Colors, IsIos, TextSize } from "../utils"
 
-type Props = NativeStackScreenProps<AuthScreenType, "Sign Up"> & {
-  logoText: string
-  logoImageSource: ImageSourcePropType
-  googleImageSource: ImageSourcePropType
-  checkMailExist: (email: string) => Promise<boolean>
-}
-
 type FormData = {
   email: string
   password: string
   confirmPassword: string
+}
+
+type Props = NativeStackScreenProps<AuthScreenType, "Sign Up"> & {
+  logoText: string
+  logoImageSource: ImageSourcePropType
+  googleImageSource: ImageSourcePropType
+  createAccount: ({ email, password }: FormData) => void
 }
 
 const SignUpScreenUI = ({
@@ -38,11 +37,11 @@ const SignUpScreenUI = ({
   logoText,
   logoImageSource,
   googleImageSource,
-  checkMailExist,
+  createAccount,
 }: Props) => {
   const { navigate } = navigation
 
-  const { setSignUpState, signUpState } = UseSignUpState()
+  const { signUpState } = UseSignUpState()
 
   const schema = z
     .object({
@@ -67,18 +66,6 @@ const SignUpScreenUI = ({
     defaultValues: signUpState,
     resolver: zodResolver(schema),
   })
-
-  const createAccount = async (data: FormData) => {
-    const mailExist = await checkMailExist(data.email)
-    if (mailExist) {
-      Alert.alert(
-        "Email already used",
-        "Email has already been used in this application. you can either login or provide a new email",
-      )
-    }
-    setSignUpState({ ...signUpState, ...data })
-    navigate("Details Form")
-  }
 
   return (
     <SafeAreaView style={styles.container}>
