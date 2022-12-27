@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server"
-import { comparePasswords } from "db/src/encrypt"
+import { comparePasswords, encryptPassword } from "db/src/encrypt"
 
 import {
   changePasswordSchema,
@@ -64,7 +64,7 @@ export const authRouter = router({
     }),
   emailExist: procedure
     .input(emailExistSchema)
-    .query(async ({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
       const emailUsed = await ctx.prisma.user.findUnique({
         where: { email: input.email },
       })
@@ -123,13 +123,18 @@ export const authRouter = router({
           otp: OTP,
         })
       } catch (error) {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Failed to generate OTP",
+        })
       }
     }
   }),
   signUp: procedure.input(signUpSchema).mutation(async ({ input, ctx }) => {
-    const { city, country, email, fullName, password, phone, state, street } =
-      input
+    let { password } = input
+    const { city, country, email, fullName, phone, state, street } = input
+
+    password = await encryptPassword(password)
 
     const user = await ctx.prisma.user.create({
       data: {

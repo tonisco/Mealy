@@ -1,9 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native"
-import { useFonts } from "expo-font"
 import Constants from "expo-constants"
+import { useFonts } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import React from "react"
-import { TrpcProvider } from "trpc-client/src/TrpcProvider"
+import { TrpcProvider } from "trpc-client"
 
 import AuthNavigator from "./navigation/AuthNavigator"
 
