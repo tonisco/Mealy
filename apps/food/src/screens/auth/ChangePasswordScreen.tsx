@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { ChangePasswordScreenUI } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
+import { trpc } from "trpc-client"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Change Password">
 
@@ -10,20 +11,33 @@ type FormData = {
   confirmPassword: string
 }
 
-const ChangePasswordScreen = ({ navigation }: Props) => {
+const ChangePasswordScreen = ({ navigation, route }: Props) => {
+  const {
+    params: { email },
+  } = route
+
+  const { mutate } = trpc.food.auth.changePassword.useMutation({
+    onSuccess(message) {
+      passwordChangeSuccess(message)
+    },
+    onError(error) {
+      passwordChangeFailed({ message: error.message })
+    },
+  })
+
   const changePassword = (data: FormData) => {
-    console.log(data)
-    console.log("Leaving Change Password")
-    navigation.navigate("Success Screen", {
-      message: "your password has been changed",
+    const { password } = data
+    mutate({ email, password })
+  }
+
+  const passwordChangeSuccess = ({ message }: { message: string }) =>
+    navigation.navigate("Success Screen", { message, nextScreen: "Log In" })
+
+  const passwordChangeFailed = ({ message }: { message: string }) =>
+    navigation.navigate("Failure Screen", {
+      message,
       nextScreen: "Log In",
     })
-    // navigate to failed screen
-    // navigation.navigate("Failure Screen", {
-    //   message: "Your new Password was not saved",
-    //   nextScreen: "Log In",
-    // })
-  }
 
   return <ChangePasswordScreenUI changePassword={changePassword} />
 }

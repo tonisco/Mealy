@@ -1,22 +1,17 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import React, { useState } from "react"
+import React from "react"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
-import { AuthScreenType } from "../screenTypes/default"
 import { BackButton, GradientButton, Input } from "../ui"
 import { Colors, IsIos, TextSize } from "../utils"
 
-type Props = NativeStackScreenProps<AuthScreenType, "Reset Password">
+type Props = {
+  requestOTP: () => void
+  email: string
+  changeEmail: React.Dispatch<React.SetStateAction<string>>
+}
 
-const ResetPasswordScreenUI = ({ navigation }: Props) => {
-  const [email, changeEmail] = useState("")
-
-  const sendPin = () => {
-    console.log("Leaving Reset Password")
-    navigation.navigate("OTP Form")
-  }
-
+const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -41,7 +36,7 @@ const ResetPasswordScreenUI = ({ navigation }: Props) => {
         />
 
         <View style={styles.buttonContainer}>
-          <GradientButton text="send" onPress={sendPin} />
+          <GradientButton text="send" onPress={requestOTP} />
         </View>
       </ScrollView>
     </SafeAreaView>

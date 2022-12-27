@@ -2,10 +2,25 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { OTPFormScreenUI } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React, { useState } from "react"
+import { Alert } from "react-native"
+import { trpc } from "trpc-client"
 
 type Props = NativeStackScreenProps<AuthScreenType, "OTP Form">
 
-const OTPFormScreen = ({ navigation }: Props) => {
+const OTPFormScreen = ({ navigation, route }: Props) => {
+  const {
+    params: { email },
+  } = route
+
+  const { mutate } = trpc.food.auth.confirmOTP.useMutation({
+    onSuccess() {
+      navigation.navigate("Change Password", { email })
+    },
+    onError(error) {
+      Alert.alert("OTP ERROR", error.message)
+    },
+  })
+
   const [pin1, changePin1] = useState("")
   const [pin2, changePin2] = useState("")
   const [pin3, changePin3] = useState("")
@@ -22,10 +37,7 @@ const OTPFormScreen = ({ navigation }: Props) => {
     changePin4,
   }
 
-  const sendPin = () => {
-    console.log("Leaving OTP Form")
-    navigation.navigate("Change Password")
-  }
+  const sendPin = () => mutate({ email, otp: `${pin1}${pin2}${pin3}${pin4}` })
   return <OTPFormScreenUI sendPin={sendPin} {...otpProps} />
 }
 

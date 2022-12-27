@@ -15,6 +15,7 @@ type FormData = {
   street: string
   city: string
   country: string
+  state: string
 }
 
 const LocationFormScreenUI = ({ createProfile }: Props) => {
@@ -23,6 +24,7 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
   const schema = z.object({
     street: z.string(),
     city: z.string(),
+    state: z.string(),
     country: z.string(),
   })
 
@@ -66,6 +68,16 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
           iconName={IsIos ? "ios-location" : "location"}
           style={styles.widthFull}
           error={errors.city?.message}
+        />
+
+        <Input
+          check
+          control={control}
+          inputName="state"
+          placeholder="State"
+          iconName={IsIos ? "ios-location" : "location"}
+          style={styles.widthFull}
+          error={errors.state?.message}
         />
 
         <Input

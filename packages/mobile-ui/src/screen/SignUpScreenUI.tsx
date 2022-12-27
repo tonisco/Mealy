@@ -10,6 +10,7 @@ import {
   ScrollView,
   Pressable,
   ImageSourcePropType,
+  Alert,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as z from "zod"
@@ -23,6 +24,7 @@ type Props = NativeStackScreenProps<AuthScreenType, "Sign Up"> & {
   logoText: string
   logoImageSource: ImageSourcePropType
   googleImageSource: ImageSourcePropType
+  checkMailExist: (email: string) => Promise<boolean>
 }
 
 type FormData = {
@@ -36,6 +38,7 @@ const SignUpScreenUI = ({
   logoText,
   logoImageSource,
   googleImageSource,
+  checkMailExist,
 }: Props) => {
   const { navigate } = navigation
 
@@ -65,11 +68,15 @@ const SignUpScreenUI = ({
     resolver: zodResolver(schema),
   })
 
-  const createAccount = (data: FormData) => {
-    console.log(signUpState)
-    console.log(data)
+  const createAccount = async (data: FormData) => {
+    const mailExist = await checkMailExist(data.email)
+    if (mailExist) {
+      Alert.alert(
+        "Email already used",
+        "Email has already been used in this application. you can either login or provide a new email",
+      )
+    }
     setSignUpState({ ...signUpState, ...data })
-    console.log(signUpState)
     navigate("Details Form")
   }
 

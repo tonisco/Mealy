@@ -13,8 +13,8 @@ export type AuthScreenType = {
   "Details Form": undefined
   "Location Form": undefined
   "Reset Password": undefined
-  "OTP Form": undefined
-  "Change Password": undefined
+  "OTP Form": { email: string }
+  "Change Password": { email: string }
   // TODO: Fix next screen typeChecking
   "Success Screen": { message: string; nextScreen: keyof AuthScreenType }
   "Failure Screen": { message: string; nextScreen: keyof AuthScreenType }

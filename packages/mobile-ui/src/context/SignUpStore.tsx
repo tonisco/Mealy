@@ -9,6 +9,7 @@ type FormContextType = {
   phone: string
   street: string
   city: string
+  state: string
   country: string
 }
 
@@ -28,6 +29,7 @@ const initialState = {
   password: "",
   phone: "",
   street: "",
+  state: "",
 }
 
 const SignUpContext = createContext<SignUpContextType | null>(null)
