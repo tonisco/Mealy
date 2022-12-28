@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken"
 
-const JWT_SECRET = process.env.JWT_SECRET || "thisisasecret"
+import { env } from "../env"
 
 export const signJwt = (payload: { id: string }) =>
-  jwt.sign(payload, JWT_SECRET)
+  jwt.sign(payload, env.JWT_SECRET)
 
 export const verifyJwt = (token: string): { id: string } =>
-  jwt.verify(token, JWT_SECRET) as { id: string }
+  jwt.verify(token, env.JWT_SECRET) as { id: string }

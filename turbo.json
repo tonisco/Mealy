@@ -1,6 +1,15 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["PORT", "DATABASE_URL", "NODE_ENV", "JWT_SECRET"],
+  "globalEnv": [
+    "PORT",
+    "DATABASE_URL",
+    "NODE_ENV",
+    "JWT_SECRET",
+    "Mail_USER",
+    "MAIL_OAUTH_REFRESH_TOKEN",
+    "MAIL_OAUTH_CLIENT_SECRET",
+    "MAIL_OAUTH_CLIENT_ID"
+  ],
   "globalDependencies": [".env"],
   "pipeline": {
     "build": {

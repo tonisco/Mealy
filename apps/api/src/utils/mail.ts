@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer"
 
+import { env } from "../env"
+
 type Props = {
   from: string
   to: string
@@ -12,10 +14,10 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     type: "oauth2",
-    user: process.env.Mail_USER,
-    refreshToken: process.env.MAIL_OAUTH_REFRESH_TOKEN,
-    clientSecret: process.env.MAIL_OAUTH_CLIENT_SECRET,
-    clientId: process.env.MAIL_OAUTH_CLIENT_ID,
+    user: env.MAIL_USER,
+    refreshToken: env.MAIL_OAUTH_REFRESH_TOKEN,
+    clientSecret: env.MAIL_OAUTH_CLIENT_SECRET,
+    clientId: env.MAIL_OAUTH_CLIENT_ID,
   },
 })
 

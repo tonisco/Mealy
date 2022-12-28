@@ -1,15 +1,18 @@
-import * as trpcExpress from "@trpc/server/adapters/express"
-import cors from "cors"
+/* eslint-disable import/first */
 import * as dotenv from "dotenv"
-import express from "express"
-import morgan from "morgan"
 import path from "path"
 
+dotenv.config({ path: path.join(__dirname, "../../../.env") })
+
+import * as trpcExpress from "@trpc/server/adapters/express"
+import cors from "cors"
+import express from "express"
+import morgan from "morgan"
+
+import { env } from "./env"
 import { foodRouter } from "./food"
 import { procedure, router } from "./trpc"
 import { createContext } from "./trpc/context"
-
-dotenv.config({ path: path.join(__dirname, "../../../.env") })
 
 const app = express()
 
@@ -34,7 +37,7 @@ app.use(
   trpcExpress.createExpressMiddleware({ router: appRouter, createContext }),
 )
 
-app.listen(process.env.PORT, () => {
+app.listen(env.PORT, () => {
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  console.log(`api is listening on port ${process.env.PORT}`)
+  console.log(`api is listening on port ${env.PORT}`)
 })
