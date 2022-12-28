@@ -26,7 +26,7 @@ export const recoverPasswordMail = async ({ from, to, otp }: Props) => {
     from: `"${from}" <mealy@group.com>`,
     to,
     subject: `${from} Account Recovery`,
-    html: `<h1>Hello ${to}</h1>
+    html: `<h3>Hello ${to}</h3>
       <p>Please use this OTP code: ${otp} to complete your password reset</p>
       <p>If you are not trying to reset your password, please ignore this mail</P>`,
   }

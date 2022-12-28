@@ -22,5 +22,5 @@ export const otpExpires = () => {
 export const hasOtpExpired = (expireTime: Date) => {
   const time = new Date()
 
-  return expireTime > time
+  return time > expireTime
 }

@@ -3,8 +3,8 @@ import { z } from "zod"
 export const changePasswordSchema = z.object({
   email: z
     .string()
-    .email()
     .trim()
+    .email()
     .refine((val) => val.toLocaleLowerCase()),
   password: z.string().min(6),
 })
@@ -12,8 +12,8 @@ export const changePasswordSchema = z.object({
 export const confirmOTPSchema = z.object({
   email: z
     .string()
-    .email()
     .trim()
+    .email()
     .refine((val) => val.toLocaleLowerCase()),
   otp: z.string().length(4),
 })
@@ -21,16 +21,16 @@ export const confirmOTPSchema = z.object({
 export const emailExistSchema = z.object({
   email: z
     .string()
-    .email()
     .trim()
+    .email()
     .refine((val) => val.toLocaleLowerCase()),
 })
 
 export const loginSchema = z.object({
   email: z
     .string()
-    .email()
     .trim()
+    .email()
     .refine((val) => val.toLocaleLowerCase()),
   password: z.string().min(6),
 })
@@ -38,16 +38,16 @@ export const loginSchema = z.object({
 export const sendOTPSchema = z.object({
   email: z
     .string()
-    .email()
     .trim()
+    .email()
     .refine((val) => val.toLocaleLowerCase()),
 })
 
 export const signUpSchema = z.object({
   email: z
     .string()
-    .email()
     .trim()
+    .email()
     .refine((val) => val.toLocaleLowerCase()),
   password: z.string().min(6),
   fullName: z.string(),
