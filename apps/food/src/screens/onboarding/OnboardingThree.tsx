@@ -1,19 +1,15 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack"
+// import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { Onboarding, UseUserState } from "mobile-ui"
-import { OnboardingScreenType } from "mobile-ui/src/screenTypes/default"
+// import { OnboardingScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 
-type Props = NativeStackScreenProps<OnboardingScreenType, "Onboarding 3">
+// type Props = NativeStackScreenProps<OnboardingScreenType, "Onboarding 3">
 
-const OnboardingThree = ({ navigation }: Props) => {
-  const { setHasOpenedApp } = UseUserState()
+const OnboardingThree = () => {
+  const { saveHasOpenedApp } = UseUserState()
 
-  const nextPage = () => {
-    setHasOpenedApp(true)
-    navigation.navigate("Auth", {
-      screen: "Sign Up",
-      params: { animation: true },
-    })
+  const nextPage = async () => {
+    await saveHasOpenedApp(true)
   }
 
   return (
