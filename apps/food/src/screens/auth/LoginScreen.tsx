@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { LoginScreenUI } from "mobile-ui"
+import { UseUserState } from "mobile-ui/src/context/UserStore"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React, { useState } from "react"
 import { Alert } from "react-native"
@@ -11,9 +12,11 @@ const LoginScreen = (props: Props) => {
   const [email, changeEmail] = useState("")
   const [password, changePassword] = useState("")
 
+  const { saveUser } = UseUserState()
+
   const { mutate } = trpc.food.auth.login.useMutation({
     onSuccess(data) {
-      console.log(data, "data")
+      saveUser(data).catch(() => Alert.alert("Login Error"))
     },
     onError(error) {
       Alert.alert("Login Error", error.message)

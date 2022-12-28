@@ -15,7 +15,6 @@ export type AuthScreenType = {
   "Reset Password": undefined
   "OTP Form": { email: string }
   "Change Password": { email: string }
-  // TODO: Fix next screen typeChecking
   "Success Screen": { message: string; nextScreen: keyof AuthScreenType }
   "Failure Screen": { message: string; nextScreen: keyof AuthScreenType }
 }

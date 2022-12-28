@@ -2,18 +2,48 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import React, { createContext, ReactNode, useContext, useState } from "react"
 import { Alert } from "react-native"
 
+type User = {
+  token: string
+  id: string
+  fullName: string
+  email: string
+  phone: string
+  country: string
+  state: string
+  city: string
+  street: string
+  lat: string | null
+  lng: string | null
+  createdAt: Date | string
+}
+
+const initialUserState = {
+  token: "",
+  id: "",
+  fullName: "",
+  email: "",
+  phone: "",
+  country: "",
+  state: "",
+  city: "",
+  street: "",
+  createdAt: "",
+  lat: "",
+  lng: "",
+}
+
 type userContext = {
   hasOpenedApp: boolean
   saveHasOpenedApp: (value: boolean) => Promise<void>
-  user: object
-  saveUser: (value: object) => Promise<void>
+  user: User
+  saveUser: (value: User) => Promise<void>
   getDetailsFromStorage: () => Promise<void>
 }
 
 const UserContext = createContext<userContext | null>(null)
 
 const UserStore = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState<User>(initialUserState)
   const [hasOpenedApp, setHasOpenedApp] = useState(false)
 
   const saveHasOpenedApp = async (value: boolean) => {
@@ -25,7 +55,7 @@ const UserStore = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  const saveUser = async (value: object) => {
+  const saveUser = async (value: User) => {
     try {
       await AsyncStorage.setItem("user", JSON.stringify(value))
       setUser(value)

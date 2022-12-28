@@ -15,7 +15,6 @@ export type AuthStack = {
   "Reset Password": undefined
   "OTP Form": undefined
   "Change Password": undefined
-  // TODO: Fix next screen typeChecking
   "Success Screen": { message: string; nextScreen: keyof AuthStack }
   "Failure Screen": { message: string; nextScreen: keyof AuthStack }
 }

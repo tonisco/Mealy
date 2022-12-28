@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import { LocationFormScreenUI, UseSignUpState } from "mobile-ui"
+import { LocationFormScreenUI, UseSignUpState, UseUserState } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 import { Alert } from "react-native"
@@ -20,14 +20,16 @@ const LocationFormScreen = ({ navigation }: Props) => {
     signUpState: { email, firstName, lastName, password, phone },
   } = UseSignUpState()
 
+  const { saveUser } = UseUserState()
+
   const { mutate } = trpc.food.auth.signUp.useMutation({
     onError(error) {
       failedCreateProfile({ message: error.message })
     },
     onSuccess(data) {
-      // TODO: save data
-      console.log(data)
-      successCreateProfile()
+      saveUser(data)
+        .then(() => successCreateProfile())
+        .catch(() => Alert.alert("Sign Up Error"))
     },
   })
 
