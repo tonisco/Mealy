@@ -3,7 +3,7 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import * as z from "zod"
+import { z } from "zod"
 
 import { BackButton, GradientButton, Input } from "../ui"
 import { Colors, IsIos, TextSize } from "../utils"

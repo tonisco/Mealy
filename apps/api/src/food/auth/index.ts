@@ -18,7 +18,10 @@ export const authRouter = router({
   changePassword: procedure
     .input(changePasswordSchema)
     .mutation(async ({ ctx, input }) => {
-      const { email, password } = input
+      const { email } = input
+      let { password } = input
+
+      password = await encryptPassword(password)
 
       try {
         await ctx.prisma.user.update({
@@ -49,10 +52,23 @@ export const authRouter = router({
       if (!user || !user.userAuth?.OTP || !user.userAuth.OTPExpires)
         throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
 
-      return (
-        user.userAuth.OTP.toString() === otp &&
-        !hasOtpExpired(user.userAuth.OTPExpires)
-      )
+      const otpMatches = user.userAuth.OTP.toString() === otp
+
+      if (!otpMatches)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "OTP does not match, please check the values provided",
+        })
+
+      const hasExpired = hasOtpExpired(user.userAuth.OTPExpires)
+
+      if (hasExpired)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "OTP has expired, please generate a new one",
+        })
+
+      return true
     }),
   emailExist: procedure
     .input(emailExistSchema)
@@ -65,10 +81,19 @@ export const authRouter = router({
   login: procedure.input(loginSchema).mutation(async ({ input, ctx }) => {
     const user = await ctx.prisma.user.findFirst({
       where: { email: input.email },
-      include: { userAuth: true },
     })
 
-    if (!user || !user.userAuth?.password)
+    if (!user)
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "Wrong Email or Password",
+      })
+
+    const userAuth = await ctx.prisma.userAuth.findUnique({
+      where: { userId: user.id },
+    })
+
+    if (!userAuth || !userAuth.password)
       throw new TRPCError({
         code: "NOT_FOUND",
         message: "Wrong Email or Password",
@@ -76,7 +101,7 @@ export const authRouter = router({
 
     const passwordMatches = await comparePasswords(
       input.password,
-      user.userAuth.password,
+      userAuth.password,
     )
 
     if (!passwordMatches)

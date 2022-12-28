@@ -12,7 +12,7 @@ import {
   ImageSourcePropType,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import * as z from "zod"
+import { z } from "zod"
 
 import { UseSignUpState } from "../context/SignUpStore"
 import { AuthScreenType } from "../screenTypes/default"
@@ -47,8 +47,8 @@ const SignUpScreenUI = ({
     .object({
       email: z
         .string()
-        .email()
         .trim()
+        .email()
         .refine((val) => val.toLocaleLowerCase()),
       password: z.string().min(6),
       confirmPassword: z.string(),

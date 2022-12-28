@@ -38,6 +38,6 @@ app.use(
 )
 
 app.listen(env.PORT, () => {
-  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  // eslint-disable-next-line no-console
   console.log(`api is listening on port ${env.PORT}`)
 })
