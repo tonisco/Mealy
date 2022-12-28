@@ -9,6 +9,7 @@ import cors from "cors"
 import express from "express"
 import morgan from "morgan"
 
+import { courierRouter } from "./courier"
 import { env } from "./env"
 import { foodRouter } from "./food"
 import { procedure, router } from "./trpc"
@@ -22,6 +23,7 @@ app.use(cors())
 export const appRouter = router({
   home: procedure.query(() => ({ message: "Welcome to Mealy" })),
   food: foodRouter,
+  courier: courierRouter,
 })
 
 export type AppRouter = typeof appRouter
