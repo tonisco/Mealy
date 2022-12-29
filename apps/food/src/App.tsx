@@ -1,4 +1,4 @@
-import { API_URL } from "@env"
+import { API_URL, PORT } from "@env"
 import { NavigationContainer } from "@react-navigation/native"
 import Constants from "expo-constants"
 import { loadAsync } from "expo-font"
@@ -15,7 +15,7 @@ const getBaseUrl = () => {
   if (!localhost)
     throw new Error("failed to get localhost, configure it manually")
 
-  return API_URL ? `${API_URL}` : `http://${localhost}:3456`
+  return API_URL ? `${API_URL}` : `http://${localhost}:${PORT}`
 }
 
 const App = () => {

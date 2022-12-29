@@ -1,11 +1,23 @@
+import { API_URL, PORT } from "@env"
 import { NavigationContainer } from "@react-navigation/native"
+import Constants from "expo-constants"
 import { loadAsync } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import { UserStore, UseUserState } from "mobile-ui"
 import React, { useCallback, useEffect, useState } from "react"
 import { View } from "react-native"
+import { TrpcProvider } from "trpc-client"
 
 import Navigator from "./navigation/Navigator"
+
+const getBaseUrl = () => {
+  const localhost = Constants.manifest?.debuggerHost?.split(":")[0]
+
+  if (!localhost)
+    throw new Error("failed to get localhost, configure it manually")
+
+  return API_URL ? API_URL : `http://${localhost}:${PORT}`
+}
 
 export const App = () => {
   const [appIsReady, setAppIsReady] = useState(false)
@@ -38,9 +50,11 @@ export const App = () => {
   return (
     // eslint-disable-next-line react-native/no-inline-styles
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <NavigationContainer>
-        <Navigator />
-      </NavigationContainer>
+      <TrpcProvider port={getBaseUrl()}>
+        <NavigationContainer>
+          <Navigator />
+        </NavigationContainer>
+      </TrpcProvider>
     </View>
   )
 }
