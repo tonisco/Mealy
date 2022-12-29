@@ -2,8 +2,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { SignUpScreenUI, UseSignUpState } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
-import { Alert } from "react-native"
+import { Alert, Keyboard } from "react-native"
 import { trpc } from "trpc-client"
+
+import LoadingUI from "../../components/LoadingUI"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Sign Up">
 
@@ -19,7 +21,7 @@ const SignUpScreen = (props: Props) => {
   } = props
   const { setSignUpState, signUpState } = UseSignUpState()
 
-  const { mutate } = trpc.food.auth.emailExist.useMutation({
+  const { mutate, isLoading } = trpc.food.auth.emailExist.useMutation({
     onSuccess(data) {
       saveData(data.emailUsed)
     },
@@ -29,6 +31,7 @@ const SignUpScreen = (props: Props) => {
   })
 
   const createAccount = (data: FormData) => {
+    Keyboard.dismiss()
     setSignUpState({ ...signUpState, ...data })
     mutate({ email: data.email })
   }
@@ -45,13 +48,16 @@ const SignUpScreen = (props: Props) => {
   }
 
   return (
-    <SignUpScreenUI
-      {...props}
-      logoText="Mealy Food"
-      logoImageSource={require("../../../assets/images/Asset2.png")}
-      googleImageSource={require("../../../assets/images/google.png")}
-      createAccount={createAccount}
-    />
+    <>
+      {isLoading && <LoadingUI />}
+      <SignUpScreenUI
+        {...props}
+        logoText="Mealy Food"
+        logoImageSource={require("../../../assets/images/Asset2.png")}
+        googleImageSource={require("../../../assets/images/google.png")}
+        createAccount={createAccount}
+      />
+    </>
   )
 }
 

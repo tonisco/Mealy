@@ -4,6 +4,8 @@ import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 import { trpc } from "trpc-client"
 
+import LoadingUI from "../../components/LoadingUI"
+
 type Props = NativeStackScreenProps<AuthScreenType, "Change Password">
 
 type FormData = {
@@ -16,7 +18,7 @@ const ChangePasswordScreen = ({ navigation, route }: Props) => {
     params: { email },
   } = route
 
-  const { mutate } = trpc.food.auth.changePassword.useMutation({
+  const { mutate, isLoading } = trpc.food.auth.changePassword.useMutation({
     onSuccess(message) {
       passwordChangeSuccess(message)
     },
@@ -36,7 +38,12 @@ const ChangePasswordScreen = ({ navigation, route }: Props) => {
       nextScreen: "Log In",
     })
 
-  return <ChangePasswordScreenUI changePassword={changePassword} />
+  return (
+    <>
+      {isLoading && <LoadingUI />}
+      <ChangePasswordScreenUI changePassword={changePassword} />
+    </>
+  )
 }
 
 export default ChangePasswordScreen

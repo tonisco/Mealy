@@ -5,6 +5,8 @@ import React from "react"
 import { Alert } from "react-native"
 import { trpc } from "trpc-client"
 
+import LoadingUI from "../../components/LoadingUI"
+
 type Props = NativeStackScreenProps<AuthScreenType, "Location Form">
 
 type FormData = {
@@ -22,7 +24,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
 
   const { saveUser } = UseUserState()
 
-  const { mutate } = trpc.food.auth.signUp.useMutation({
+  const { mutate, isLoading } = trpc.food.auth.signUp.useMutation({
     onError(error) {
       failedCreateProfile({ message: error.message })
     },
@@ -57,7 +59,12 @@ const LocationFormScreen = ({ navigation }: Props) => {
   const failedCreateProfile = ({ message }: { message: string }) =>
     Alert.alert("Failed to create password", message)
 
-  return <LocationFormScreenUI createProfile={createProfile} />
+  return (
+    <>
+      {isLoading && <LoadingUI />}
+      <LocationFormScreenUI createProfile={createProfile} />
+    </>
+  )
 }
 
 export default LocationFormScreen

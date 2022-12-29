@@ -6,6 +6,8 @@ import React, { useState } from "react"
 import { Alert } from "react-native"
 import { trpc } from "trpc-client"
 
+import LoadingUI from "../../components/LoadingUI"
+
 type Props = NativeStackScreenProps<AuthScreenType, "Log In">
 
 const LoginScreen = (props: Props) => {
@@ -14,7 +16,7 @@ const LoginScreen = (props: Props) => {
 
   const { saveUser } = UseUserState()
 
-  const { mutate } = trpc.food.auth.login.useMutation({
+  const { mutate, isLoading } = trpc.food.auth.login.useMutation({
     onSuccess(data) {
       saveUser(data)
         .then(() => {
@@ -31,17 +33,20 @@ const LoginScreen = (props: Props) => {
   const loginAccount = () => mutate({ email, password })
 
   return (
-    <LoginScreenUI
-      {...props}
-      email={email}
-      changeEmail={changeEmail}
-      logoText="Mealy Food"
-      password={password}
-      changePassword={changePassword}
-      loginAccount={loginAccount}
-      logoImageSource={require("../../../assets/images/Asset2.png")}
-      googleImageSource={require("../../../assets/images/google.png")}
-    />
+    <>
+      {isLoading && <LoadingUI />}
+      <LoginScreenUI
+        {...props}
+        email={email}
+        changeEmail={changeEmail}
+        logoText="Mealy Food"
+        password={password}
+        changePassword={changePassword}
+        loginAccount={loginAccount}
+        logoImageSource={require("../../../assets/images/Asset2.png")}
+        googleImageSource={require("../../../assets/images/google.png")}
+      />
+    </>
   )
 }
 
