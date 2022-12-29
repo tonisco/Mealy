@@ -1,7 +1,9 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import { LoginScreenUI } from "mobile-ui"
+import { LoginScreenUI, UseUserState } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React, { useState } from "react"
+import { Alert } from "react-native"
+import { trpc } from "trpc-client"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Log In">
 
@@ -9,9 +11,24 @@ const LoginScreen = (props: Props) => {
   const [email, changeEmail] = useState("")
   const [password, changePassword] = useState("")
 
-  const loginAccount = () => {
-    console.log("yes")
-  }
+  const { saveUser } = UseUserState()
+
+  const { mutate } = trpc.courier.auth.login.useMutation({
+    onSuccess(data) {
+      saveUser(data)
+        .then(() => {
+          changeEmail("")
+          changePassword("")
+        })
+        .catch(() => Alert.alert("Login Error"))
+    },
+    onError(error) {
+      Alert.alert("Login Error", error.message)
+    },
+  })
+
+  const loginAccount = () => mutate({ email, password })
+
   return (
     <LoginScreenUI
       {...props}

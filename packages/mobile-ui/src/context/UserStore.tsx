@@ -14,7 +14,7 @@ type User = {
   street: string
   lat: string | null
   lng: string | null
-  createdAt: Date | string
+  created_at: Date | string
 }
 
 const initialUserState = {
@@ -27,14 +27,14 @@ const initialUserState = {
   state: "",
   city: "",
   street: "",
-  createdAt: "",
+  created_at: "",
   lat: "",
   lng: "",
 }
 
 type userContext = {
   hasOpenedApp: boolean
-  saveHasOpenedApp: (value: boolean) => Promise<void>
+  saveHasOpenedApp: () => Promise<void>
   user: User
   saveUser: (value: User) => Promise<void>
   getDetailsFromStorage: () => Promise<void>
@@ -46,10 +46,10 @@ const UserStore = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(initialUserState)
   const [hasOpenedApp, setHasOpenedApp] = useState(false)
 
-  const saveHasOpenedApp = async (value: boolean) => {
+  const saveHasOpenedApp = async () => {
     try {
-      await AsyncStorage.setItem("hasOpenedApp", JSON.stringify(value))
-      setHasOpenedApp(value)
+      await AsyncStorage.setItem("hasOpenedApp", JSON.stringify(true))
+      setHasOpenedApp(true)
     } catch (error) {
       Alert.alert("App Error", "Failed to save changes")
     }
