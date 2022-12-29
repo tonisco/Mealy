@@ -24,23 +24,20 @@ const App = () => {
   const { getDetailsFromStorage } = UseUserState()
 
   useEffect(() => {
-    const loadAssets = async () => {
+    const getAppReady = async () => {
       await SplashScreen.preventAutoHideAsync()
-      try {
-        await getDetailsFromStorage()
-        await loadAsync({
-          "font-bold": require("../assets/font/BentonSansBold.otf"),
-          "font-medium": require("../assets/font/BentonSansMedium.otf"),
-          "font-regular": require("../assets/font/BentonSansRegular.otf"),
-        })
-      } catch (error) {
-        console.warn(error)
-      } finally {
-        setAppIsReady(true)
-      }
+
+      await getDetailsFromStorage()
+
+      await loadAsync({
+        "font-bold": require("../assets/font/BentonSansBold.otf"),
+        "font-medium": require("../assets/font/BentonSansMedium.otf"),
+        "font-regular": require("../assets/font/BentonSansRegular.otf"),
+      })
     }
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    loadAssets()
+    getAppReady()
+      .catch(console.warn)
+      .finally(() => setAppIsReady(true))
   }, [getDetailsFromStorage])
 
   const onLayoutRootView = useCallback(async () => {

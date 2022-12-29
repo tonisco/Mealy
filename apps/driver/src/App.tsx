@@ -1,29 +1,52 @@
 import { NavigationContainer } from "@react-navigation/native"
-import { useFonts } from "expo-font"
+import { loadAsync } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
-import React from "react"
+import { UserStore, UseUserState } from "mobile-ui"
+import React, { useCallback, useEffect, useState } from "react"
+import { View } from "react-native"
 
-// import AuthNavigator from "./navigation/AuthNavigator"
+import Navigator from "./navigation/Navigator"
 
-import OnboardingNavigator from "./navigation/OnboardingNavigator"
+export const App = () => {
+  const [appIsReady, setAppIsReady] = useState(false)
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-SplashScreen.preventAutoHideAsync()
+  const { getDetailsFromStorage } = UseUserState()
 
-export default function App() {
-  const [FontsLoaded] = useFonts({
-    "font-bold": require("../assets/font/BentonSansBold.otf"),
-    "font-medium": require("../assets/font/BentonSansMedium.otf"),
-    "font-regular": require("../assets/font/BentonSansRegular.otf"),
-  })
+  useEffect(() => {
+    const getAppReady = async () => {
+      await SplashScreen.preventAutoHideAsync()
 
-  if (!FontsLoaded) return null
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  else SplashScreen.hideAsync()
+      await getDetailsFromStorage()
+      await loadAsync({
+        "font-bold": require("../assets/font/BentonSansBold.otf"),
+        "font-medium": require("../assets/font/BentonSansMedium.otf"),
+        "font-regular": require("../assets/font/BentonSansRegular.otf"),
+      })
+    }
+
+    getAppReady()
+      .catch(console.warn)
+      .finally(() => setAppIsReady(true))
+  }, [getDetailsFromStorage])
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) await SplashScreen.hideAsync()
+  }, [appIsReady])
+
+  if (!appIsReady) return null
 
   return (
-    <NavigationContainer>
-      <OnboardingNavigator />
-    </NavigationContainer>
+    // eslint-disable-next-line react-native/no-inline-styles
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <NavigationContainer>
+        <Navigator />
+      </NavigationContainer>
+    </View>
   )
 }
+
+export default () => (
+  <UserStore>
+    <App />
+  </UserStore>
+)
