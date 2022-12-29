@@ -94,7 +94,7 @@ const LoginScreenUI = ({
             >
               <GradientText
                 style={styles.accountText}
-                text="Already have an account? Login"
+                text="Don't have an account? Sign Up"
               />
             </Pressable>
           </View>
