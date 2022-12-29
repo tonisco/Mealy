@@ -52,20 +52,20 @@ export const authRouter = router({
       if (!user || !user.userAuth?.OTP || !user.userAuth.OTPExpires)
         throw new TRPCError({ code: "BAD_REQUEST", message: "OTP Error" })
 
-      const otpMatches = user.userAuth.OTP.toString() === otp
-
-      if (!otpMatches)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-          message: "OTP does not match, please check the values provided",
-        })
-
       const hasExpired = hasOtpExpired(user.userAuth.OTPExpires)
 
       if (hasExpired)
         throw new TRPCError({
           code: "UNAUTHORIZED",
           message: "OTP has expired, please generate a new one",
+        })
+
+      const otpMatches = user.userAuth.OTP.toString() === otp
+
+      if (!otpMatches)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "OTP does not match, please check the values provided",
         })
 
       return true
