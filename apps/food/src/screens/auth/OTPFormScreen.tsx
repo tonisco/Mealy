@@ -38,6 +38,7 @@ const OTPFormScreen = ({ navigation, route }: Props) => {
   }
 
   const sendPin = () => mutate({ email, otp: `${pin1}${pin2}${pin3}${pin4}` })
+
   return <OTPFormScreenUI sendPin={sendPin} {...otpProps} />
 }
 

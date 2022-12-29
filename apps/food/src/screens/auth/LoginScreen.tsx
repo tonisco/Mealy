@@ -16,16 +16,20 @@ const LoginScreen = (props: Props) => {
 
   const { mutate } = trpc.food.auth.login.useMutation({
     onSuccess(data) {
-      saveUser(data).catch(() => Alert.alert("Login Error"))
+      saveUser(data)
+        .then(() => {
+          changeEmail("")
+          changePassword("")
+        })
+        .catch(() => Alert.alert("Login Error"))
     },
     onError(error) {
       Alert.alert("Login Error", error.message)
     },
   })
 
-  const loginAccount = () => {
-    mutate({ email, password })
-  }
+  const loginAccount = () => mutate({ email, password })
+
   return (
     <LoginScreenUI
       {...props}

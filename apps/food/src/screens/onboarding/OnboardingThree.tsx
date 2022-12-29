@@ -9,7 +9,7 @@ const OnboardingThree = () => {
   const { saveHasOpenedApp } = UseUserState()
 
   const nextPage = async () => {
-    await saveHasOpenedApp(true)
+    await saveHasOpenedApp()
   }
 
   return (

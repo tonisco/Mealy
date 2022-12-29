@@ -33,8 +33,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
     },
   })
 
-  const createProfile = (data: FormData) => {
-    const { city, country, street, state } = data
+  const createProfile = ({ city, country, state, street }: FormData) =>
     mutate({
       city,
       country,
@@ -45,7 +44,6 @@ const LocationFormScreen = ({ navigation }: Props) => {
       password,
       fullName: `${firstName} ${lastName}`,
     })
-  }
 
   const successCreateProfile = () => {
     // clear state

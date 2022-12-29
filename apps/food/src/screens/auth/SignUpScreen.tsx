@@ -24,7 +24,7 @@ const SignUpScreen = (props: Props) => {
       saveData(data.emailUsed)
     },
     onError(error) {
-      console.error(error)
+      Alert.alert("Sign Up Error", error.message)
     },
   })
 
