@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   background: {
     backgroundColor: "black",
-    opacity: 0.5,
+    opacity: 0.8,
     flex: 1,
   },
   loading: {

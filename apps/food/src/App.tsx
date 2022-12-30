@@ -39,7 +39,8 @@ const App = () => {
     getAppReady()
       .catch(console.warn)
       .finally(() => setAppIsReady(true))
-  }, [getDetailsFromStorage])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
