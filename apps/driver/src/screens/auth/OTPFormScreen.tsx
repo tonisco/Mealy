@@ -5,6 +5,8 @@ import React, { useState } from "react"
 import { Alert } from "react-native"
 import { trpc } from "trpc-client"
 
+import LoadingUI from "../../components/LoadingUI"
+
 type Props = NativeStackScreenProps<AuthScreenType, "OTP Form">
 
 const OTPFormScreen = ({ navigation, route }: Props) => {
@@ -12,7 +14,7 @@ const OTPFormScreen = ({ navigation, route }: Props) => {
     params: { email },
   } = route
 
-  const { mutate } = trpc.courier.auth.confirmOTP.useMutation({
+  const { mutate, isLoading } = trpc.courier.auth.confirmOTP.useMutation({
     onSuccess() {
       navigation.navigate("Change Password", { email })
     },
@@ -39,7 +41,12 @@ const OTPFormScreen = ({ navigation, route }: Props) => {
 
   const sendPin = () => mutate({ email, otp: `${pin1}${pin2}${pin3}${pin4}` })
 
-  return <OTPFormScreenUI sendPin={sendPin} {...otpProps} />
+  return (
+    <>
+      {isLoading && <LoadingUI />}
+      <OTPFormScreenUI sendPin={sendPin} {...otpProps} />
+    </>
+  )
 }
 
 export default OTPFormScreen

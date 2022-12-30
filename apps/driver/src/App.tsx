@@ -29,6 +29,7 @@ export const App = () => {
       await SplashScreen.preventAutoHideAsync()
 
       await getDetailsFromStorage()
+
       await loadAsync({
         "font-bold": require("../assets/font/BentonSansBold.otf"),
         "font-medium": require("../assets/font/BentonSansMedium.otf"),

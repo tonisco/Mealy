@@ -5,6 +5,8 @@ import React from "react"
 import { Alert } from "react-native"
 import { trpc } from "trpc-client"
 
+import LoadingUI from "../../components/LoadingUI"
+
 type Props = NativeStackScreenProps<AuthScreenType, "Sign Up">
 
 type FormData = {
@@ -20,7 +22,7 @@ const SignUpScreen = (props: Props) => {
 
   const { setSignUpState, signUpState } = UseSignUpState()
 
-  const { mutate } = trpc.courier.auth.emailExist.useMutation({
+  const { mutate, isLoading } = trpc.courier.auth.emailExist.useMutation({
     onSuccess(data) {
       saveData(data.emailUsed)
     },
@@ -47,13 +49,16 @@ const SignUpScreen = (props: Props) => {
   }
 
   return (
-    <SignUpScreenUI
-      {...props}
-      logoText="Mealy Driver"
-      logoImageSource={require("../../../assets/images/Asset1.png")}
-      googleImageSource={require("../../../assets/images/google.png")}
-      createAccount={createAccount}
-    />
+    <>
+      {isLoading && <LoadingUI />}
+      <SignUpScreenUI
+        {...props}
+        logoText="Mealy Driver"
+        logoImageSource={require("../../../assets/images/Asset1.png")}
+        googleImageSource={require("../../../assets/images/google.png")}
+        createAccount={createAccount}
+      />
+    </>
   )
 }
 
