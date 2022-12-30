@@ -11,9 +11,11 @@ import {
   Pressable,
   ImageSourcePropType,
 } from "react-native"
+import Animated, { BounceInDown, FadeIn, ZoomIn } from "react-native-reanimated"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { z } from "zod"
 
+import { moveToTop } from "../animation"
 import { UseSignUpState } from "../context/SignUpStore"
 import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
@@ -74,16 +76,27 @@ const SignUpScreenUI = ({
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.logoContainer}>
-          <Image
+          <Animated.Image
             style={styles.logoImage}
             source={logoImageSource}
             resizeMode="contain"
+            entering={moveToTop}
           />
-          <GradientText style={styles.logoText} text={logoText} />
+          <Animated.View entering={FadeIn.duration(800).delay(800)}>
+            <GradientText style={styles.logoText} text={logoText} />
+          </Animated.View>
         </View>
         <View style={styles.details}>
-          <Text style={styles.heading}>Sign up for Free</Text>
-          <View style={styles.form}>
+          <Animated.Text
+            entering={ZoomIn.duration(500).delay(1500)}
+            style={styles.heading}
+          >
+            Sign up for Free
+          </Animated.Text>
+          <Animated.View
+            style={styles.form}
+            entering={ZoomIn.duration(500).delay(1500)}
+          >
             <Input
               control={control}
               error={errors.email?.message}
@@ -110,15 +123,21 @@ const SignUpScreenUI = ({
               iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
               encrypt
             />
-          </View>
-          <View style={styles.buttonContainer}>
+          </Animated.View>
+          <Animated.View
+            style={styles.buttonContainer}
+            entering={BounceInDown.duration(800).delay(1900)}
+          >
             <GradientButton
               text="Create Account"
               onPress={handleSubmit(createAccount)}
             />
-          </View>
+          </Animated.View>
 
-          <View style={styles.other}>
+          <Animated.View
+            style={styles.other}
+            entering={ZoomIn.duration(800).delay(2600)}
+          >
             <Text style={styles.continueText}>Or Continue With</Text>
             <View style={styles.googleContainer}>
               <Image
@@ -137,7 +156,7 @@ const SignUpScreenUI = ({
                 text="Already have an account? Login"
               />
             </Pressable>
-          </View>
+          </Animated.View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -153,6 +172,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: "center",
     marginBottom: 40,
+    zIndex: 1,
   },
   logoImage: {
     width: 200,

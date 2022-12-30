@@ -396,6 +396,7 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0
       react-native: 0.70.5
+      react-native-reanimated: ~2.12.0
       tsconfig: workspace:*
       typescript: ^4.6.3
     dependencies:
@@ -406,6 +407,7 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-native: 0.70.5_54md7p3jw3ru3lahxqgw5vptci
+      react-native-reanimated: 2.12.0_6puqyg2n45u266kros6m47lk7e
     devDependencies:
       '@babel/core': 7.20.2
       '@babel/preset-env': 7.20.2_@babel+core@7.20.2
