@@ -33,7 +33,11 @@ const ChangePasswordScreen = ({ navigation, route }: Props) => {
     navigation.navigate("Success Screen", { message, nextScreen: "Log In" })
 
   const passwordChangeFailed = ({ message }: { message: string }) =>
-    navigation.navigate("Failure Screen", { message, nextScreen: "Log In" })
+    navigation.navigate("Failure Screen", {
+      message,
+      nextScreen: "Log In",
+      nextScreenParams: { animation: false },
+    })
 
   return (
     <>

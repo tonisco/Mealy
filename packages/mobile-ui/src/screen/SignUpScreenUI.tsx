@@ -149,7 +149,7 @@ const SignUpScreenUI = ({
             </View>
             <Pressable
               style={styles.optionsContainer}
-              onPress={() => navigate("Log In")}
+              onPress={() => navigate("Log In", { animation: false })}
             >
               <GradientText
                 style={styles.accountText}

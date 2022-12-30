@@ -30,7 +30,11 @@ const ChangePasswordScreen = ({ navigation, route }: Props) => {
   const changePassword = ({ password }: FormData) => mutate({ email, password })
 
   const passwordChangeSuccess = ({ message }: { message: string }) =>
-    navigation.navigate("Success Screen", { message, nextScreen: "Log In" })
+    navigation.navigate("Success Screen", {
+      message,
+      nextScreen: "Log In",
+      nextScreenParams: { animation: false },
+    })
 
   const passwordChangeFailed = ({ message }: { message: string }) =>
     navigation.navigate("Failure Screen", {

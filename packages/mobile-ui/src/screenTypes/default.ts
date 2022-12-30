@@ -8,13 +8,21 @@ export type OnboardingScreenType = {
 }
 
 export type AuthScreenType = {
-  "Sign Up": { animation?: boolean } | undefined
-  "Log In": { animation?: boolean } | undefined
+  "Sign Up": { animation: boolean }
+  "Log In": { animation: boolean }
   "Details Form": undefined
   "Location Form": undefined
   "Reset Password": undefined
   "OTP Form": { email: string }
   "Change Password": { email: string }
-  "Success Screen": { message: string; nextScreen: keyof AuthScreenType }
-  "Failure Screen": { message: string; nextScreen: keyof AuthScreenType }
+  "Success Screen": {
+    message: string
+    nextScreen: keyof AuthScreenType
+    nextScreenParams?: object | { animation: boolean }
+  }
+  "Failure Screen": {
+    message: string
+    nextScreen: keyof AuthScreenType
+    nextScreenParams?: object | { animation: boolean }
+  }
 }

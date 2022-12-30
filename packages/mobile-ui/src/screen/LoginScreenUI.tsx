@@ -9,8 +9,10 @@ import {
   Pressable,
   ImageSourcePropType,
 } from "react-native"
+import Animated, { BounceInDown, FadeIn, ZoomIn } from "react-native-reanimated"
 import { SafeAreaView } from "react-native-safe-area-context"
 
+import { moveToTop } from "../animation"
 import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
 import { Colors, IsIos, TextSize } from "../utils"
@@ -36,8 +38,14 @@ const LoginScreenUI = ({
   loginAccount,
   googleImageSource,
   logoImageSource,
+  route,
 }: Props) => {
   const { navigate } = navigation
+
+  const { params } = route
+
+  const animate = params?.animation !== false
+  console.log(animate)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,16 +54,29 @@ const LoginScreenUI = ({
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.logoContainer}>
-          <Image
+          <Animated.Image
             style={styles.logoImage}
             source={logoImageSource}
             resizeMode="contain"
+            entering={animate ? moveToTop : undefined}
           />
-          <GradientText style={styles.logoText} text={logoText} />
+          <Animated.View
+            entering={animate ? FadeIn.duration(800).delay(800) : undefined}
+          >
+            <GradientText style={styles.logoText} text={logoText} />
+          </Animated.View>
         </View>
         <View style={styles.details}>
-          <Text style={styles.heading}>Login to your account</Text>
-          <View style={styles.form}>
+          <Animated.Text
+            entering={animate ? ZoomIn.duration(500).delay(1500) : undefined}
+            style={styles.heading}
+          >
+            Login to your account
+          </Animated.Text>
+          <Animated.View
+            entering={animate ? ZoomIn.duration(500).delay(1500) : undefined}
+            style={styles.form}
+          >
             <Input
               placeholder="Email"
               iconName={IsIos ? "ios-mail" : "mail"}
@@ -71,12 +92,20 @@ const LoginScreenUI = ({
               value={password}
               changeText={changePassword}
             />
-          </View>
-          <View style={styles.buttonContainer}>
+          </Animated.View>
+          <Animated.View
+            style={styles.buttonContainer}
+            entering={
+              animate ? BounceInDown.duration(800).delay(1900) : undefined
+            }
+          >
             <GradientButton text="Login" onPress={loginAccount} />
-          </View>
+          </Animated.View>
 
-          <View style={styles.other}>
+          <Animated.View
+            entering={animate ? ZoomIn.duration(800).delay(2600) : undefined}
+            style={styles.other}
+          >
             <Text style={styles.continueText}>Or Login With</Text>
             <View style={styles.googleContainer}>
               <Image source={googleImageSource} style={styles.googleImage} />
@@ -90,14 +119,14 @@ const LoginScreenUI = ({
             </Pressable>
             <Pressable
               style={styles.optionsContainer}
-              onPress={() => navigate("Sign Up")}
+              onPress={() => navigate("Sign Up", { animation: false })}
             >
               <GradientText
                 style={styles.accountText}
                 text="Don't have an account? Sign Up"
               />
             </Pressable>
-          </View>
+          </Animated.View>
         </View>
       </ScrollView>
     </SafeAreaView>

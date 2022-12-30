@@ -33,7 +33,12 @@ const FailureScreen = ({ navigation, route }: Props) => {
           onPress={() =>
             navigation.reset({
               index: 0,
-              routes: [{ name: route.params.nextScreen }],
+              routes: [
+                {
+                  name: route.params.nextScreen,
+                  params: { ...route.params.nextScreenParams },
+                },
+              ],
             })
           }
         />

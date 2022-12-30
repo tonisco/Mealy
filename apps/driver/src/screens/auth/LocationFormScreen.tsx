@@ -51,6 +51,7 @@ const LocationFormScreen = ({ navigation }: Props) => {
     navigation.navigate("Success Screen", {
       message: "Your account has successfully been created",
       nextScreen: "Log In",
+      nextScreenParams: { animation: false },
     })
   }
 
