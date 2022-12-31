@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { moveToTop } from "../animation"
 import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
-import { Colors, IsIos, TextSize } from "../utils"
+import { IsIos, TextSize } from "../utils"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Log In"> & {
   email: string
@@ -45,7 +45,6 @@ const LoginScreenUI = ({
   const { params } = route
 
   const animate = params?.animation !== false
-  console.log(animate)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,9 +52,9 @@ const LoginScreenUI = ({
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.logoContainer}>
+        <View className="mb-10 items-center">
           <Animated.Image
-            style={styles.logoImage}
+            className="mb-3 h-[84px] w-52"
             source={logoImageSource}
             resizeMode="contain"
             entering={animate ? moveToTop : undefined}
@@ -66,16 +65,17 @@ const LoginScreenUI = ({
             <GradientText style={styles.logoText} text={logoText} />
           </Animated.View>
         </View>
-        <View style={styles.details}>
+
+        <View className="mt4 items-center">
           <Animated.Text
             entering={animate ? ZoomIn.duration(500).delay(1500) : undefined}
-            style={styles.heading}
+            className="my-1 font-bento-bold text-xl uppercase text-dark"
           >
             Login to your account
           </Animated.Text>
           <Animated.View
             entering={animate ? ZoomIn.duration(500).delay(1500) : undefined}
-            style={styles.form}
+            className="my-5"
           >
             <Input
               placeholder="Email"
@@ -94,7 +94,7 @@ const LoginScreenUI = ({
             />
           </Animated.View>
           <Animated.View
-            style={styles.buttonContainer}
+            className="mt-4 mb-3"
             entering={
               animate ? BounceInDown.duration(800).delay(1900) : undefined
             }
@@ -104,21 +104,26 @@ const LoginScreenUI = ({
 
           <Animated.View
             entering={animate ? ZoomIn.duration(800).delay(2600) : undefined}
-            style={styles.other}
+            className="my-3"
           >
-            <Text style={styles.continueText}>Or Login With</Text>
-            <View style={styles.googleContainer}>
-              <Image source={googleImageSource} style={styles.googleImage} />
-              <Text style={styles.googleText}>Google</Text>
+            <Text className="my-3 text-center font-bento-bold text-xs capitalize">
+              Or Login With
+            </Text>
+
+            <View className="my-3 w-60 flex-row items-center justify-center gap-x-2 rounded-lg bg-white p-3 shadow shadow-black">
+              <Image source={googleImageSource} className=" h-7 w-7" />
+              <Text className=" font-bento-med">Google</Text>
             </View>
+
             <Pressable
-              style={styles.optionsContainer}
+              className="mt-8 items-center"
               onPress={() => navigate("Reset Password")}
             >
               <GradientText style={styles.accountText} text="Forgot Password" />
             </Pressable>
+
             <Pressable
-              style={styles.optionsContainer}
+              className="mt-8 items-center"
               onPress={() => navigate("Sign Up", { animation: false })}
             >
               <GradientText
@@ -139,74 +144,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  logoContainer: {
-    alignItems: "center",
-    marginBottom: 40,
-  },
-  logoImage: {
-    width: 200,
-    height: 84,
-    marginBottom: 10,
-  },
+
   logoText: {
     fontSize: TextSize.x_large,
     textTransform: "uppercase",
-  },
-  details: {
-    marginTop: 15,
-    alignItems: "center",
-  },
-  heading: {
-    fontFamily: "font-bold",
-    fontSize: TextSize.medium,
-    textTransform: "uppercase",
-    marginVertical: 5,
-    color: Colors.dark,
-  },
-  form: {
-    marginVertical: 20,
-  },
-  buttonContainer: {
-    marginTop: 15,
-    marginBottom: 10,
-  },
-  other: {
-    marginVertical: 10,
-  },
-  continueText: {
-    fontSize: TextSize.small,
-    fontFamily: "font-bold",
-    marginVertical: 10,
-    textTransform: "capitalize",
-    textAlign: "center",
-  },
-  optionsContainer: {
-    marginTop: 30,
-    alignItems: "center",
-  },
-  googleContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10,
-    padding: 10,
-    backgroundColor: "#fff",
-    width: 240,
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOffset: { height: 3, width: 3 },
-    shadowOpacity: 0.8,
-    elevation: 3,
-  },
-  googleImage: {
-    height: 30,
-    width: 30,
-    marginHorizontal: 5,
-  },
-  googleText: {
-    fontFamily: "font-medium",
-    fontSize: TextSize.regular,
-    marginHorizontal: 5,
   },
   accountText: {
     fontSize: TextSize.small,

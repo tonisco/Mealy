@@ -19,7 +19,7 @@ import { moveToTop } from "../animation"
 import { UseSignUpState } from "../context/SignUpStore"
 import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
-import { Colors, IsIos, TextSize } from "../utils"
+import { IsIos, TextSize } from "../utils"
 
 type FormData = {
   email: string
@@ -75,9 +75,9 @@ const SignUpScreenUI = ({
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.logoContainer}>
+        <View className="mb-10 items-center">
           <Animated.Image
-            style={styles.logoImage}
+            className="mb-3 h-[84px] w-52"
             source={logoImageSource}
             resizeMode="contain"
             entering={moveToTop}
@@ -86,15 +86,15 @@ const SignUpScreenUI = ({
             <GradientText style={styles.logoText} text={logoText} />
           </Animated.View>
         </View>
-        <View style={styles.details}>
+        <View className="mt4 items-center">
           <Animated.Text
             entering={ZoomIn.duration(500).delay(1500)}
-            style={styles.heading}
+            className="my-1 font-bento-bold text-xl uppercase text-dark"
           >
             Sign up for Free
           </Animated.Text>
           <Animated.View
-            style={styles.form}
+            className="my-5"
             entering={ZoomIn.duration(500).delay(1500)}
           >
             <Input
@@ -125,7 +125,7 @@ const SignUpScreenUI = ({
             />
           </Animated.View>
           <Animated.View
-            style={styles.buttonContainer}
+            className="mt-4 mb-3"
             entering={BounceInDown.duration(800).delay(1900)}
           >
             <GradientButton
@@ -135,20 +135,22 @@ const SignUpScreenUI = ({
           </Animated.View>
 
           <Animated.View
-            style={styles.other}
+            className="my-3"
             entering={ZoomIn.duration(800).delay(2600)}
           >
-            <Text style={styles.continueText}>Or Continue With</Text>
-            <View style={styles.googleContainer}>
+            <Text className="my-3 text-center font-bento-bold text-xs capitalize">
+              Or Continue With
+            </Text>
+            <View className="my-3 w-60 flex-row items-center justify-center gap-x-2 rounded-lg bg-white p-3 shadow shadow-black">
               <Image
                 source={googleImageSource}
-                style={styles.googleImage}
+                className=" h-7 w-7"
                 resizeMode="contain"
               />
-              <Text style={styles.googleText}>Google</Text>
+              <Text className=" font-bento-med">Google</Text>
             </View>
             <Pressable
-              style={styles.optionsContainer}
+              className="mt-8 items-center"
               onPress={() => navigate("Log In", { animation: false })}
             >
               <GradientText
@@ -169,79 +171,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  logoContainer: {
-    alignItems: "center",
-    marginBottom: 40,
-    zIndex: 1,
-  },
-  logoImage: {
-    width: 200,
-    height: 84,
-    marginBottom: 10,
-  },
+
   logoText: {
     fontSize: TextSize.x_large,
     textTransform: "uppercase",
   },
-  details: {
-    marginTop: 15,
-    alignItems: "center",
-  },
-  heading: {
-    fontFamily: "font-bold",
-    fontSize: TextSize.medium,
-    textTransform: "uppercase",
-    marginVertical: 5,
-    color: Colors.dark,
-  },
-  form: {
-    marginVertical: 20,
-  },
-  buttonContainer: {
-    marginTop: 15,
-    marginBottom: 10,
-  },
-  other: {
-    marginVertical: 10,
-  },
-  continueText: {
-    fontSize: TextSize.tiny,
-    fontFamily: "font-bold",
-    marginVertical: 10,
-    textTransform: "capitalize",
-    textAlign: "center",
-  },
-  optionsContainer: {
-    marginTop: 30,
-    alignItems: "center",
-  },
-  googleContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10,
-    padding: 10,
-    backgroundColor: "#fff",
-    width: 240,
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOffset: { height: 3, width: 3 },
-    shadowOpacity: 0.8,
-    elevation: 3,
-  },
-  googleImage: {
-    height: 30,
-    width: 30,
-    marginHorizontal: 5,
-  },
-  googleText: {
-    fontFamily: "font-medium",
-    fontSize: TextSize.regular,
-    marginHorizontal: 5,
-  },
   accountText: {
     fontSize: TextSize.small,
-    fontFamily: "font-bold",
     textTransform: "capitalize",
   },
 })
