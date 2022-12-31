@@ -12,22 +12,23 @@ type Props = NativeStackScreenProps<AuthScreenType, "Failure Screen">
 
 const FailureScreen = ({ navigation, route }: Props) => {
   return (
-    <View style={styles.container}>
+    <View className="mb-12 flex-1 items-center justify-center p-5">
       <Image
         source={require("../assets/fail.png")}
-        style={styles.image}
+        className="h-[200px] w-[215px]"
         resizeMode="contain"
       />
-
-      <View style={styles.textContainer}>
+      <View className="mt-8">
         <GradientText
           colors={[Colors.red, Colors.darkRed]}
           text="Request Failed"
           style={styles.heading}
         />
-        <Text style={styles.description}>{route.params.message}</Text>
+        <Text className="font-bento-bold capitalize">
+          {route.params.message}
+        </Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <View className="absolute bottom-10 self-center">
         <GradientButton
           text="next"
           onPress={() =>
@@ -50,32 +51,8 @@ const FailureScreen = ({ navigation, route }: Props) => {
 export default FailureScreen
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-    marginBottom: 50,
-  },
-  image: {
-    height: 200,
-    width: 215,
-  },
-  textContainer: {
-    marginTop: 30,
-  },
   heading: {
     marginVertical: 10,
     fontSize: TextSize.large,
-  },
-  description: {
-    fontFamily: "font-bold",
-    fontSize: TextSize.regular,
-    textTransform: "capitalize",
-  },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 40,
-    alignSelf: "center",
   },
 })

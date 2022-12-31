@@ -1,16 +1,8 @@
 import React, { Dispatch, useRef } from "react"
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Keyboard,
-  ScrollView,
-} from "react-native"
+import { View, Text, TextInput, Keyboard, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 import { BackButton, GradientButton, SquareInput } from "../ui"
-import { Colors, TextSize } from "../utils"
 
 type Props = {
   pin1: string
@@ -58,73 +50,42 @@ const OTPFormScreenUI = ({
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    // container: {
+    //   flex: 1,
+    //   paddingTop: 25,
+    //   paddingHorizontal: 25,
+    // },
+    <SafeAreaView className="flex-1 px-6 pt-6">
       <ScrollView
-        contentContainerStyle={styles.scroll}
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{ flex: 1 }}
         keyboardShouldPersistTaps="handled"
       >
         <BackButton />
 
-        <View style={styles.textContainer}>
-          <Text style={styles.heading}>We have sent an OTP to your Email</Text>
-          <Text style={styles.description}>
+        <View className="mb-4 items-start">
+          <Text className="mb-1 font-bento-bold text-3xl uppercase text-dark">
+            We have sent an OTP to your Email
+          </Text>
+          <Text className="mt-1 font-bento-reg text-xs leading-4 text-dark">
             Please check your Email for your otp, to continue to reset your
             password
           </Text>
         </View>
 
-        <View style={styles.inputContainer}>
+        <View className="flex-row">
           <SquareInput value={pin1} onChangeText={pinChange1} ref={pin1Ref} />
           <SquareInput value={pin2} onChangeText={pinChange2} ref={pin2Ref} />
           <SquareInput value={pin3} onChangeText={pinChange3} ref={pin3Ref} />
           <SquareInput value={pin4} onChangeText={pinChange4} ref={pin4Ref} />
         </View>
 
-        <View style={styles.buttonContainer}>
+        <View className="absolute bottom-12 self-center">
           <GradientButton text="next" onPress={sendPin} />
         </View>
       </ScrollView>
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 25,
-    paddingHorizontal: 25,
-  },
-  scroll: {
-    flex: 1,
-  },
-  textContainer: {
-    alignItems: "flex-start",
-    marginBottom: 15,
-  },
-  heading: {
-    fontFamily: "font-bold",
-    fontSize: TextSize.large,
-    textTransform: "uppercase",
-    color: Colors.dark,
-    textAlign: "left",
-    marginBottom: 5,
-  },
-  description: {
-    fontSize: TextSize.tiny,
-    color: Colors.dark,
-    textAlign: "left",
-    fontFamily: "font-regular",
-    lineHeight: 13,
-    marginTop: 3,
-  },
-  inputContainer: {
-    flexDirection: "row",
-  },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 50,
-    alignSelf: "center",
-  },
-})
 
 export default OTPFormScreenUI

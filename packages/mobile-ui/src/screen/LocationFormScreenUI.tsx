@@ -7,7 +7,7 @@ import { z } from "zod"
 
 import { UseSignUpState } from "../context"
 import { BackButton, GradientButton, Input } from "../ui"
-import { Colors, IsIos, TextSize } from "../utils"
+import { IsIos } from "../utils"
 
 type Props = { createProfile: (data: FormData) => void }
 
@@ -38,15 +38,18 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
   })
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView className="flex-1 px-6 pt-6">
       <ScrollView
-        contentContainerStyle={styles.scroll}
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{ flex: 1 }}
         keyboardShouldPersistTaps="handled"
       >
         <BackButton />
-        <View style={styles.textContainer}>
-          <Text style={styles.heading}>Set Your Location</Text>
-          <Text style={styles.description}>
+        <View className="mb-4 self-start">
+          <Text className="mb-1 text-left font-bento-bold text-3xl uppercase text-dark">
+            Set Your Location
+          </Text>
+          <Text className="mt-1 text-left font-bento-reg text-xs leading-4 text-dark">
             This data will be displayed in your account profile for security
           </Text>
         </View>
@@ -90,7 +93,7 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
           error={errors.country?.message}
         />
 
-        <View style={styles.buttonContainer}>
+        <View className="absolute bottom-12 self-center">
           <GradientButton text="finish" onPress={handleSubmit(createProfile)} />
         </View>
       </ScrollView>
@@ -99,39 +102,6 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 25,
-    paddingHorizontal: 25,
-  },
-  scroll: {
-    flex: 1,
-  },
-  textContainer: {
-    alignItems: "flex-start",
-    marginBottom: 15,
-  },
-  heading: {
-    fontFamily: "font-bold",
-    fontSize: TextSize.large,
-    textTransform: "uppercase",
-    color: Colors.dark,
-    textAlign: "left",
-    marginBottom: 5,
-  },
-  description: {
-    fontSize: TextSize.tiny,
-    color: Colors.dark,
-    textAlign: "left",
-    fontFamily: "font-regular",
-    lineHeight: 13,
-    marginTop: 3,
-  },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 50,
-    alignSelf: "center",
-  },
   widthFull: { width: "100%" },
 })
 
