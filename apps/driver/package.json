@@ -38,6 +38,7 @@
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
     "react-native-web": "~0.18.9",
+    "schema": "workspace:*",
     "trpc-client": "workspace",
     "zod": "^3.19.1"
   },

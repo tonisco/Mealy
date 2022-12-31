@@ -1,0 +1,9 @@
+{
+  "extends": "../../packages/tsconfig/api.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/", ".eslintrc.js"],
+  "exclude": ["node_modules", ".turbo", "coverage", "dist", "src/**/*.test.ts"]
+}

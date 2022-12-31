@@ -32,6 +32,8 @@ const OTPFormScreenUI = ({
   const pin3Ref = useRef<TextInput>(null)
   const pin4Ref = useRef<TextInput>(null)
 
+  // TODO: use hook form
+
   const pinChange1 = (v: string) => {
     changePin1(v)
     if (v) pin2Ref.current?.focus()

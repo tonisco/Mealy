@@ -60,6 +60,7 @@ importers:
       multer: 1.4.5-lts.1
       nodemailer: ^6.8.0
       nodemon: ^2.0.20
+      schema: workspace:*
       superjson: ^1.12.1
       ts-node-dev: ^2.0.0
       tsconfig: '*'
@@ -75,6 +76,7 @@ importers:
       morgan: 1.10.0
       multer: 1.4.5-lts.1
       nodemailer: 6.8.0
+      schema: link:../../packages/schema
       superjson: 1.12.1
       zod: 3.19.1
     devDependencies:
@@ -144,6 +146,7 @@ importers:
       react-native-safe-area-context: 4.4.1
       react-native-screens: ~3.18.0
       react-native-web: ~0.18.9
+      schema: workspace:*
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
       trpc-client: workspace
@@ -180,6 +183,7 @@ importers:
       react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
       react-native-screens: 3.18.2_tj3nonr5gneraukzjkxpsiy7yu
       react-native-web: 0.18.10_ef5jwxihqo6n7gxfmzogljlgcm
+      schema: link:../../packages/schema
       trpc-client: link:../../packages/trpc-client
       zod: 3.19.1
     devDependencies:
@@ -243,6 +247,7 @@ importers:
       react-native-safe-area-context: 4.4.1
       react-native-screens: ~3.18.0
       react-native-web: ~0.18.9
+      schema: workspace:*
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
       trpc-client: workspace
@@ -279,6 +284,7 @@ importers:
       react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
       react-native-screens: 3.18.2_tj3nonr5gneraukzjkxpsiy7yu
       react-native-web: 0.18.10_ef5jwxihqo6n7gxfmzogljlgcm
+      schema: link:../../packages/schema
       trpc-client: link:../../packages/trpc-client
       zod: 3.19.1
     devDependencies:
@@ -313,6 +319,7 @@ importers:
       postcss: ^8.4.19
       react: 18.2.0
       react-dom: 18.2.0
+      schema: workspace:*
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
       tsconfig: workspace:*
@@ -324,6 +331,7 @@ importers:
       next: 13.0.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      schema: link:../../packages/schema
       typescript: 4.9.3
     devDependencies:
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -434,6 +442,37 @@ importers:
       tailwind-config: link:../tailwind-config
       tailwindcss: 3.2.4
       tsconfig: link:../tsconfig
+      typescript: 4.9.3
+
+  packages/schema:
+    specifiers:
+      '@typescript-eslint/eslint-plugin': ^5.44.0
+      '@typescript-eslint/parser': ^5.44.0
+      esconfig: workspace:*
+      eslint: ^8.30.0
+      eslint-config-airbnb-base: ^15.0.0
+      eslint-config-airbnb-typescript: ^17.0.0
+      eslint-config-prettier: ^8.5.0
+      eslint-config-turbo: 0.0.7
+      eslint-plugin-import: ^2.26.0
+      eslint-plugin-simple-import-sort: ^8.0.0
+      tsconfig: '*'
+      typescript: ^4.9.3
+      zod: ^3.19.1
+    dependencies:
+      zod: 3.19.1
+    devDependencies:
+      '@typescript-eslint/eslint-plugin': 5.44.0_jevmf2vlpxbyyhd3lmuw4ahrwa
+      '@typescript-eslint/parser': 5.44.0_f5jcydormhcqaoeadqwgqigppy
+      esconfig: link:../esconfig
+      eslint: 8.30.0
+      eslint-config-airbnb-base: 15.0.0_2lbwmhbr7bncddqbzzpg77o75m
+      eslint-config-airbnb-typescript: 17.0.0_u64y67r5osqanojjaujsy2sg4u
+      eslint-config-prettier: 8.5.0_eslint@8.30.0
+      eslint-config-turbo: 0.0.7_eslint@8.30.0
+      eslint-plugin-import: 2.26.0_pkg3vmalyjfcyy5ibo56gvgnqe
+      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.30.0
+      tsconfig: 7.0.0
       typescript: 4.9.3
 
   packages/tailwind-config:
@@ -4734,7 +4773,7 @@ packages:
       minipass-pipeline: 1.2.4
       mkdirp: 1.0.4
       p-map: 4.0.0
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 3.0.2
       ssri: 8.0.1
       tar: 6.1.12
@@ -11780,6 +11819,15 @@ packages:
   /progress/2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
     engines: {node: '>=0.4.0'}
+    dev: false
+
+  /promise-inflight/1.0.1:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
     dev: false
 
   /promise-inflight/1.0.1_bluebird@3.7.2:

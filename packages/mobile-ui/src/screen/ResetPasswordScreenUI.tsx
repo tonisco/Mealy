@@ -12,6 +12,8 @@ type Props = {
 }
 
 const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
+  // TODO:use hook form
+
   return (
     <SafeAreaView className="flex-1 px-6 pt-6">
       <ScrollView

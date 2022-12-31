@@ -1,40 +1,20 @@
 {
-  "name": "api",
+  "name": "schema",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@trpc/server": "^10.4.0",
-    "cors": "^2.8.5",
-    "db": "workspace:*",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
-    "morgan": "^1.10.0",
-    "multer": "1.4.5-lts.1",
-    "nodemailer": "^6.8.0",
-    "schema": "workspace:*",
-    "superjson": "^1.12.1",
     "zod": "^3.19.1"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/express": "^4.17.14",
-    "@types/jsonwebtoken": "^9.0.0",
-    "@types/morgan": "^1.9.3",
-    "@types/multer": "^1.4.7",
-    "@types/node": "18.11.9",
-    "@types/nodemailer": "^6.4.7",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
-    "concurrently": "^7.6.0",
     "esconfig": "workspace:*",
     "eslint": "^8.30.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -43,8 +23,6 @@
     "eslint-config-turbo": "0.0.7",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
-    "nodemon": "^2.0.20",
-    "ts-node-dev": "^2.0.0",
     "tsconfig": "*",
     "typescript": "^4.9.3"
   }
