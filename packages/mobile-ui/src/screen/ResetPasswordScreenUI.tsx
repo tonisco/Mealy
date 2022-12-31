@@ -1,18 +1,25 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import React from "react"
+import { useForm } from "react-hook-form"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { resetPasswordSchema, ResetPasswordSchema } from "schema"
 
 import { BackButton, GradientButton, Input } from "../ui"
 import { IsIos } from "../utils"
 
 type Props = {
-  requestOTP: () => void
-  email: string
-  changeEmail: React.Dispatch<React.SetStateAction<string>>
+  requestOTP: ({ email }: ResetPasswordSchema) => void
 }
 
-const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
-  // TODO:use hook form
+const ResetPasswordScreenUI = ({ requestOTP }: Props) => {
+  const resolver = zodResolver(resetPasswordSchema)
+
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ resolver, defaultValues: { email: "" } })
 
   return (
     <SafeAreaView className="flex-1 px-6 pt-6">
@@ -33,14 +40,15 @@ const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
         <Input
           placeholder="Email"
           iconName={IsIos ? "ios-mail" : "mail"}
-          check={false}
-          value={email}
-          changeText={changeEmail}
+          check={true}
+          control={control}
+          inputName="email"
+          error={errors.email?.message}
           className="w-full"
         />
 
         <View className="absolute bottom-12 self-center">
-          <GradientButton text="send" onPress={requestOTP} />
+          <GradientButton text="send" onPress={handleSubmit(requestOTP)} />
         </View>
       </ScrollView>
     </SafeAreaView>

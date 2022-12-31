@@ -84,5 +84,7 @@ export const otpFormSchema = z.object({
   pin3: z.string().length(1),
   pin4: z.string().length(1),
 })
+export type OtpFormSchema = z.infer<typeof otpFormSchema>
 
 export const resetPasswordSchema = schemaItems.pick({ email: true })
+export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>

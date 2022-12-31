@@ -407,6 +407,7 @@ importers:
       '@babel/preset-env': ^7.1.6
       '@babel/runtime': ^7.19.0
       '@expo/vector-icons': ^13.0.0
+      '@hookform/resolvers': ^2.9.10
       '@react-native-masked-view/masked-view': 0.2.8
       '@types/react': ~18.0.14
       '@types/react-native': ~0.70.6
@@ -416,22 +417,27 @@ importers:
       nativewind: ^2.0.11
       react: 18.1.0
       react-dom: 18.1.0
+      react-hook-form: ^7.40.0
       react-native: 0.70.5
       react-native-reanimated: ~2.12.0
+      schema: workspace:*
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
       tsconfig: workspace:*
       typescript: ^4.6.3
     dependencies:
       '@expo/vector-icons': 13.0.0
+      '@hookform/resolvers': 2.9.10_react-hook-form@7.40.0
       '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
       expo: 47.0.8_@babel+core@7.20.2
       expo-linear-gradient: 12.0.1_expo@47.0.8
       nativewind: 2.0.11_f3xea42f6zrwqyr5c6mbkdauxa
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
+      react-hook-form: 7.40.0_react@18.1.0
       react-native: 0.70.5_54md7p3jw3ru3lahxqgw5vptci
       react-native-reanimated: 2.12.0_6puqyg2n45u266kros6m47lk7e
+      schema: link:../schema
     devDependencies:
       '@babel/core': 7.20.2
       '@babel/preset-env': 7.20.2_@babel+core@7.20.2
@@ -4773,7 +4779,7 @@ packages:
       minipass-pipeline: 1.2.4
       mkdirp: 1.0.4
       p-map: 4.0.0
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 3.0.2
       ssri: 8.0.1
       tar: 6.1.12
@@ -11819,15 +11825,6 @@ packages:
   /progress/2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
     engines: {node: '>=0.4.0'}
-    dev: false
-
-  /promise-inflight/1.0.1:
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
     dev: false
 
   /promise-inflight/1.0.1_bluebird@3.7.2:
