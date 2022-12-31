@@ -1,6 +1,5 @@
 import { TRPCError } from "@trpc/server"
 import { comparePasswords, encryptPassword } from "db/src/encrypt"
-
 import {
   changePasswordSchema,
   confirmOTPSchema,
@@ -8,7 +7,8 @@ import {
   loginSchema,
   sendOTPSchema,
   signUpSchema,
-} from "../../schema/auth"
+} from "schema"
+
 import { procedure, router } from "../../trpc"
 import { signJwt } from "../../utils/jwt"
 import { recoverPasswordMail } from "../../utils/mail"
