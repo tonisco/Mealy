@@ -19,7 +19,7 @@ import { moveToTop } from "../animation"
 import { UseSignUpState } from "../context/SignUpStore"
 import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
-import { IsIos, TextSize } from "../utils"
+import { IsIos } from "../utils"
 
 type FormData = {
   email: string
@@ -89,7 +89,7 @@ const SignUpScreenUI = ({
           <Animated.View
             entering={animate ? FadeIn.duration(800).delay(800) : undefined}
           >
-            <GradientText style={styles.logoText} text={logoText} />
+            <GradientText className="text-4xl uppercase" text={logoText} />
           </Animated.View>
         </View>
         <View className="mt4 items-center">
@@ -162,7 +162,7 @@ const SignUpScreenUI = ({
               onPress={() => navigate("Log In", { animation: false })}
             >
               <GradientText
-                style={styles.accountText}
+                className="text-xs capitalize"
                 text="Already have an account? Login"
               />
             </Pressable>
@@ -178,15 +178,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-
-  logoText: {
-    fontSize: TextSize.x_large,
-    textTransform: "uppercase",
-  },
-  accountText: {
-    fontSize: TextSize.small,
-    textTransform: "capitalize",
   },
 })
 

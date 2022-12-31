@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import React from "react"
 import { useForm } from "react-hook-form"
-import { View, Text, StyleSheet, ScrollView } from "react-native"
+import { View, Text, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { z } from "zod"
 
@@ -59,7 +59,7 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
           inputName="street"
           placeholder="Street Address"
           iconName={IsIos ? "ios-location" : "location"}
-          style={styles.widthFull}
+          className="w-full"
           error={errors.street?.message}
         />
 
@@ -69,7 +69,7 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
           inputName="city"
           placeholder="City"
           iconName={IsIos ? "ios-location" : "location"}
-          style={styles.widthFull}
+          className="w-full"
           error={errors.city?.message}
         />
 
@@ -79,7 +79,7 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
           inputName="state"
           placeholder="State"
           iconName={IsIos ? "ios-location" : "location"}
-          style={styles.widthFull}
+          className="w-full"
           error={errors.state?.message}
         />
 
@@ -89,7 +89,7 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
           inputName="country"
           placeholder="Country"
           iconName={IsIos ? "ios-location" : "location"}
-          style={styles.widthFull}
+          className="w-full"
           error={errors.country?.message}
         />
 
@@ -100,9 +100,5 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  widthFull: { width: "100%" },
-})
 
 export default LocationFormScreenUI

@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import React from "react"
 import { useForm } from "react-hook-form"
-import { View, Text, StyleSheet, ScrollView } from "react-native"
+import { View, Text, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { z } from "zod"
 
@@ -53,7 +53,8 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
   return (
     <SafeAreaView className="flex-1 px-6 pt-6">
       <ScrollView
-        contentContainerStyle={styles.scroll}
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{ flex: 1 }}
         keyboardShouldPersistTaps="handled"
       >
         <BackButton />
@@ -71,7 +72,7 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
           inputName="firstName"
           placeholder="First Name"
           iconName={IsIos ? "ios-person" : "person"}
-          style={styles.widthFull}
+          className="w-full"
           error={errors.firstName?.message}
         />
 
@@ -81,7 +82,7 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
           inputName="lastName"
           placeholder="Last Name"
           iconName={IsIos ? "ios-person" : "person"}
-          style={styles.widthFull}
+          className="w-full"
           error={errors.lastName?.message}
         />
 
@@ -91,7 +92,7 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
           inputName="phone"
           placeholder="Mobile Number"
           iconName={IsIos ? "ios-call" : "call"}
-          style={styles.widthFull}
+          className="w-full"
           error={errors.phone?.message}
         />
 
@@ -102,12 +103,5 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  scroll: {
-    flex: 1,
-  },
-  widthFull: { width: "100%" },
-})
 
 export default DetailsFormScreenUI

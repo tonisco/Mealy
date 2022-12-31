@@ -1,7 +1,5 @@
 import React, { forwardRef } from "react"
-import { StyleSheet, TextInput } from "react-native"
-
-import TextSize from "../utils/TextSize"
+import { TextInput } from "react-native"
 
 type Props = {
   value: string
@@ -17,25 +15,11 @@ const SquareInput = forwardRef<TextInput, Props>(
         value={value}
         onChangeText={onChangeText}
         returnKeyType="next"
-        style={styles.input}
+        className="h-16 w-16 rounded-lg bg-white px-3 text-center font-bento-med text-xl"
         ref={ref}
       />
     )
   },
 )
-
-const styles = StyleSheet.create({
-  input: {
-    backgroundColor: "white",
-    marginRight: 20,
-    height: 60,
-    width: 60,
-    fontFamily: "font-medium",
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    fontSize: TextSize.medium,
-    textAlign: "center",
-  },
-})
 
 export default SquareInput

@@ -62,7 +62,7 @@ const LoginScreenUI = ({
           <Animated.View
             entering={animate ? FadeIn.duration(800).delay(800) : undefined}
           >
-            <GradientText style={styles.logoText} text={logoText} />
+            <GradientText className="text-4xl uppercase" text={logoText} />
           </Animated.View>
         </View>
 
@@ -119,7 +119,10 @@ const LoginScreenUI = ({
               className="mt-8 items-center"
               onPress={() => navigate("Reset Password")}
             >
-              <GradientText style={styles.accountText} text="Forgot Password" />
+              <GradientText
+                className="text-sm capitalize"
+                text="Forgot Password"
+              />
             </Pressable>
 
             <Pressable
@@ -127,7 +130,7 @@ const LoginScreenUI = ({
               onPress={() => navigate("Sign Up", { animation: false })}
             >
               <GradientText
-                style={styles.accountText}
+                className="text-sm capitalize"
                 text="Don't have an account? Sign Up"
               />
             </Pressable>
@@ -148,10 +151,6 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: TextSize.x_large,
     textTransform: "uppercase",
-  },
-  accountText: {
-    fontSize: TextSize.small,
-    textTransform: "capitalize",
   },
 })
 

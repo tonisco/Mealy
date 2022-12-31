@@ -1,11 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import React from "react"
-import { View, Image, StyleSheet, Text } from "react-native"
+import { View, Image, Text } from "react-native"
 
 import { AuthScreenType } from "../screenTypes/default"
 import GradientButton from "../ui/GradientButton"
 import GradientText from "../ui/GradientText"
-import TextSize from "../utils/TextSize"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Success Screen">
 
@@ -19,9 +18,9 @@ const SuccessScreen = ({ navigation, route }: Props) => {
       />
 
       <View className="mt-8">
-        <GradientText text="Congrats" style={styles.heading} />
+        <GradientText text="Congrats" className="my-3 text-3xl" />
 
-        <Text className="font-bento-bold capitalize">
+        <Text className="font-bento-bold capitalize ">
           {route.params.message}
         </Text>
       </View>
@@ -46,10 +45,3 @@ const SuccessScreen = ({ navigation, route }: Props) => {
 }
 
 export default SuccessScreen
-
-const styles = StyleSheet.create({
-  heading: {
-    marginVertical: 10,
-    fontSize: TextSize.large,
-  },
-})

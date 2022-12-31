@@ -1,25 +1,17 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { Ionicons } from "@expo/vector-icons"
 import React, { useState } from "react"
 import { Controller } from "react-hook-form"
-import {
-  Platform,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextInput,
-  TextStyle,
-  View,
-} from "react-native"
+import { Platform, StyleSheet, Text, TextInput, View } from "react-native"
 
 import Colors from "../utils/Colors"
-import TextSize from "../utils/TextSize"
 import GradientIcon from "./GradientIcon"
 
 type DefaultProps = {
   placeholder: string
   iconName: keyof typeof Ionicons.glyphMap
   encrypt?: boolean
-  style?: StyleProp<TextStyle>
+  className?: string
 }
 
 type SecureProps = {
@@ -45,7 +37,7 @@ const Input = (props: Props) => {
   const [hidden, setHidden] = useState(true)
 
   return (
-    <View style={styles.inputContainer}>
+    <View className="relative">
       {props?.check ? (
         <>
           <Controller
@@ -54,7 +46,7 @@ const Input = (props: Props) => {
             rules={{ required: true }}
             render={({ field: { value, onBlur, onChange } }) => (
               <TextInput
-                style={[styles.input, props.style]}
+                className={`mt-1 h-12 w-80 rounded-lg bg-white px-12 font-bento-med ${props.className}`}
                 placeholder={props.placeholder}
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -63,21 +55,20 @@ const Input = (props: Props) => {
               />
             )}
           />
-
-          <Text style={styles.errorMessage}>
+          <Text className="my-1 ml-1 font-bento-med text-xs capitalize text-red-500">
             {props.check ? props.error : ""}
           </Text>
         </>
       ) : (
         <TextInput
-          style={[styles.input, styles.marginV, props.style]}
+          className={`my-4 h-12 w-80 rounded-lg bg-white px-12 font-bento-med ${props.className}`}
           placeholder={props.placeholder}
           secureTextEntry={props.encrypt && hidden}
           value={props.value}
           onChangeText={props.changeText}
         />
       )}
-      <View style={[styles.icon, styles.iconLeft]}>
+      <View className="absolute top-5 left-5">
         <GradientIcon name={props.iconName} />
       </View>
       {props.encrypt &&
@@ -101,30 +92,6 @@ const Input = (props: Props) => {
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    position: "relative",
-  },
-  input: {
-    height: 50,
-    width: 300,
-    borderRadius: 10,
-    marginTop: 5,
-    paddingHorizontal: 50,
-    fontFamily: "font-medium",
-    backgroundColor: "#fff",
-  },
-  marginV: {
-    marginVertical: 15,
-  },
-  errorMessage: {
-    fontFamily: "font-medium",
-    fontSize: TextSize.tiny,
-    textTransform: "capitalize",
-    color: "red",
-    marginLeft: 5,
-    marginTop: 2,
-    marginBottom: 5,
-  },
   icon: {
     position: "absolute",
     top: 18,

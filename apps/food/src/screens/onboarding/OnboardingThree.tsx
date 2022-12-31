@@ -1,9 +1,5 @@
-// import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { Onboarding, UseUserState } from "mobile-ui"
-// import { OnboardingScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
-
-// type Props = NativeStackScreenProps<OnboardingScreenType, "Onboarding 3">
 
 const OnboardingThree = () => {
   const { saveHasOpenedApp } = UseUserState()

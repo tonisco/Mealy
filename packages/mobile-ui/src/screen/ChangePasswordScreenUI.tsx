@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import React from "react"
 import { useForm } from "react-hook-form"
-import { View, Text, StyleSheet, ScrollView } from "react-native"
+import { View, Text, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { z } from "zod"
 
@@ -42,7 +42,8 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
   return (
     <SafeAreaView className="flex-1 px-6 pt-6">
       <ScrollView
-        contentContainerStyle={styles.scroll}
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{ flex: 1 }}
         keyboardShouldPersistTaps="handled"
       >
         <BackButton />
@@ -64,7 +65,7 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
           error={errors.password?.message}
           encrypt
           iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
-          style={styles.widthFull}
+          className="w-full"
         />
 
         <Input
@@ -75,7 +76,7 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
           encrypt
           error={errors.confirmPassword?.message}
           iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
-          style={styles.widthFull}
+          className="w-full"
         />
 
         <View className="absolute bottom-12 self-center">
@@ -85,12 +86,5 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  scroll: {
-    flex: 1,
-  },
-  widthFull: { width: "100%" },
-})
 
 export default ChangePasswordScreenUI

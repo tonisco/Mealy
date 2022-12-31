@@ -1,7 +1,6 @@
 import React from "react"
 import { Pressable, StyleSheet, Text } from "react-native"
 
-import TextSize from "../utils/TextSize"
 import GradientBackground from "./GradientBackground"
 
 type Props = {
@@ -13,7 +12,7 @@ const GradientButton = ({ text, onPress }: Props) => {
   return (
     <GradientBackground style={styles.button}>
       <Pressable onPress={onPress}>
-        <Text style={styles.buttonText}>{text}</Text>
+        <Text className="font-bento-bold capitalize text-white">{text}</Text>
       </Pressable>
     </GradientBackground>
   )
@@ -31,12 +30,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     minWidth: 120,
     alignItems: "center",
-  },
-  buttonText: {
-    color: "white",
-    textTransform: "capitalize",
-    fontSize: TextSize.regular,
-    fontFamily: "font-bold",
   },
 })
 

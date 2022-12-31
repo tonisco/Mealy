@@ -34,7 +34,7 @@ const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
           check={false}
           value={email}
           changeText={changeEmail}
-          style={styles.widthFull}
+          className="w-full"
         />
 
         <View className="absolute bottom-12 self-center">
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
   },
-  widthFull: { width: "100%" },
 })
 
 export default ResetPasswordScreenUI

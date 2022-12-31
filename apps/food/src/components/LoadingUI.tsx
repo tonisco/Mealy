@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { View, StyleSheet } from "react-native"
+import { View } from "react-native"
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -21,42 +21,18 @@ const LoadingUI = () => {
   console.log(scale.value)
 
   return (
-    <View style={styles.loadingContainer}>
-      <View style={styles.background} />
-      <View style={styles.loading}>
+    <View className="absolute z-10 h-full w-full">
+      <View className="flex-1 bg-black opacity-80" />
+      <View className="absolute h-full w-full items-center justify-center">
         <Animated.Image
           source={require("../../assets/images/logosmall.png")}
           resizeMode="contain"
-          style={[styles.logo, loadingStyle]}
+          className="h-[50px] w-[119px]"
+          style={loadingStyle}
         />
       </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  loadingContainer: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    zIndex: 1,
-  },
-  background: {
-    backgroundColor: "black",
-    opacity: 0.8,
-    flex: 1,
-  },
-  loading: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  logo: {
-    width: 119,
-    height: 50,
-  },
-})
 
 export default LoadingUI
