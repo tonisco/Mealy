@@ -1,8 +1,9 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { OTPFormScreenUI } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
-import React, { useState } from "react"
+import React from "react"
 import { Alert } from "react-native"
+import { OtpFormSchema } from "schema"
 import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
@@ -23,28 +24,13 @@ const OTPFormScreen = ({ navigation, route }: Props) => {
     },
   })
 
-  const [pin1, changePin1] = useState("")
-  const [pin2, changePin2] = useState("")
-  const [pin3, changePin3] = useState("")
-  const [pin4, changePin4] = useState("")
-
-  const otpProps = {
-    pin1,
-    pin2,
-    pin3,
-    pin4,
-    changePin1,
-    changePin2,
-    changePin3,
-    changePin4,
-  }
-
-  const sendPin = () => mutate({ email, otp: `${pin1}${pin2}${pin3}${pin4}` })
+  const sendPin = ({ pin1, pin2, pin3, pin4 }: OtpFormSchema) =>
+    mutate({ email, otp: `${pin1}${pin2}${pin3}${pin4}` })
 
   return (
     <>
       {isLoading && <LoadingUI />}
-      <OTPFormScreenUI sendPin={sendPin} {...otpProps} />
+      <OTPFormScreenUI sendPin={sendPin} />
     </>
   )
 }

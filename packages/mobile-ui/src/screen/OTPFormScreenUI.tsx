@@ -1,55 +1,28 @@
-import React, { Dispatch, useRef } from "react"
-import { View, Text, TextInput, Keyboard, ScrollView } from "react-native"
+import { zodResolver } from "@hookform/resolvers/zod"
+import React from "react"
+import { useForm } from "react-hook-form"
+import { View, Text, Keyboard, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { otpFormSchema, OtpFormSchema } from "schema"
 
 import { BackButton, GradientButton, SquareInput } from "../ui"
 
 type Props = {
-  pin1: string
-  changePin1: Dispatch<React.SetStateAction<string>>
-  pin2: string
-  changePin2: Dispatch<React.SetStateAction<string>>
-  pin3: string
-  changePin3: Dispatch<React.SetStateAction<string>>
-  pin4: string
-  changePin4: Dispatch<React.SetStateAction<string>>
-  sendPin: () => void
+  sendPin: (data: OtpFormSchema) => void
 }
 
-const OTPFormScreenUI = ({
-  sendPin,
-  pin1,
-  changePin1,
-  changePin2,
-  changePin3,
-  changePin4,
-  pin2,
-  pin3,
-  pin4,
-}: Props) => {
-  const pin1Ref = useRef<TextInput>(null)
-  const pin2Ref = useRef<TextInput>(null)
-  const pin3Ref = useRef<TextInput>(null)
-  const pin4Ref = useRef<TextInput>(null)
+const OTPFormScreenUI = ({ sendPin }: Props) => {
+  const resolver = zodResolver(otpFormSchema)
 
-  // TODO: use hook form
+  const { control, handleSubmit, setFocus } = useForm({
+    resolver,
+    defaultValues: { pin1: "", pin2: "", pin3: "", pin4: "" },
+  })
 
-  const pinChange1 = (v: string) => {
-    changePin1(v)
-    if (v) pin2Ref.current?.focus()
-  }
-  const pinChange2 = (v: string) => {
-    changePin2(v)
-    if (v) pin3Ref.current?.focus()
-  }
-  const pinChange3 = (v: string) => {
-    changePin3(v)
-    if (v) pin4Ref.current?.focus()
-  }
-  const pinChange4 = (v: string) => {
-    changePin4(v)
-    if (v) Keyboard.dismiss()
-  }
+  const pinChange1 = () => setFocus("pin2")
+  const pinChange2 = () => setFocus("pin3")
+  const pinChange3 = () => setFocus("pin4")
+  const pinChange4 = () => Keyboard.dismiss()
 
   return (
     <SafeAreaView className="flex-1 px-6 pt-6">
@@ -71,14 +44,13 @@ const OTPFormScreenUI = ({
         </View>
 
         <View className="flex-row">
-          <SquareInput value={pin1} onChangeText={pinChange1} ref={pin1Ref} />
-          <SquareInput value={pin2} onChangeText={pinChange2} ref={pin2Ref} />
-          <SquareInput value={pin3} onChangeText={pinChange3} ref={pin3Ref} />
-          <SquareInput value={pin4} onChangeText={pinChange4} ref={pin4Ref} />
+          <SquareInput changeFocus={pinChange1} control={control} name="pin1" />
+          <SquareInput changeFocus={pinChange2} control={control} name="pin2" />
+          <SquareInput changeFocus={pinChange3} control={control} name="pin3" />
+          <SquareInput changeFocus={pinChange4} control={control} name="pin4" />
         </View>
-
         <View className="absolute bottom-12 self-center">
-          <GradientButton text="next" onPress={sendPin} />
+          <GradientButton text="next" onPress={handleSubmit(sendPin)} />
         </View>
       </ScrollView>
     </SafeAreaView>
