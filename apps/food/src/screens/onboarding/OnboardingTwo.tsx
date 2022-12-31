@@ -2,7 +2,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { Onboarding } from "mobile-ui"
 import { OnboardingScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
-import { StyleSheet } from "react-native"
 
 type Props = NativeStackScreenProps<OnboardingScreenType, "Onboarding 2">
 
@@ -18,15 +17,9 @@ const OnboardingTwo = ({ navigation }: Props) => {
       page={2}
       onPress={nextPage}
       ImageLink={require("../../../assets/images/Onboarding2.png")}
-      ImageStyleProp={styles.imageSize}
+      className="translate-y-5"
     />
   )
 }
-
-const styles = StyleSheet.create({
-  imageSize: {
-    transform: [{ translateY: 20 }],
-  },
-})
 
 export default OnboardingTwo

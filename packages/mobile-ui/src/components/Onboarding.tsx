@@ -6,7 +6,6 @@ import {
   Image,
   StyleSheet,
   ImageSourcePropType,
-  ImageStyle,
 } from "react-native"
 
 import GradientBackground from "../ui/GradientBackground"
@@ -21,7 +20,7 @@ type Props = {
   onPress: () => void
   page: number
   ImageLink: ImageSourcePropType
-  ImageStyleProp?: ImageStyle
+  className?: string
 }
 
 const onboarding = ({
@@ -30,31 +29,37 @@ const onboarding = ({
   onPress,
   page,
   ImageLink,
-  ImageStyleProp,
+  className,
 }: Props) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.main}>
+    <SafeAreaView className="flex-1 items-center justify-center">
+      <View className="mb-10 items-center px-4">
         <Image
-          style={[styles.imageSize, ImageStyleProp]}
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          className={`h-52 w-52 ${className}`}
           source={ImageLink}
           resizeMode="contain"
         />
         <GradientText style={styles.headingText} text={heading} />
         <View>
-          <Text style={styles.description}>{description}</Text>
+          <Text className="mt-1 text-center font-bento-reg text-xs uppercase leading-4 text-dark">
+            {description}
+          </Text>
         </View>
       </View>
-      <View style={styles.points}>
+      <View className="flex-row">
         {Array.from({ length: 3 }, (_, i) =>
           i + 1 === page ? (
             <GradientBackground key={i + 1} style={styles.point} />
           ) : (
-            <View key={i + 1} style={[styles.point, styles.bg_gray]} />
+            <View
+              key={i + 1}
+              className="mx-1 h-3 w-3 rounded-full bg-lite-gray"
+            />
           ),
         )}
       </View>
-      <View style={styles.buttonContainer}>
+      <View className="absolute bottom-12">
         <GradientButton text="next" onPress={onPress} />
       </View>
     </SafeAreaView>
@@ -62,35 +67,9 @@ const onboarding = ({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  main: {
-    alignItems: "center",
-    paddingHorizontal: 15,
-    marginBottom: 40,
-  },
-  imageSize: {
-    height: 200,
-    width: 200,
-  },
   headingText: {
     fontSize: TextSize.x_large,
     textTransform: "uppercase",
-  },
-  description: {
-    textTransform: "uppercase",
-    fontSize: TextSize.tiny,
-    color: Colors.dark,
-    textAlign: "center",
-    fontFamily: "font-regular",
-    lineHeight: 13,
-    marginTop: 3,
-  },
-  points: {
-    flexDirection: "row",
   },
   point: {
     height: 10,
@@ -100,10 +79,6 @@ const styles = StyleSheet.create({
   },
   bg_gray: {
     backgroundColor: Colors.liteGray,
-  },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 50,
   },
 })
 
