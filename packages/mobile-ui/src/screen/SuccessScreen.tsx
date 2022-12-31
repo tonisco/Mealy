@@ -4,7 +4,6 @@ import { View, Image, Text } from "react-native"
 
 import { AuthScreenType } from "../screenTypes/default"
 import GradientButton from "../ui/GradientButton"
-import GradientText from "../ui/GradientText"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Success Screen">
 
@@ -18,10 +17,12 @@ const SuccessScreen = ({ navigation, route }: Props) => {
       />
 
       <View className="mt-8">
-        <GradientText text="Congrats" className="my-3 text-3xl" />
+        <Text className="my-1 text-center font-bento-bold text-3xl text-dark-green">
+          Congrats
+        </Text>
 
         <Text className="font-bento-bold capitalize ">
-          {route.params.message}
+          {route.params?.message}
         </Text>
       </View>
       <View className="absolute bottom-10 self-center">

@@ -120,7 +120,7 @@ const LoginScreenUI = ({
               onPress={() => navigate("Reset Password")}
             >
               <GradientText
-                className="text-sm capitalize"
+                className="text-xs capitalize"
                 text="Forgot Password"
               />
             </Pressable>
@@ -130,7 +130,7 @@ const LoginScreenUI = ({
               onPress={() => navigate("Sign Up", { animation: false })}
             >
               <GradientText
-                className="text-sm capitalize"
+                className="text-xs capitalize"
                 text="Don't have an account? Sign Up"
               />
             </Pressable>

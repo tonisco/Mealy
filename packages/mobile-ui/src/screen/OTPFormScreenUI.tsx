@@ -68,7 +68,7 @@ const OTPFormScreenUI = ({
           </Text>
         </View>
 
-        <View className="flex-row gap-x-3">
+        <View className="flex-row">
           <SquareInput value={pin1} onChangeText={pinChange1} ref={pin1Ref} />
           <SquareInput value={pin2} onChangeText={pinChange2} ref={pin2Ref} />
           <SquareInput value={pin3} onChangeText={pinChange3} ref={pin3Ref} />

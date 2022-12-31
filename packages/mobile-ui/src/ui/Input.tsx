@@ -61,14 +61,14 @@ const Input = (props: Props) => {
         </>
       ) : (
         <TextInput
-          className={`my-4 h-12 w-80 rounded-lg bg-white px-12 font-bento-med ${props.className}`}
+          className={`my-4 mt-1 h-12 w-80 rounded-lg bg-white px-12 font-bento-med ${props.className}`}
           placeholder={props.placeholder}
           secureTextEntry={props.encrypt && hidden}
           value={props.value}
           onChangeText={props.changeText}
         />
       )}
-      <View className="absolute top-5 left-5">
+      <View className="absolute top-[16px] left-5">
         <GradientIcon name={props.iconName} />
       </View>
       {props.encrypt &&

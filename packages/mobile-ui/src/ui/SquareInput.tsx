@@ -15,7 +15,7 @@ const SquareInput = forwardRef<TextInput, Props>(
         value={value}
         onChangeText={onChangeText}
         returnKeyType="next"
-        className="h-16 w-16 rounded-lg bg-white px-3 text-center font-bento-med text-xl"
+        className="mr-4 h-16 w-16 rounded-lg bg-white px-3 text-center font-bento-med text-xl"
         ref={ref}
       />
     )

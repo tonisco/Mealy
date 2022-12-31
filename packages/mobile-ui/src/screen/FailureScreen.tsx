@@ -4,8 +4,6 @@ import { View, Image, Text } from "react-native"
 
 import { AuthScreenType } from "../screenTypes/default"
 import GradientButton from "../ui/GradientButton"
-import GradientText from "../ui/GradientText"
-import Colors from "../utils/Colors"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Failure Screen">
 
@@ -18,13 +16,11 @@ const FailureScreen = ({ navigation, route }: Props) => {
         resizeMode="contain"
       />
       <View className="mt-8">
-        <GradientText
-          colors={[Colors.red, Colors.darkRed]}
-          text="Request Failed"
-          className="my-3 text-3xl"
-        />
+        <Text className="my-1 text-center font-bento-bold text-3xl text-red-700">
+          Request Failed
+        </Text>
         <Text className="font-bento-bold capitalize">
-          {route.params.message}
+          {route.params?.message}
         </Text>
       </View>
       <View className="absolute bottom-10 self-center">
