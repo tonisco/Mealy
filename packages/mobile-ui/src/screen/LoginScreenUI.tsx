@@ -1,5 +1,7 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
-import React, { Dispatch } from "react"
+import React from "react"
+import { useForm } from "react-hook-form"
 import {
   View,
   Text,
@@ -11,6 +13,7 @@ import {
 } from "react-native"
 import Animated, { BounceInDown, FadeIn, ZoomIn } from "react-native-reanimated"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { LoginFormSchema, loginFormSchema } from "schema"
 
 import { moveToTop } from "../animation"
 import { AuthScreenType } from "../screenTypes/default"
@@ -18,22 +21,14 @@ import { GradientButton, GradientText, Input } from "../ui"
 import { IsIos, TextSize } from "../utils"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Log In"> & {
-  email: string
-  changeEmail: Dispatch<React.SetStateAction<string>>
-  password: string
-  changePassword: Dispatch<React.SetStateAction<string>>
   logoText: string
-  loginAccount: () => void
+  loginAccount: (data: LoginFormSchema) => void
   logoImageSource: ImageSourcePropType
   googleImageSource: ImageSourcePropType
 }
 
 const LoginScreenUI = ({
   navigation,
-  email,
-  changeEmail,
-  password,
-  changePassword,
   logoText,
   loginAccount,
   googleImageSource,
@@ -46,7 +41,12 @@ const LoginScreenUI = ({
 
   const animate = params?.animation !== false
 
-  // TODO: add react hook form
+  const resolver = zodResolver(loginFormSchema)
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ defaultValues: { email: "", password: "" }, resolver })
 
   return (
     <SafeAreaView style={styles.container}>
@@ -82,17 +82,20 @@ const LoginScreenUI = ({
             <Input
               placeholder="Email"
               iconName={IsIos ? "ios-mail" : "mail"}
-              check={false}
-              value={email}
-              changeText={changeEmail}
+              check={true}
+              control={control}
+              inputName="email"
+              error={errors.email?.message}
             />
+
             <Input
               placeholder="Password"
               iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
               encrypt
-              check={false}
-              value={password}
-              changeText={changePassword}
+              check={true}
+              control={control}
+              inputName="password"
+              error={errors.password?.message}
             />
           </Animated.View>
           <Animated.View
@@ -101,7 +104,7 @@ const LoginScreenUI = ({
               animate ? BounceInDown.duration(800).delay(1900) : undefined
             }
           >
-            <GradientButton text="Login" onPress={loginAccount} />
+            <GradientButton text="Login" onPress={handleSubmit(loginAccount)} />
           </Animated.View>
 
           <Animated.View

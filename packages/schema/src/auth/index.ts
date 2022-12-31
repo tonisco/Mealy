@@ -28,9 +28,8 @@ export const changePasswordSchema = schemaItems.pick({
 
 export const confirmOTPSchema = schemaItems.pick({ email: true, otp: true })
 
-export const loginSchema = schemaItems.pick({
-  email: true,
-  password: true,
+export const loginSchema = schemaItems.pick({ email: true }).extend({
+  password: z.string(),
 })
 
 export const sendOTPSchema = schemaItems.pick({ email: true })
@@ -92,3 +91,7 @@ export type OtpFormSchema = z.infer<typeof otpFormSchema>
 
 export const resetPasswordFormSchema = schemaItems.pick({ email: true })
 export type ResetPasswordFormSchema = z.infer<typeof resetPasswordFormSchema>
+
+export const loginFormSchema = loginSchema
+
+export type LoginFormSchema = z.infer<typeof loginFormSchema>
