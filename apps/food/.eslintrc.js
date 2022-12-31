@@ -5,5 +5,10 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: "./tsconfig.json",
   },
-  ignorePatterns: [".eslintrc.js", "babel.config.js", "metro.config.js"],
+  ignorePatterns: [
+    ".eslintrc.js",
+    "babel.config.js",
+    "metro.config.js",
+    "tailwind.config.js",
+  ],
 }

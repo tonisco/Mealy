@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}", "./src/App.tsx"],
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./src/App.tsx",
+    "../../packages/mobile-ui/src/**/*.{ts,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -10,6 +14,11 @@ module.exports = {
         "lite-gray": "#D9D9D9",
         "bg-color": "#F9F9F9",
         dark: "#3B3B3B",
+      },
+      fontFamily: {
+        "bento-bold": ["font-bold"],
+        "bento-med": ["font-medium"],
+        "bento-reg": ["font-regular"],
       },
     },
   },
