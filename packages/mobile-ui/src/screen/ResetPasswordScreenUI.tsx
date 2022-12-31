@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 import { BackButton, GradientButton, Input } from "../ui"
-import { Colors, IsIos, TextSize } from "../utils"
+import { IsIos } from "../utils"
 
 type Props = {
   requestOTP: () => void
@@ -13,15 +13,17 @@ type Props = {
 
 const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView className="flex-1 px-6 pt-6">
       <ScrollView
         contentContainerStyle={styles.scroll}
         keyboardShouldPersistTaps="handled"
       >
         <BackButton />
-        <View style={styles.textContainer}>
-          <Text style={styles.heading}>Reset Password</Text>
-          <Text style={styles.description}>
+        <View className="mb-4 items-start">
+          <Text className="mb-1 text-left font-bento-bold text-3xl uppercase text-dark">
+            Reset Password
+          </Text>
+          <Text className="mt-1 text-left font-bento-reg text-xs leading-4 text-dark">
             Please enter your email to receive a 4 digit code to reset your
             password
           </Text>
@@ -35,7 +37,7 @@ const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
           style={styles.widthFull}
         />
 
-        <View style={styles.buttonContainer}>
+        <View className="absolute bottom-12 self-center">
           <GradientButton text="send" onPress={requestOTP} />
         </View>
       </ScrollView>
@@ -44,38 +46,8 @@ const ResetPasswordScreenUI = ({ requestOTP, changeEmail, email }: Props) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 25,
-    paddingHorizontal: 25,
-  },
   scroll: {
     flex: 1,
-  },
-  textContainer: {
-    alignItems: "flex-start",
-    marginBottom: 15,
-  },
-  heading: {
-    fontFamily: "font-bold",
-    fontSize: TextSize.large,
-    textTransform: "uppercase",
-    color: Colors.dark,
-    textAlign: "left",
-    marginBottom: 5,
-  },
-  description: {
-    fontSize: TextSize.tiny,
-    color: Colors.dark,
-    textAlign: "left",
-    fontFamily: "font-regular",
-    lineHeight: 13,
-    marginTop: 3,
-  },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 50,
-    alignSelf: "center",
   },
   widthFull: { width: "100%" },
 })

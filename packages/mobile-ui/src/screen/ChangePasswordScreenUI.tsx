@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { z } from "zod"
 
 import { BackButton, GradientButton, Input } from "../ui"
-import { Colors, IsIos, TextSize } from "../utils"
+import { IsIos } from "../utils"
 
 type Props = {
   changePassword: (data: FormData) => void
@@ -40,16 +40,20 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
   })
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView className="flex-1 px-6 pt-6">
       <ScrollView
         contentContainerStyle={styles.scroll}
         keyboardShouldPersistTaps="handled"
       >
         <BackButton />
 
-        <View style={styles.textContainer}>
-          <Text style={styles.heading}>New Password</Text>
-          <Text style={styles.description}>Please enter your new password</Text>
+        <View className="mb-4 items-start">
+          <Text className="mb-1 text-left font-bento-bold text-3xl uppercase text-dark">
+            New Password
+          </Text>
+          <Text className="mt-1 text-left font-bento-reg text-xs leading-3 text-dark">
+            Please enter your new password
+          </Text>
         </View>
 
         <Input
@@ -74,7 +78,7 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
           style={styles.widthFull}
         />
 
-        <View style={styles.buttonContainer}>
+        <View className="absolute bottom-12 self-center">
           <GradientButton text="save" onPress={handleSubmit(changePassword)} />
         </View>
       </ScrollView>
@@ -83,38 +87,8 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 25,
-    paddingHorizontal: 25,
-  },
   scroll: {
     flex: 1,
-  },
-  textContainer: {
-    alignItems: "flex-start",
-    marginBottom: 15,
-  },
-  heading: {
-    fontFamily: "font-bold",
-    fontSize: TextSize.large,
-    textTransform: "uppercase",
-    color: Colors.dark,
-    textAlign: "left",
-    marginBottom: 5,
-  },
-  description: {
-    fontSize: TextSize.tiny,
-    color: Colors.dark,
-    textAlign: "left",
-    fontFamily: "font-regular",
-    lineHeight: 13,
-    marginTop: 3,
-  },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 50,
-    alignSelf: "center",
   },
   widthFull: { width: "100%" },
 })
