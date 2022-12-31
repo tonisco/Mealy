@@ -3,32 +3,17 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { View, Text, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { z } from "zod"
+import { ChangePasswordFormSchema, changePasswordFormSchema } from "schema"
 
 import { BackButton, GradientButton, Input } from "../ui"
 import { IsIos } from "../utils"
 
 type Props = {
-  changePassword: (data: FormData) => void
-}
-
-type FormData = {
-  password: string
-  confirmPassword: string
+  changePassword: (data: ChangePasswordFormSchema) => void
 }
 
 const ChangePasswordScreenUI = ({ changePassword }: Props) => {
-  const schema = z
-    .object({
-      password: z
-        .string()
-        .min(6, "Password must contain at least 6 Character(s)"),
-      confirmPassword: z.string(),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-      path: ["confirmPassword"],
-      message: "Passwords do not match",
-    })
+  const resolver = zodResolver(changePasswordFormSchema)
 
   const {
     control,
@@ -36,7 +21,7 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
     formState: { errors },
   } = useForm({
     defaultValues: { password: "", confirmPassword: "" },
-    resolver: zodResolver(schema),
+    resolver,
   })
 
   return (

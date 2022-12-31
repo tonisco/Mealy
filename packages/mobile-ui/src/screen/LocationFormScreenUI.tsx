@@ -3,30 +3,18 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { View, Text, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { z } from "zod"
+import { LocationFormSchema, locationFormSchema } from "schema"
 
 import { UseSignUpState } from "../context"
 import { BackButton, GradientButton, Input } from "../ui"
 import { IsIos } from "../utils"
 
-type Props = { createProfile: (data: FormData) => void }
-
-type FormData = {
-  street: string
-  city: string
-  country: string
-  state: string
-}
+type Props = { createProfile: (data: LocationFormSchema) => void }
 
 const LocationFormScreenUI = ({ createProfile }: Props) => {
   const { signUpState } = UseSignUpState()
 
-  const schema = z.object({
-    street: z.string(),
-    city: z.string(),
-    state: z.string(),
-    country: z.string(),
-  })
+  const resolver = zodResolver(locationFormSchema)
 
   const {
     control,
@@ -34,7 +22,7 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
     formState: { errors },
   } = useForm({
     defaultValues: signUpState,
-    resolver: zodResolver(schema),
+    resolver,
   })
 
   return (

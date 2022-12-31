@@ -3,17 +3,12 @@ import { SignUpScreenUI, UseSignUpState } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 import { Alert } from "react-native"
+import { SignUpFormSchema } from "schema"
 import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Sign Up">
-
-type FormData = {
-  email: string
-  password: string
-  confirmPassword: string
-}
 
 const SignUpScreen = (props: Props) => {
   const {
@@ -31,7 +26,7 @@ const SignUpScreen = (props: Props) => {
     },
   })
 
-  const createAccount = (data: FormData) => {
+  const createAccount = (data: SignUpFormSchema) => {
     const { email } = data
     setSignUpState({ ...signUpState, ...data })
     mutate({ email })

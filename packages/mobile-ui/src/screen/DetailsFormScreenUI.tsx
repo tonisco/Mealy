@@ -4,35 +4,19 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { View, Text, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { z } from "zod"
+import { DetailsFormSchema, detailsFormSchema } from "schema"
 
 import { UseSignUpState } from "../context"
 import { AuthScreenType } from "../screenTypes/default"
 import { BackButton, GradientButton, Input } from "../ui"
 import { IsIos } from "../utils"
 
-type FormData = {
-  firstName: string
-  lastName: string
-  phone: string
-}
-
 type Props = NativeStackScreenProps<AuthScreenType, "Details Form">
 
 const DetailsFormScreenUI = ({ navigation }: Props) => {
   const { setSignUpState, signUpState } = UseSignUpState()
 
-  const schema = z.object({
-    firstName: z
-      .string()
-      .min(3, { message: "First Name must contain at least 3 characters" })
-      .trim(),
-    lastName: z
-      .string()
-      .min(3, { message: "Last Name must contain at least 3 characters" })
-      .trim(),
-    phone: z.string().min(5, { message: "Number must be at least 5 Numbers" }),
-  })
+  const resolver = zodResolver(detailsFormSchema)
 
   const {
     control,
@@ -40,13 +24,11 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
     formState: { errors },
   } = useForm({
     defaultValues: signUpState,
-    resolver: zodResolver(schema),
+    resolver,
   })
 
-  const createProfile = (data: FormData) => {
-    console.log(signUpState)
+  const createProfile = (data: DetailsFormSchema) => {
     setSignUpState({ ...signUpState, ...data })
-    console.log("Leaving Reset Password")
     navigation.navigate("Location Form")
   }
 

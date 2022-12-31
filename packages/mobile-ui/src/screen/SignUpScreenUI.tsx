@@ -13,7 +13,7 @@ import {
 } from "react-native"
 import Animated, { BounceInDown, FadeIn, ZoomIn } from "react-native-reanimated"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { z } from "zod"
+import { SignUpFormSchema, signUpFormSchema } from "schema"
 
 import { moveToTop } from "../animation"
 import { UseSignUpState } from "../context/SignUpStore"
@@ -21,17 +21,11 @@ import { AuthScreenType } from "../screenTypes/default"
 import { GradientButton, GradientText, Input } from "../ui"
 import { IsIos } from "../utils"
 
-type FormData = {
-  email: string
-  password: string
-  confirmPassword: string
-}
-
 type Props = NativeStackScreenProps<AuthScreenType, "Sign Up"> & {
   logoText: string
   logoImageSource: ImageSourcePropType
   googleImageSource: ImageSourcePropType
-  createAccount: ({ email, password }: FormData) => void
+  createAccount: ({ email, password }: SignUpFormSchema) => void
 }
 
 const SignUpScreenUI = ({
@@ -49,20 +43,7 @@ const SignUpScreenUI = ({
 
   const { signUpState } = UseSignUpState()
 
-  const schema = z
-    .object({
-      email: z
-        .string()
-        .trim()
-        .email()
-        .refine((val) => val.toLocaleLowerCase()),
-      password: z.string().min(6),
-      confirmPassword: z.string(),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-      path: ["confirmPassword"],
-      message: "Passwords do not match",
-    })
+  const resolver = zodResolver(signUpFormSchema)
 
   const {
     control,
@@ -70,7 +51,7 @@ const SignUpScreenUI = ({
     formState: { errors },
   } = useForm({
     defaultValues: signUpState,
-    resolver: zodResolver(schema),
+    resolver,
   })
 
   return (

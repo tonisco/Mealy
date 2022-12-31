@@ -2,16 +2,12 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { ChangePasswordScreenUI } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
+import { ChangePasswordFormSchema } from "schema"
 import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Change Password">
-
-type FormData = {
-  password: string
-  confirmPassword: string
-}
 
 const ChangePasswordScreen = ({ navigation, route }: Props) => {
   const {
@@ -27,7 +23,8 @@ const ChangePasswordScreen = ({ navigation, route }: Props) => {
     },
   })
 
-  const changePassword = ({ password }: FormData) => mutate({ email, password })
+  const changePassword = ({ password }: ChangePasswordFormSchema) =>
+    mutate({ email, password })
 
   const passwordChangeSuccess = ({ message }: { message: string }) =>
     navigation.navigate("Success Screen", {

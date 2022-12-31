@@ -3,7 +3,7 @@ import { ResetPasswordScreenUI } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 import { Alert } from "react-native"
-import { ResetPasswordSchema } from "schema"
+import { ResetPasswordFormSchema } from "schema"
 import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
@@ -20,7 +20,7 @@ const ResetPasswordScreen = ({ navigation }: Props) => {
     },
   })
 
-  const requestOTP = ({ email }: ResetPasswordSchema) => mutate({ email })
+  const requestOTP = ({ email }: ResetPasswordFormSchema) => mutate({ email })
 
   return (
     <>

@@ -3,17 +3,17 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { resetPasswordSchema, ResetPasswordSchema } from "schema"
+import { resetPasswordFormSchema, ResetPasswordFormSchema } from "schema"
 
 import { BackButton, GradientButton, Input } from "../ui"
 import { IsIos } from "../utils"
 
 type Props = {
-  requestOTP: ({ email }: ResetPasswordSchema) => void
+  requestOTP: ({ email }: ResetPasswordFormSchema) => void
 }
 
 const ResetPasswordScreenUI = ({ requestOTP }: Props) => {
-  const resolver = zodResolver(resetPasswordSchema)
+  const resolver = zodResolver(resetPasswordFormSchema)
 
   const {
     control,

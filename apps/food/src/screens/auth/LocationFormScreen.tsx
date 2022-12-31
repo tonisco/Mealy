@@ -3,18 +3,12 @@ import { LocationFormScreenUI, UseSignUpState, UseUserState } from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 import { Alert } from "react-native"
+import { LocationFormSchema } from "schema"
 import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Location Form">
-
-type FormData = {
-  street: string
-  city: string
-  country: string
-  state: string
-}
 
 const LocationFormScreen = ({ navigation }: Props) => {
   const {
@@ -35,7 +29,12 @@ const LocationFormScreen = ({ navigation }: Props) => {
     },
   })
 
-  const createProfile = ({ city, country, state, street }: FormData) =>
+  const createProfile = ({
+    city,
+    country,
+    state,
+    street,
+  }: LocationFormSchema) =>
     mutate({
       city,
       country,

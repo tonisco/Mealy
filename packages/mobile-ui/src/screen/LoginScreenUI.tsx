@@ -46,6 +46,8 @@ const LoginScreenUI = ({
 
   const animate = params?.animation !== false
 
+  // TODO: add react hook form
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView

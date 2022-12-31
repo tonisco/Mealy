@@ -52,8 +52,9 @@ export const changePasswordFormSchema = schemaItems
     path: ["confirmPassword"],
     message: "Passwords do not match",
   })
+export type ChangePasswordFormSchema = z.infer<typeof changePasswordFormSchema>
 
-export const DetailsFormSchema = schemaItems.pick({ phone: true }).extend({
+export const detailsFormSchema = schemaItems.pick({ phone: true }).extend({
   firstName: z
     .string()
     .min(3, { message: "First Name must contain at least 3 characters" })
@@ -63,6 +64,7 @@ export const DetailsFormSchema = schemaItems.pick({ phone: true }).extend({
     .min(3, { message: "Last Name must contain at least 3 characters" })
     .trim(),
 })
+export type DetailsFormSchema = z.infer<typeof detailsFormSchema>
 
 export const locationFormSchema = schemaItems.pick({
   street: true,
@@ -70,6 +72,7 @@ export const locationFormSchema = schemaItems.pick({
   state: true,
   country: true,
 })
+export type LocationFormSchema = z.infer<typeof locationFormSchema>
 
 export const signUpFormSchema = schemaItems
   .pick({ email: true, password: true, confirmPassword: true })
@@ -77,6 +80,7 @@ export const signUpFormSchema = schemaItems
     path: ["confirmPassword"],
     message: "Passwords do not match",
   })
+export type SignUpFormSchema = z.infer<typeof signUpFormSchema>
 
 export const otpFormSchema = z.object({
   pin1: z.string().length(1),
@@ -86,5 +90,5 @@ export const otpFormSchema = z.object({
 })
 export type OtpFormSchema = z.infer<typeof otpFormSchema>
 
-export const resetPasswordSchema = schemaItems.pick({ email: true })
-export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>
+export const resetPasswordFormSchema = schemaItems.pick({ email: true })
+export type ResetPasswordFormSchema = z.infer<typeof resetPasswordFormSchema>
