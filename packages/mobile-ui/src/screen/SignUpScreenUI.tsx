@@ -40,7 +40,11 @@ const SignUpScreenUI = ({
   logoImageSource,
   googleImageSource,
   createAccount,
+  route,
 }: Props) => {
+  const { params } = route
+  const animate = params?.animation !== false
+
   const { navigate } = navigation
 
   const { signUpState } = UseSignUpState()
@@ -80,22 +84,24 @@ const SignUpScreenUI = ({
             className="mb-3 h-[84px] w-52"
             source={logoImageSource}
             resizeMode="contain"
-            entering={moveToTop}
+            entering={animate ? moveToTop : undefined}
           />
-          <Animated.View entering={FadeIn.duration(800).delay(800)}>
+          <Animated.View
+            entering={animate ? FadeIn.duration(800).delay(800) : undefined}
+          >
             <GradientText style={styles.logoText} text={logoText} />
           </Animated.View>
         </View>
         <View className="mt4 items-center">
           <Animated.Text
-            entering={ZoomIn.duration(500).delay(1500)}
+            entering={animate ? ZoomIn.duration(500).delay(1500) : undefined}
             className="my-1 font-bento-bold text-xl uppercase text-dark"
           >
             Sign up for Free
           </Animated.Text>
           <Animated.View
             className="my-5"
-            entering={ZoomIn.duration(500).delay(1500)}
+            entering={animate ? ZoomIn.duration(500).delay(1500) : undefined}
           >
             <Input
               control={control}
@@ -126,7 +132,9 @@ const SignUpScreenUI = ({
           </Animated.View>
           <Animated.View
             className="mt-4 mb-3"
-            entering={BounceInDown.duration(800).delay(1900)}
+            entering={
+              animate ? BounceInDown.duration(800).delay(1900) : undefined
+            }
           >
             <GradientButton
               text="Create Account"
@@ -136,7 +144,7 @@ const SignUpScreenUI = ({
 
           <Animated.View
             className="my-3"
-            entering={ZoomIn.duration(800).delay(2600)}
+            entering={animate ? ZoomIn.duration(800).delay(2600) : undefined}
           >
             <Text className="my-3 text-center font-bento-bold text-xs capitalize">
               Or Continue With
