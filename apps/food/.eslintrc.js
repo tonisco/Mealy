@@ -10,5 +10,6 @@ module.exports = {
     "babel.config.js",
     "metro.config.js",
     "tailwind.config.js",
+    "jest*.js",
   ],
 }

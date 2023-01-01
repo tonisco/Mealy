@@ -7,7 +7,8 @@
     "start:food": "expo start --host tunnel",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
@@ -48,6 +49,8 @@
     "@babel/preset-env": "^7.1.6",
     "@babel/runtime": "^7.19.0",
     "@react-native-community/eslint-config": "^3.2.0",
+    "@testing-library/jest-native": "^5.4.0",
+    "@testing-library/react-native": "^11.5.0",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.70.6",
     "esconfig": "workspace:*",
@@ -55,6 +58,7 @@
     "eslint-config-turbo": "latest",
     "eslint-config-universe": "11.1.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jest-expo": "^47.0.1",
     "prettier": "2.8.1",
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.2.4",
