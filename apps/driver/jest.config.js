@@ -1,5 +1,5 @@
 module.exports = {
   preset: "jest-expo",
-  setupFilesAfterEnv: ["./jestSetup.js"],
+  setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],
   displayName: "driver",
 }
