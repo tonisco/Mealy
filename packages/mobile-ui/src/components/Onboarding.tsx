@@ -45,16 +45,20 @@ const onboarding = ({
           </Text>
         </View>
       </View>
-      <View className="flex-row gap-x-2">
+      <View className="flex-row gap-x-2" testID="parentIndicator">
         {Array.from({ length: 3 }, (_, i) =>
           i + 1 === page ? (
             <GradientBackground key={i + 1} style={styles.point} />
           ) : (
-            <View key={i + 1} className=" h-3 w-3 rounded-full bg-lite-gray" />
+            <View
+              key={i + 1}
+              className=" h-3 w-3 rounded-full bg-lite-gray"
+              testID="indicator"
+            />
           ),
         )}
       </View>
-      <View className="absolute bottom-12">
+      <View className="absolute bottom-12" testID="button">
         <GradientButton text="next" onPress={onPress} />
       </View>
     </SafeAreaView>
