@@ -48,12 +48,16 @@ const onboarding = ({
       <View className="flex-row gap-x-2" testID="parentIndicator">
         {Array.from({ length: 3 }, (_, i) =>
           i + 1 === page ? (
-            <GradientBackground key={i + 1} style={styles.point} />
+            <GradientBackground
+              key={i + 1}
+              style={styles.point}
+              testID="indicator-gradient"
+            />
           ) : (
             <View
               key={i + 1}
               className=" h-3 w-3 rounded-full bg-lite-gray"
-              testID="indicator"
+              testID="indicator-gray"
             />
           ),
         )}

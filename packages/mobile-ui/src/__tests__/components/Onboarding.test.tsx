@@ -34,22 +34,58 @@ describe("Onboarding Ui", () => {
         page={1}
       />,
     )
-    const parentIndicator = screen.getByTestId("parentIndicator")
-    expect(parentIndicator).toBeOnTheScreen()
+
+    expect(screen.getByTestId("parentIndicator")).toBeOnTheScreen()
+
+    expect(screen.getAllByTestId(/indicator-/gi)).toHaveLength(3)
   })
 
-  //TODO snapshot test for page inidicator
-  //   it("ensures the page indicator matches with the current page", () => {
-  //     render(
-  //       <Onboarding
-  //         ImageLink={ImageLink}
-  //         description={description}
-  //         heading={heading}
-  //         onPress={onPress}
-  //         page={1}
-  //       />,
-  //     )
-  //     const parentIndicator = screen.getByTestId("parentIndicator")
-  //     expect(parentIndicator).toMatchSnapshot()
-  //   })
+  // TODO snapshot test for page inidicator
+  it("ensures the page one indicator matches with the current page", () => {
+    render(
+      <Onboarding
+        ImageLink={ImageLink}
+        description={description}
+        heading={heading}
+        onPress={onPress}
+        page={1}
+      />,
+    )
+    expect(screen.getAllByTestId(/indicator-/gi)[0]).toHaveProp(
+      "testID",
+      "indicator-gradient",
+    )
+  })
+
+  it("ensures the page two indicator matches with the current page", () => {
+    render(
+      <Onboarding
+        ImageLink={ImageLink}
+        description={description}
+        heading={heading}
+        onPress={onPress}
+        page={2}
+      />,
+    )
+    expect(screen.getAllByTestId(/indicator-/gi)[1]).toHaveProp(
+      "testID",
+      "indicator-gradient",
+    )
+  })
+
+  it("ensures the page three indicator matches with the current page", () => {
+    render(
+      <Onboarding
+        ImageLink={ImageLink}
+        description={description}
+        heading={heading}
+        onPress={onPress}
+        page={3}
+      />,
+    )
+    expect(screen.getAllByTestId(/indicator-/gi)[2]).toHaveProp(
+      "testID",
+      "indicator-gradient",
+    )
+  })
 })

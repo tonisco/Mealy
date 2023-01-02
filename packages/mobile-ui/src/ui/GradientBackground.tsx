@@ -11,6 +11,7 @@ type Props = {
   end?: LinearGradientPoint
   locations?: number[]
   colors?: string[]
+  testID?: string
 }
 
 const GradientBackground = ({
@@ -20,6 +21,7 @@ const GradientBackground = ({
   end,
   locations,
   colors,
+  testID,
 }: Props) => {
   return (
     <LinearGradient
@@ -28,6 +30,7 @@ const GradientBackground = ({
       start={start ?? { x: 0, y: -0.24 }}
       end={end ?? { x: 1, y: 0.24 }}
       locations={locations ?? [0.33, 0.67]}
+      testID={testID}
     >
       {children}
     </LinearGradient>
