@@ -11,7 +11,7 @@ type Props = {
 const GradientButton = ({ text, onPress }: Props) => {
   return (
     <GradientBackground style={styles.button}>
-      <Pressable onPress={onPress}>
+      <Pressable onPress={onPress} testID="pressable">
         <Text className="font-bento-bold capitalize text-white">{text}</Text>
       </Pressable>
     </GradientBackground>
