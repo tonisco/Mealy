@@ -49,7 +49,6 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
           </Text>
         </View>
         <Input
-          check
           control={control}
           inputName="firstName"
           placeholder="First Name"
@@ -59,7 +58,6 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
         />
 
         <Input
-          check
           control={control}
           inputName="lastName"
           placeholder="Last Name"
@@ -69,7 +67,6 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
         />
 
         <Input
-          check
           control={control}
           inputName="phone"
           placeholder="Mobile Number"

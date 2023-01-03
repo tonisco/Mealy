@@ -88,13 +88,11 @@ const SignUpScreenUI = ({
               control={control}
               error={errors.email?.message}
               inputName="email"
-              check={true}
               placeholder="Email"
               iconName={IsIos ? "ios-mail" : "mail"}
             />
             <Input
               control={control}
-              check={true}
               error={errors.password?.message}
               inputName="password"
               placeholder="Password"
@@ -103,7 +101,6 @@ const SignUpScreenUI = ({
             />
             <Input
               control={control}
-              check={true}
               error={errors.confirmPassword?.message}
               inputName="confirmPassword"
               placeholder="Confirm Password"

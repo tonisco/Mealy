@@ -42,7 +42,6 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
           </Text>
         </View>
         <Input
-          check
           control={control}
           inputName="street"
           placeholder="Street Address"
@@ -52,7 +51,6 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
         />
 
         <Input
-          check
           control={control}
           inputName="city"
           placeholder="City"
@@ -62,7 +60,6 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
         />
 
         <Input
-          check
           control={control}
           inputName="state"
           placeholder="State"
@@ -72,7 +69,6 @@ const LocationFormScreenUI = ({ createProfile }: Props) => {
         />
 
         <Input
-          check
           control={control}
           inputName="country"
           placeholder="Country"

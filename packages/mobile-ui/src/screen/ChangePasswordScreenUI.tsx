@@ -43,7 +43,6 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
         </View>
 
         <Input
-          check
           control={control}
           inputName="password"
           placeholder="Password"
@@ -54,7 +53,6 @@ const ChangePasswordScreenUI = ({ changePassword }: Props) => {
         />
 
         <Input
-          check
           control={control}
           inputName="confirmPassword"
           placeholder="Confirm Password"

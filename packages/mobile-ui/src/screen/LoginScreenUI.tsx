@@ -82,7 +82,6 @@ const LoginScreenUI = ({
             <Input
               placeholder="Email"
               iconName={IsIos ? "ios-mail" : "mail"}
-              check={true}
               control={control}
               inputName="email"
               error={errors.email?.message}
@@ -92,7 +91,6 @@ const LoginScreenUI = ({
               placeholder="Password"
               iconName={IsIos ? "ios-lock-closed" : "lock-closed"}
               encrypt
-              check={true}
               control={control}
               inputName="password"
               error={errors.password?.message}
