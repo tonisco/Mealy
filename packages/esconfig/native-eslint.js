@@ -29,4 +29,16 @@ module.exports = {
   settings: {
     "import/ignore": ["react-native"],
   },
+  overrides: [
+    // Only use Testing Library lint rules in jest test files
+    {
+      files: ["__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
+      extends: [
+        "plugin:testing-library/react-native",
+        "plugin:jest/recommended",
+      ],
+      plugins: ["jest"],
+      rules: { "jest/prefer-expect-assertions": "off" },
+    },
+  ],
 }

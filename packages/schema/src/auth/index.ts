@@ -1,18 +1,25 @@
 import { z } from "zod"
 
+export const wrongEmailMessage = "Please enter a valid mail"
+export const wrongFirstNameMessage =
+  "First Name must contain at least 3 characters"
+export const wrongLastNameMessage =
+  "Last Name must contain at least 3 characters"
+export const wrongPasswordMessage = "Password must be atleast 6 characters"
+export const wrongPhoneMessage = "Number must be at least 5 Numbers"
+export const passwordNotMatchMessage = "Passwords do not match"
+
 const schemaItems = z.object({
   email: z
     .string()
     .trim()
-    .email({ message: "Please enter a valid mail" })
+    .email({ message: wrongEmailMessage })
     .refine((val) => val.toLocaleLowerCase()),
-  password: z
-    .string()
-    .min(6, { message: "Password must be atleast 5 characters" }),
+  password: z.string().min(6, { message: wrongPasswordMessage }),
   confirmPassword: z.string(),
   otp: z.string().length(4),
   fullName: z.string(),
-  phone: z.string().min(5, { message: "Number must be at least 5 Numbers" }),
+  phone: z.string().min(5, { message: wrongPhoneMessage }),
   street: z.string(),
   state: z.string(),
   city: z.string(),
@@ -49,19 +56,13 @@ export const changePasswordFormSchema = schemaItems
   .pick({ password: true, confirmPassword: true })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
-    message: "Passwords do not match",
+    message: passwordNotMatchMessage,
   })
 export type ChangePasswordFormSchema = z.infer<typeof changePasswordFormSchema>
 
 export const detailsFormSchema = schemaItems.pick({ phone: true }).extend({
-  firstName: z
-    .string()
-    .min(3, { message: "First Name must contain at least 3 characters" })
-    .trim(),
-  lastName: z
-    .string()
-    .min(3, { message: "Last Name must contain at least 3 characters" })
-    .trim(),
+  firstName: z.string().min(3, { message: wrongFirstNameMessage }).trim(),
+  lastName: z.string().min(3, { message: wrongLastNameMessage }).trim(),
 })
 export type DetailsFormSchema = z.infer<typeof detailsFormSchema>
 
@@ -77,7 +78,7 @@ export const signUpFormSchema = schemaItems
   .pick({ email: true, password: true, confirmPassword: true })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
-    message: "Passwords do not match",
+    message: passwordNotMatchMessage,
   })
 export type SignUpFormSchema = z.infer<typeof signUpFormSchema>
 

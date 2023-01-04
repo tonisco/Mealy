@@ -402,9 +402,11 @@ importers:
       eslint-config-react: ^1.1.7
       eslint-config-turbo: 0.0.7
       eslint-plugin-import: ^2.26.0
+      eslint-plugin-jest: ^27.2.0
       eslint-plugin-react: 7.31.8
       eslint-plugin-react-hooks: ^4.6.0
       eslint-plugin-simple-import-sort: ^8.0.0
+      eslint-plugin-testing-library: ^5.9.1
       prettier: ^2.8.0
       typescript: ^4.9.3
     dependencies:
@@ -422,8 +424,11 @@ importers:
       eslint-plugin-react: 7.31.8_eslint@8.30.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.30.0
       eslint-plugin-simple-import-sort: 8.0.0_eslint@8.30.0
+      eslint-plugin-testing-library: 5.9.1_f5jcydormhcqaoeadqwgqigppy
       prettier: 2.8.0
       typescript: 4.9.3
+    devDependencies:
+      eslint-plugin-jest: 27.2.0_afnpuf7advxqriastl6jweeejm
 
   packages/mobile-ui:
     specifiers:
@@ -432,8 +437,10 @@ importers:
       '@babel/runtime': ^7.19.0
       '@expo/vector-icons': ^13.0.0
       '@hookform/resolvers': ^2.9.10
+      '@react-native-async-storage/async-storage': ~1.17.3
       '@react-native-community/eslint-config': ^3.2.0
       '@react-native-masked-view/masked-view': 0.2.8
+      '@react-navigation/native': ^6.0.16
       '@testing-library/jest-native': ^5.4.0
       '@testing-library/react-hooks': ^8.0.1
       '@testing-library/react-native': ^11.5.0
@@ -444,7 +451,9 @@ importers:
       eslint: 8.29.0
       eslint-config-turbo: latest
       eslint-config-universe: 11.1.1
+      eslint-plugin-jest: ^27.2.0
       eslint-plugin-react-hooks: ^4.6.0
+      eslint-plugin-testing-library: ^5.9.1
       expo: ~47.0.7
       expo-linear-gradient: ~12.0.1
       jest: ^29.3.1
@@ -465,7 +474,9 @@ importers:
     dependencies:
       '@expo/vector-icons': 13.0.0
       '@hookform/resolvers': 2.9.10_react-hook-form@7.40.0
+      '@react-native-async-storage/async-storage': 1.17.11_react-native@0.70.5
       '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
+      '@react-navigation/native': 6.0.16_tj3nonr5gneraukzjkxpsiy7yu
       expo: 47.0.8_@babel+core@7.20.2
       expo-linear-gradient: 12.0.1_expo@47.0.8
       nativewind: 2.0.11_f3xea42f6zrwqyr5c6mbkdauxa
@@ -490,7 +501,9 @@ importers:
       eslint: 8.29.0
       eslint-config-turbo: 0.0.7_eslint@8.29.0
       eslint-config-universe: 11.1.1_gom25qhbkdhcypbouexpt6hn3a
+      eslint-plugin-jest: 27.2.0_sxdq44kqdhjoww4fj4nhc3vc7e
       eslint-plugin-react-hooks: 4.6.0_eslint@8.29.0
+      eslint-plugin-testing-library: 5.9.1_s5ps7njkmjlaqajutnox5ntcla
       jest: 29.3.1
       jest-expo: 47.0.1_zrsk6nnt4g4n3rknaxhk6euytu
       prettier: 2.8.1
@@ -7363,6 +7376,48 @@ packages:
       - typescript
     dev: false
 
+  /eslint-plugin-jest/27.2.0_afnpuf7advxqriastl6jweeejm:
+    resolution: {integrity: sha512-KGIYtelk4rIhKocxRKUEeX+kJ0ZCab/CiSgS8BMcKD7AY7YxXhlg/d51oF5jq2rOrtuJEDYWRwXD95l6l2vtrA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^5.0.0
+      eslint: ^7.0.0 || ^8.0.0
+      jest: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+      jest:
+        optional: true
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 5.44.0_jevmf2vlpxbyyhd3lmuw4ahrwa
+      '@typescript-eslint/utils': 5.44.0_f5jcydormhcqaoeadqwgqigppy
+      eslint: 8.30.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
+  /eslint-plugin-jest/27.2.0_sxdq44kqdhjoww4fj4nhc3vc7e:
+    resolution: {integrity: sha512-KGIYtelk4rIhKocxRKUEeX+kJ0ZCab/CiSgS8BMcKD7AY7YxXhlg/d51oF5jq2rOrtuJEDYWRwXD95l6l2vtrA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^5.0.0
+      eslint: ^7.0.0 || ^8.0.0
+      jest: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+      jest:
+        optional: true
+    dependencies:
+      '@typescript-eslint/utils': 5.44.0_s5ps7njkmjlaqajutnox5ntcla
+      eslint: 8.29.0
+      jest: 29.3.1
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
   /eslint-plugin-jsx-a11y/6.6.1_eslint@8.29.0:
     resolution: {integrity: sha512-sXgFVNHiWffBq23uiS/JaP6eVR622DqwB4yTzKvGZGcPq6/yZ3WmOZfuBks/vHWo9GaFOqC2ZK4i6+C35knx7Q==}
     engines: {node: '>=4.0'}
@@ -7594,6 +7649,32 @@ packages:
       eslint: '>=5.0.0'
     dependencies:
       eslint: 8.30.0
+
+  /eslint-plugin-testing-library/5.9.1_f5jcydormhcqaoeadqwgqigppy:
+    resolution: {integrity: sha512-6BQp3tmb79jLLasPHJmy8DnxREe+2Pgf7L+7o09TSWPfdqqtQfRZmZNetr5mOs3yqZk/MRNxpN3RUpJe0wB4LQ==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
+    peerDependencies:
+      eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.44.0_f5jcydormhcqaoeadqwgqigppy
+      eslint: 8.30.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: false
+
+  /eslint-plugin-testing-library/5.9.1_s5ps7njkmjlaqajutnox5ntcla:
+    resolution: {integrity: sha512-6BQp3tmb79jLLasPHJmy8DnxREe+2Pgf7L+7o09TSWPfdqqtQfRZmZNetr5mOs3yqZk/MRNxpN3RUpJe0wB4LQ==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
+    peerDependencies:
+      eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.44.0_s5ps7njkmjlaqajutnox5ntcla
+      eslint: 8.29.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
 
   /eslint-plugin-turbo/0.0.7_eslint@8.29.0:
     resolution: {integrity: sha512-iajOH8eD4jha3duztGVBD1BEmvNrQBaA/y3HFHf91vMDRYRwH7BpHSDFtxydDpk5ghlhRxG299SFxz7D6z4MBQ==}

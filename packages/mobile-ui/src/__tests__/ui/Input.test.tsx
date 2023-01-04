@@ -27,9 +27,7 @@ describe("Input", () => {
     expect(screen.queryByTestId("eye")).not.toBeOnTheScreen()
     expect(screen.queryByTestId("eye-off")).not.toBeOnTheScreen()
 
-    expect(screen.queryByTestId("errorMessage")).not.toHaveTextContent(
-      errorMessage,
-    )
+    expect(screen.queryByTestId("errorMessage")).not.toBeOnTheScreen()
 
     unmount()
   })

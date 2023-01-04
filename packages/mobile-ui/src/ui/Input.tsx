@@ -39,14 +39,18 @@ const Input = (props: Props) => {
           />
         )}
       />
-
-      <Text
-        className="my-1 ml-1 font-bento-med text-xs capitalize text-red-500"
-        testID="errorMessage"
-      >
-        {props.error}
-      </Text>
-
+      <View>
+        {/* TODO: ADD A DEFAULT HEIGHT TO VIEW */}
+        {props.error && (
+          <Text
+            className="font-bento-med text-xs capitalize text-red-500"
+            testID="errorMessage"
+            accessibilityLabel={props.inputName}
+          >
+            {props.error}
+          </Text>
+        )}
+      </View>
       <View className="absolute top-[16px] left-5">
         <GradientIcon name={props.iconName} />
       </View>
