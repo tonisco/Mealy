@@ -435,6 +435,7 @@ importers:
       '@react-native-community/eslint-config': ^3.2.0
       '@react-native-masked-view/masked-view': 0.2.8
       '@testing-library/jest-native': ^5.4.0
+      '@testing-library/react-hooks': ^8.0.1
       '@testing-library/react-native': ^11.5.0
       '@types/jest': ^29.2.5
       '@types/react': ~18.0.14
@@ -480,6 +481,7 @@ importers:
       '@babel/runtime': 7.20.1
       '@react-native-community/eslint-config': 3.2.0_lynja5fyyrjomn5tbzra2rziiq
       '@testing-library/jest-native': 5.4.0_36vzno5z2xsbftuvrey5zygoea
+      '@testing-library/react-hooks': 8.0.1_yiyv4u2u4l5zqeicwewzgpy3iy
       '@testing-library/react-native': 11.5.0_ky7kl7qm6stztc6tz654jefzxm
       '@types/jest': 29.2.5
       '@types/react': 18.0.25
@@ -3454,6 +3456,30 @@ packages:
       redent: 3.0.0
     dev: true
 
+  /@testing-library/react-hooks/8.0.1_yiyv4u2u4l5zqeicwewzgpy3iy:
+    resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@types/react': ^16.9.0 || ^17.0.0
+      react: ^16.9.0 || ^17.0.0
+      react-dom: ^16.9.0 || ^17.0.0
+      react-test-renderer: ^16.9.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react-dom:
+        optional: true
+      react-test-renderer:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.20.1
+      '@types/react': 18.0.25
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+      react-error-boundary: 3.1.4_react@18.1.0
+      react-test-renderer: 18.1.0_react@18.1.0
+    dev: true
+
   /@testing-library/react-native/11.5.0_ky7kl7qm6stztc6tz654jefzxm:
     resolution: {integrity: sha512-seV+qebsbX4E5CWk/wizU1+2wVLsPyqEzG7sTgrhJ81cgAawg7ay06fIZR9IS75pDeWn2KZVd4mGk1pjJ3i3Zw==}
     peerDependencies:
@@ -5239,7 +5265,7 @@ packages:
       minipass-pipeline: 1.2.4
       mkdirp: 1.0.4
       p-map: 4.0.0
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 3.0.2
       ssri: 8.0.1
       tar: 6.1.12
@@ -12873,6 +12899,15 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
+  /promise-inflight/1.0.1:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dev: false
+
   /promise-inflight/1.0.1_bluebird@3.7.2:
     resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
     peerDependencies:
@@ -13139,7 +13174,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.1.0
       scheduler: 0.22.0
-    dev: false
 
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
@@ -13150,6 +13184,16 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
     dev: false
+
+  /react-error-boundary/3.1.4_react@18.1.0:
+    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.20.1
+      react: 18.1.0
+    dev: true
 
   /react-error-overlay/6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}

@@ -2,7 +2,7 @@
 import { Ionicons } from "@expo/vector-icons"
 import React, { useState } from "react"
 import { Controller } from "react-hook-form"
-import { Platform, StyleSheet, Text, TextInput, View } from "react-native"
+import { Platform, Text, TextInput, View, Pressable } from "react-native"
 
 import Colors from "../utils/Colors"
 import GradientIcon from "./GradientIcon"
@@ -39,44 +39,45 @@ const Input = (props: Props) => {
           />
         )}
       />
-      <Text className="my-1 ml-1 font-bento-med text-xs capitalize text-red-500">
+
+      <Text
+        className="my-1 ml-1 font-bento-med text-xs capitalize text-red-500"
+        testID="errorMessage"
+      >
         {props.error}
       </Text>
+
       <View className="absolute top-[16px] left-5">
         <GradientIcon name={props.iconName} />
       </View>
       {props.encrypt &&
         (hidden ? (
-          <Ionicons
-            style={[styles.icon, styles.iconRight]}
-            size={20}
-            name={Platform.OS === "ios" ? "ios-eye-off" : "eye-off"}
+          <Pressable
+            className="top[18px] absolute right-5"
+            testID="eye-off"
             onPress={() => setHidden(!hidden)}
-          />
+          >
+            <Ionicons
+              size={20}
+              name={Platform.OS === "ios" ? "ios-eye-off" : "eye-off"}
+              color={Colors.liteGray}
+            />
+          </Pressable>
         ) : (
-          <Ionicons
-            style={[styles.icon, styles.iconRight]}
-            size={20}
-            name={Platform.OS === "ios" ? "ios-eye" : "eye"}
+          <Pressable
+            className="top[18px] absolute right-5"
+            testID="eye"
             onPress={() => setHidden(!hidden)}
-          />
+          >
+            <Ionicons
+              size={20}
+              name={Platform.OS === "ios" ? "ios-eye" : "eye"}
+              color={Colors.liteGray}
+            />
+          </Pressable>
         ))}
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    position: "absolute",
-    top: 18,
-  },
-  iconLeft: {
-    left: 20,
-  },
-  iconRight: {
-    right: 20,
-    color: Colors.liteGray,
-  },
-})
 
 export default Input
