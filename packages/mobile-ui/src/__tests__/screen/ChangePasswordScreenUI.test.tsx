@@ -19,32 +19,35 @@ const changePassword = jest.fn(
 const shortPassword = "12345"
 const longPassword = "123456"
 
+const renderComponent = () => {
+  render(
+    <NavigationContainer>
+      <ChangePasswordScreenUI changePassword={changePassword} />
+    </NavigationContainer>,
+  )
+
+  const password = screen.getByPlaceholderText("Password")
+  const confirmPassword = screen.getByPlaceholderText("Confirm Password")
+  const saveButton = screen.getByTestId("pressable")
+
+  return { password, confirmPassword, saveButton }
+}
+
 describe("change password screen ui", () => {
   it("renders correctly", () => {
-    render(
-      <NavigationContainer>
-        <ChangePasswordScreenUI changePassword={changePassword} />
-      </NavigationContainer>,
-    )
+    const { confirmPassword, password, saveButton } = renderComponent()
 
-    expect(screen.getByPlaceholderText("Password")).toBeOnTheScreen()
-    expect(screen.getByPlaceholderText("Confirm Password")).toBeOnTheScreen()
+    expect(password).toBeOnTheScreen()
+    expect(confirmPassword).toBeOnTheScreen()
 
     expect(screen.getByText("save")).toBeOnTheScreen()
-    expect(screen.getByTestId("pressable")).toBeOnTheScreen()
+    expect(saveButton).toBeOnTheScreen()
 
     expect(screen.queryAllByTestId("errorMessage")).toHaveLength(0)
   })
 
   it("ensures the input changes", () => {
-    render(
-      <NavigationContainer>
-        <ChangePasswordScreenUI changePassword={changePassword} />
-      </NavigationContainer>,
-    )
-
-    const password = screen.getByPlaceholderText("Password")
-    const confirmPassword = screen.getByPlaceholderText("Confirm Password")
+    const { confirmPassword, password } = renderComponent()
 
     fireEvent.changeText(password, shortPassword)
     fireEvent.changeText(confirmPassword, shortPassword)
@@ -54,15 +57,7 @@ describe("change password screen ui", () => {
   })
 
   it("ensures the password length error shows", async () => {
-    render(
-      <NavigationContainer>
-        <ChangePasswordScreenUI changePassword={changePassword} />
-      </NavigationContainer>,
-    )
-
-    const password = screen.getByPlaceholderText("Password")
-    const confirmPassword = screen.getByPlaceholderText("Confirm Password")
-    const saveButton = screen.getByTestId("pressable")
+    const { confirmPassword, password, saveButton } = renderComponent()
 
     fireEvent.changeText(password, shortPassword)
     fireEvent.changeText(confirmPassword, shortPassword)
@@ -76,15 +71,7 @@ describe("change password screen ui", () => {
   })
 
   it("ensures the password do not match error shows", async () => {
-    render(
-      <NavigationContainer>
-        <ChangePasswordScreenUI changePassword={changePassword} />
-      </NavigationContainer>,
-    )
-
-    const password = screen.getByPlaceholderText("Password")
-    const confirmPassword = screen.getByPlaceholderText("Confirm Password")
-    const saveButton = screen.getByTestId("pressable")
+    const { confirmPassword, password, saveButton } = renderComponent()
 
     fireEvent.changeText(password, longPassword)
     fireEvent.changeText(confirmPassword, shortPassword)
@@ -99,15 +86,7 @@ describe("change password screen ui", () => {
   })
 
   it("no error shows and form is submitted", async () => {
-    render(
-      <NavigationContainer>
-        <ChangePasswordScreenUI changePassword={changePassword} />
-      </NavigationContainer>,
-    )
-
-    const password = screen.getByPlaceholderText("Password")
-    const confirmPassword = screen.getByPlaceholderText("Confirm Password")
-    const saveButton = screen.getByTestId("pressable")
+    const { confirmPassword, password, saveButton } = renderComponent()
 
     fireEvent.changeText(password, longPassword)
     fireEvent.changeText(confirmPassword, longPassword)
