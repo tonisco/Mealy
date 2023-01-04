@@ -1,23 +1,17 @@
-import { zodResolver } from "@hookform/resolvers/zod"
 import { renderHook } from "@testing-library/react-hooks"
 import { screen, render, fireEvent } from "@testing-library/react-native"
 import React from "react"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
 
 import { Input } from "../../ui"
 
 const email = "example@mail.com"
 const errorMessage = "Please enter a valid email"
 
-const resolver = zodResolver(
-  z.object({ email: z.string().trim().email({ message: errorMessage }) }),
-)
-
 describe("Input", () => {
   it("render component correctly", () => {
     const { result, unmount } = renderHook(() =>
-      useForm({ defaultValues: { email: "" }, resolver }),
+      useForm({ defaultValues: { email: "" } }),
     )
     render(
       <Input
@@ -42,7 +36,7 @@ describe("Input", () => {
 
   it("ensures input works", () => {
     const { result, unmount } = renderHook(() =>
-      useForm({ defaultValues: { email: "" }, resolver }),
+      useForm({ defaultValues: { email: "" } }),
     )
     render(
       <Input
@@ -63,7 +57,7 @@ describe("Input", () => {
 
   it("shows the error message", () => {
     const { result, unmount } = renderHook(() =>
-      useForm({ defaultValues: { email: "" }, resolver }),
+      useForm({ defaultValues: { email: "" } }),
     )
     render(
       <Input
@@ -81,7 +75,7 @@ describe("Input", () => {
 
   it("ensures the eye icon renders correctly when encrypt is passed", () => {
     const { result, unmount } = renderHook(() =>
-      useForm({ defaultValues: { email: "" }, resolver }),
+      useForm({ defaultValues: { email: "" } }),
     )
     render(
       <Input
