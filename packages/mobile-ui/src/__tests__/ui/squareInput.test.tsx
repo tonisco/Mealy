@@ -3,6 +3,7 @@ import {
   render,
   renderHook,
   fireEvent,
+  waitFor,
 } from "@testing-library/react-native"
 import React from "react"
 import { useForm } from "react-hook-form"
@@ -20,7 +21,7 @@ const defaultValues = {
 }
 
 describe("Square input", () => {
-  it("renders component correctly", () => {
+  it("renders component correctly", async () => {
     const { result, unmount } = renderHook(() => useForm({ defaultValues }))
     render(
       <SquareInput
@@ -37,7 +38,7 @@ describe("Square input", () => {
     fireEvent.changeText(input, pin)
 
     expect(input).toHaveProp("value", pin)
-    expect(changeFocus).toHaveBeenCalled()
+    await waitFor(async () => await expect(changeFocus).toHaveBeenCalled())
 
     unmount()
   })

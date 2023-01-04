@@ -2,7 +2,14 @@
 import { Ionicons } from "@expo/vector-icons"
 import React, { useState } from "react"
 import { Controller } from "react-hook-form"
-import { Platform, Text, TextInput, View, Pressable } from "react-native"
+import {
+  Platform,
+  Text,
+  TextInput,
+  View,
+  Pressable,
+  KeyboardTypeOptions,
+} from "react-native"
 
 import Colors from "../utils/Colors"
 import GradientIcon from "./GradientIcon"
@@ -16,6 +23,7 @@ type Props = {
   control: any
   inputName: string
   error?: string
+  keyboardType?: KeyboardTypeOptions
 }
 
 const Input = (props: Props) => {
@@ -36,6 +44,7 @@ const Input = (props: Props) => {
             value={value}
             secureTextEntry={props.encrypt && hidden}
             testID="controlled input"
+            keyboardType={props.keyboardType ?? "default"}
           />
         )}
       />

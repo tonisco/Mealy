@@ -16,6 +16,7 @@ describe("Input", () => {
     render(
       <Input
         control={result.current.control}
+        keyboardType="phone-pad"
         inputName="email"
         placeholder="Email"
         iconName="add"
@@ -23,6 +24,7 @@ describe("Input", () => {
     )
     const formInput = screen.getByPlaceholderText("Email")
     expect(formInput).toBeOnTheScreen()
+    expect(formInput).toHaveProp("keyboardType", "phone-pad")
 
     expect(screen.queryByTestId("eye")).not.toBeOnTheScreen()
     expect(screen.queryByTestId("eye-off")).not.toBeOnTheScreen()
@@ -46,6 +48,7 @@ describe("Input", () => {
     )
     const formInput = screen.getByPlaceholderText("Email")
     expect(formInput).toHaveProp("value", "")
+    expect(formInput).toHaveProp("keyboardType", "default")
 
     fireEvent.changeText(formInput, email)
     expect(formInput).toHaveProp("value", email)

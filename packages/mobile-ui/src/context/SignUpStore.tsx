@@ -19,7 +19,7 @@ type SignUpContextType = {
   clearState: () => void
 }
 
-const initialState = {
+export const initialState = {
   city: "",
   confirmPassword: "",
   country: "",
@@ -32,7 +32,7 @@ const initialState = {
   state: "",
 }
 
-const SignUpContext = createContext<SignUpContextType | null>(null)
+export const SignUpContext = createContext<SignUpContextType | null>(null)
 
 const SignUpStore = ({ children }: { children: ReactNode }) => {
   const [state, setState] = useState<FormContextType>(initialState)

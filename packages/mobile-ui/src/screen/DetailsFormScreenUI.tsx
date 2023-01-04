@@ -69,10 +69,11 @@ const DetailsFormScreenUI = ({ navigation }: Props) => {
         <Input
           control={control}
           inputName="phone"
-          placeholder="Mobile Number"
+          placeholder="Phone Number"
           iconName={IsIos ? "ios-call" : "call"}
           className="w-full"
           error={errors.phone?.message}
+          keyboardType="phone-pad"
         />
 
         <View className="absolute bottom-12 self-center">
