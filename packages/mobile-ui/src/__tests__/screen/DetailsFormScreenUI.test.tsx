@@ -17,8 +17,6 @@ import { SignUpContext, initialState } from "../../context"
 import { DetailsFormScreenUI } from "../../screen"
 import { AuthScreenType } from "../../screenTypes/default"
 
-// jest.mock("../../context/SignUpStore.tsx")
-
 const getPropsWithNavigation = (
   props?: any,
   navigationPropExtension?: Partial<
