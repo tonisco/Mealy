@@ -34,6 +34,7 @@ const SquareInput = ({ name, control, changeFocus }: Props) => {
           ref={ref}
           className="mr-4 h-16 w-16 rounded-lg bg-white px-3 text-center font-bento-med text-xl"
           testID="squareInput"
+          accessibilityLabel={name}
         />
       )}
     />

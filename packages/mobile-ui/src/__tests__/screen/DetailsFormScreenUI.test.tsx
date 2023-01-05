@@ -38,6 +38,7 @@ const renderComponent = () => {
     setSignUpState: jest.fn(),
     signUpState: { ...initialState },
   }
+
   render(
     <SignUpContext.Provider value={{ ...value }}>
       <NavigationContainer>
@@ -45,10 +46,12 @@ const renderComponent = () => {
       </NavigationContainer>
     </SignUpContext.Provider>,
   )
+
   const firstName = screen.getByPlaceholderText("First Name")
   const lastName = screen.getByPlaceholderText("Last Name")
   const phoneNumber = screen.getByPlaceholderText("Phone Number")
   const button = screen.getByTestId("pressable")
+
   return { firstName, lastName, phoneNumber, button, value }
 }
 
