@@ -20,7 +20,7 @@ const FailureScreen = ({ navigation, route }: Props) => {
           Request Failed
         </Text>
         <Text className="font-bento-bold capitalize">
-          {route.params?.message}
+          {route.params.message}
         </Text>
       </View>
       <View className="absolute bottom-10 self-center">
