@@ -138,6 +138,7 @@ const SignUpScreenUI = ({
             <Pressable
               className="mt-8 items-center"
               onPress={() => navigate("Log In", { animation: false })}
+              testID="loginLink"
             >
               <GradientText
                 className="text-xs capitalize"
