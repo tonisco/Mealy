@@ -121,6 +121,7 @@ const LoginScreenUI = ({
             <Pressable
               className="mt-8 items-center"
               onPress={() => navigate("Reset Password")}
+              testID="forgotPasswordLink"
             >
               <GradientText
                 className="text-xs capitalize"
@@ -131,6 +132,7 @@ const LoginScreenUI = ({
             <Pressable
               className="mt-8 items-center"
               onPress={() => navigate("Sign Up", { animation: false })}
+              testID="SignUpLink"
             >
               <GradientText
                 className="text-xs capitalize"

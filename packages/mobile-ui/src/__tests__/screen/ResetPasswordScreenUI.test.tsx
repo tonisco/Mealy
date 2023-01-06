@@ -21,7 +21,7 @@ const renderComponent = () => {
     </NavigationContainer>,
   )
 
-  const email = screen.getByPlaceholderText("email")
+  const email = screen.getByPlaceholderText("Email")
   const button = screen.getByTestId("pressable")
 
   return { email, button }
