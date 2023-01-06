@@ -38,7 +38,7 @@ const ResetPasswordScreenUI = ({ requestOTP }: Props) => {
           </Text>
         </View>
         <Input
-          placeholder="Email"
+          placeholder="email"
           iconName={IsIos ? "ios-mail" : "mail"}
           control={control}
           inputName="email"
