@@ -17,6 +17,8 @@ const props = {
   logoText: "This is the logo text",
 }
 
+const navigate = jest.fn()
+
 const getPropsWithNavigation = (
   props?: any,
   navigationPropExtension?: Partial<
@@ -26,7 +28,7 @@ const getPropsWithNavigation = (
   ({
     ...props,
     navigation: {
-      navigate: jest.fn(),
+      navigate,
       goBack: jest.fn(),
       ...navigationPropExtension,
     },
@@ -35,7 +37,7 @@ const getPropsWithNavigation = (
     },
   } as any)
 
-const renderComponentWithoutAnimation = () => {
+const renderComponent = () => {
   render(<LoginScreenUI {...getPropsWithNavigation(props)} />)
 
   const email = screen.getByPlaceholderText("Email")
@@ -52,7 +54,7 @@ const longPassword = "123456"
 
 describe("Login screen UI", () => {
   it("renders correctly", () => {
-    const { email, button, password } = renderComponentWithoutAnimation()
+    const { email, button, password } = renderComponent()
 
     expect(button).toBeOnTheScreen()
     expect(screen.getByText("Login")).toBeOnTheScreen()
@@ -68,11 +70,11 @@ describe("Login screen UI", () => {
     expect(screen.getAllByText("Don't have an account? Sign Up")).toHaveLength(
       2,
     )
-    expect(screen.getByTestId("forgotPasswordLink")).toBeOnTheScreen()
+    expect(screen.getByTestId("SignUpLink")).toBeOnTheScreen()
   })
 
   it("ensures all input changes", () => {
-    const { email, password } = renderComponentWithoutAnimation()
+    const { email, password } = renderComponent()
 
     fireEvent.changeText(email, realEmail)
     fireEvent.changeText(password, longPassword)
@@ -82,7 +84,7 @@ describe("Login screen UI", () => {
   })
 
   it("ensures errors are show for empty fields", async () => {
-    const { button } = renderComponentWithoutAnimation()
+    const { button } = renderComponent()
 
     fireEvent.press(button)
 
@@ -93,7 +95,7 @@ describe("Login screen UI", () => {
   })
 
   it("ensures email error is shown if input is wrong", async () => {
-    const { email, button, password } = renderComponentWithoutAnimation()
+    const { email, button, password } = renderComponent()
 
     fireEvent.changeText(email, wrongEmail)
     fireEvent.changeText(password, longPassword)
@@ -107,7 +109,7 @@ describe("Login screen UI", () => {
   })
 
   it("ensures there is no error for wrong input and form is submitted", async () => {
-    const { email, button, password } = renderComponentWithoutAnimation()
+    const { email, button, password } = renderComponent()
 
     fireEvent.changeText(email, realEmail)
     fireEvent.changeText(password, longPassword)
@@ -121,5 +123,27 @@ describe("Login screen UI", () => {
       { email: realEmail, password: longPassword },
       undefined,
     )
+  })
+
+  it("navigates to forgot password screen", async () => {
+    renderComponent()
+    fireEvent.press(screen.getByTestId("forgotPasswordLink"))
+
+    await waitFor(() => {
+      expect(navigate).toHaveBeenCalled()
+    })
+
+    expect(navigate).toHaveBeenCalledWith("Reset Password")
+  })
+
+  it("navigates to sign up screen", async () => {
+    renderComponent()
+    fireEvent.press(screen.getByTestId("SignUpLink"))
+
+    await waitFor(() => {
+      expect(navigate).toHaveBeenCalled()
+    })
+
+    expect(navigate).toHaveBeenCalledWith("Sign Up", { animation: false })
   })
 })
