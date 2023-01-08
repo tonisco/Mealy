@@ -48,13 +48,13 @@ const Input = (props: Props) => {
           />
         )}
       />
-      <View>
-        {/* TODO: ADD A DEFAULT HEIGHT TO VIEW */}
+      <View className="m-1 h-4">
         {props.error && (
           <Text
             className="font-bento-med text-xs capitalize text-red-500"
             testID="errorMessage"
             accessibilityLabel={props.inputName}
+            onLayout={(e) => console.log(e.nativeEvent)}
           >
             {props.error}
           </Text>
@@ -66,7 +66,7 @@ const Input = (props: Props) => {
       {props.encrypt &&
         (hidden ? (
           <Pressable
-            className="top[18px] absolute right-5"
+            className="absolute top-[18px] right-5"
             testID="eye-off"
             onPress={() => setHidden(!hidden)}
           >
@@ -78,7 +78,7 @@ const Input = (props: Props) => {
           </Pressable>
         ) : (
           <Pressable
-            className="top[18px] absolute right-5"
+            className="absolute top-[18px] right-5"
             testID="eye"
             onPress={() => setHidden(!hidden)}
           >
