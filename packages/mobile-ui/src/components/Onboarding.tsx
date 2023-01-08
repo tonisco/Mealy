@@ -38,9 +38,9 @@ const onboarding = ({
           source={ImageLink}
           resizeMode="contain"
         />
-        <GradientText className="text-4xl uppercase" text={heading} />
+        <GradientText text={heading} style="text-[33px] uppercase my-2" />
         <View>
-          <Text className="mt-1 text-center font-bento-reg text-xs uppercase leading-4 text-dark">
+          <Text className="mt-1 text-center font-bento-reg text-xs capitalize leading-4 text-dark">
             {description}
           </Text>
         </View>

@@ -9,21 +9,24 @@ type Props = {
   text?: string
   colors?: string[]
   className?: string
+  style?: string
 }
 
-const GradientText = ({ text, colors, className }: Props) => {
+const GradientText = ({ text, colors, className, style }: Props) => {
   return (
     <MaskedView
       maskElement={
         <Text
-          className={`bg-transparent text-center font-bento-bold ${className}`}
+          className={`bg-transparent text-center font-bento-bold ${className} ${style}`}
         >
           {text}
         </Text>
       }
     >
       <GradientBackground colors={colors}>
-        <Text className={`text-center font-bento-bold opacity-0 ${className}`}>
+        <Text
+          className={`text-center font-bento-bold opacity-0 ${className} ${style}`}
+        >
           {text}
         </Text>
       </GradientBackground>
