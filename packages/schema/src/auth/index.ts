@@ -20,11 +20,11 @@ const schemaItems = z.object({
   confirmPassword: z.string(),
   otp: z.string().length(4),
   fullName: z.string(),
-  phone: z.string().min(5, { message: wrongPhoneMessage }),
-  street: z.string(),
-  state: z.string(),
-  city: z.string(),
-  country: z.string(),
+  phone: z.string().min(5, { message: wrongPhoneMessage }).trim(),
+  street: z.string().trim(),
+  state: z.string().trim(),
+  city: z.string().trim(),
+  country: z.string().trim(),
 })
 
 export const emailExistSchema = schemaItems.pick({ email: true })

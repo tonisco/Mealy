@@ -38,6 +38,7 @@ type userContext = {
   user: User
   saveUser: (value: User) => Promise<void>
   getDetailsFromStorage: () => Promise<void>
+  hasSignedUp: boolean
 }
 
 const UserContext = createContext<userContext | null>(null)
@@ -45,6 +46,7 @@ const UserContext = createContext<userContext | null>(null)
 const UserStore = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(initialUserState)
   const [hasOpenedApp, setHasOpenedApp] = useState(false)
+  const [hasSignedUp, setHasSignedUp] = useState(false)
 
   const saveHasOpenedApp = async () => {
     try {
@@ -57,25 +59,33 @@ const UserStore = ({ children }: { children: ReactNode }) => {
 
   const saveUser = async (value: User) => {
     try {
+      await AsyncStorage.setItem("hasSignedUp", JSON.stringify(true))
       await AsyncStorage.setItem("user", JSON.stringify(value))
+      setHasSignedUp(true)
       setUser(value)
     } catch (error) {
       Alert.alert("App Error", "App faild to save user changes")
     }
   }
 
+  // TODO: make fetch from storage into one request
   const getDetailsFromStorage = async () => {
     try {
       const userDetails = await AsyncStorage.getItem("user")
       if (userDetails) setUser(JSON.parse(userDetails) as userContext["user"])
       const openedApp = await AsyncStorage.getItem("hasOpenedApp")
       if (openedApp) setHasOpenedApp(JSON.parse(openedApp) as boolean)
-    } catch (error) {}
+      const signedUp = await AsyncStorage.getItem("hasSignedUp")
+      if (signedUp) setHasSignedUp(JSON.parse(signedUp) as boolean)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <UserContext.Provider
       value={{
+        hasSignedUp,
         hasOpenedApp,
         saveHasOpenedApp,
         saveUser,

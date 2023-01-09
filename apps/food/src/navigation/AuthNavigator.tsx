@@ -1,5 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { FailureScreen, SuccessScreen, SignUpStore } from "mobile-ui"
+import {
+  FailureScreen,
+  SuccessScreen,
+  SignUpStore,
+  UseUserState,
+} from "mobile-ui"
 import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 
@@ -16,6 +21,8 @@ import {
 const Stack = createNativeStackNavigator<AuthScreenType>()
 
 const AuthNavigator = () => {
+  const { hasSignedUp } = UseUserState()
+
   return (
     <SignUpStore>
       <Stack.Navigator
@@ -23,6 +30,7 @@ const AuthNavigator = () => {
           headerShown: false,
           animation: "slide_from_right",
         }}
+        initialRouteName={hasSignedUp ? "Log In" : "Sign Up"}
       >
         <Stack.Screen name="Sign Up" component={SignUpScreen} />
         <Stack.Screen name="Log In" component={LoginScreen} />
