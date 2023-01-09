@@ -1,12 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { SignUpScreenUI, UseSignUpState } from "mobile-ui"
-import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 import { Alert, Keyboard } from "react-native"
 import { SignUpFormSchema } from "schema"
 import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
+import { AuthScreenType } from "../../screenTypes"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Sign Up">
 

@@ -1,7 +1,8 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { Onboarding } from "mobile-ui"
-import { OnboardingScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
+
+import { OnboardingScreenType } from "../../screenTypes"
 
 type Props = NativeStackScreenProps<OnboardingScreenType, "Onboarding 1">
 

@@ -1,12 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { ResetPasswordScreenUI } from "mobile-ui"
-import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 import { Alert } from "react-native"
 import { ResetPasswordFormSchema } from "schema"
 import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
+import { AuthScreenType } from "../../screenTypes"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Reset Password">
 

@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { OnboardingScreenType } from "mobile-ui/src/screenTypes/default"
 import * as React from "react"
 
+import { OnboardingScreenType } from "../screenTypes"
 import {
   OnboardingOne,
   OnboardingThree,

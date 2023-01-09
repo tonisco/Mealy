@@ -1,7 +1,8 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { DetailsFormScreenUI } from "mobile-ui"
-import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
+
+import { AuthScreenType } from "../../screenTypes"
 
 type Props = NativeStackScreenProps<AuthScreenType, "Details Form">
 

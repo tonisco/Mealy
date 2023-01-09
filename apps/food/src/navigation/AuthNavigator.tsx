@@ -5,9 +5,9 @@ import {
   SignUpStore,
   UseUserState,
 } from "mobile-ui"
-import { AuthScreenType } from "mobile-ui/src/screenTypes/default"
 import React from "react"
 
+import { AuthScreenType } from "../screenTypes"
 import {
   ChangePasswordScreen,
   DetailsFormScreen,
