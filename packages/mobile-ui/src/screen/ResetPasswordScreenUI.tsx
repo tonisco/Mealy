@@ -22,7 +22,7 @@ const ResetPasswordScreenUI = ({ requestOTP }: Props) => {
   } = useForm({ resolver, defaultValues: { email: "" } })
 
   return (
-    <SafeAreaView className="flex-1 px-6 pt-6">
+    <SafeAreaView className="-z-50 flex-1 px-6 pt-6">
       <ScrollView
         contentContainerStyle={styles.scroll}
         keyboardShouldPersistTaps="handled"

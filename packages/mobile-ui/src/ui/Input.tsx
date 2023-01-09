@@ -54,7 +54,6 @@ const Input = (props: Props) => {
             className="font-bento-med text-xs capitalize text-red-500"
             testID="errorMessage"
             accessibilityLabel={props.inputName}
-            onLayout={(e) => console.log(e.nativeEvent)}
           >
             {props.error}
           </Text>

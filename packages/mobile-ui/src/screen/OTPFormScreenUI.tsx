@@ -25,7 +25,7 @@ const OTPFormScreenUI = ({ sendPin }: Props) => {
   const pinChange4 = () => Keyboard.dismiss()
 
   return (
-    <SafeAreaView className="flex-1 px-6 pt-6">
+    <SafeAreaView className="-z-50 flex-1 px-6 pt-6">
       <ScrollView
         // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{ flex: 1 }}

@@ -21,7 +21,7 @@ const LoadingUI = () => {
   console.log(scale.value)
 
   return (
-    <View className="absolute z-10 h-full w-full">
+    <View className="absolute h-full w-full">
       <View className="flex-1 bg-black opacity-80" />
       <View className="absolute h-full w-full items-center justify-center">
         <Animated.Image
