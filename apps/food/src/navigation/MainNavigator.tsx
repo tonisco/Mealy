@@ -12,14 +12,23 @@ const Tab = createBottomTabNavigator<MainScreenType>()
 
 const MainNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { height: 80, paddingHorizontal: 15 },
+      }}
+    >
       <Tab.Screen
         name="Main"
         component={HomeNavigator}
         options={{
           tabBarLabel: "Home",
           tabBarButton: (props) =>
-            BottomTabIcon({ title: "Home", iconName: "home", ...props }),
+            BottomTabIcon({
+              title: "Home",
+              image: require("../../assets/images/icons/Home.png"),
+              ...props,
+            }),
         }}
       />
       <Tab.Screen
@@ -28,7 +37,11 @@ const MainNavigator = () => {
         options={{
           tabBarLabel: "Search",
           tabBarButton: (props) =>
-            BottomTabIcon({ title: "Search", iconName: "search", ...props }),
+            BottomTabIcon({
+              title: "Search",
+              image: require("../../assets/images/icons/Search.png"),
+              ...props,
+            }),
         }}
       />
       <Tab.Screen
@@ -37,7 +50,11 @@ const MainNavigator = () => {
         options={{
           tabBarLabel: "Orders",
           tabBarButton: (props) =>
-            BottomTabIcon({ title: "Orders", iconName: "document", ...props }),
+            BottomTabIcon({
+              title: "Orders",
+              image: require("../../assets/images/icons/Document.png"),
+              ...props,
+            }),
         }}
       />
       <Tab.Screen
@@ -46,7 +63,11 @@ const MainNavigator = () => {
         options={{
           tabBarLabel: "User",
           tabBarButton: (props) =>
-            BottomTabIcon({ title: "Users", iconName: "person", ...props }),
+            BottomTabIcon({
+              title: "Users",
+              image: require("../../assets/images/icons/Profile.png"),
+              ...props,
+            }),
         }}
       />
     </Tab.Navigator>
