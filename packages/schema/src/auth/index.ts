@@ -6,6 +6,7 @@ export const wrongFirstNameMessage =
 export const wrongLastNameMessage =
   "Last Name must contain at least 3 characters"
 export const wrongPasswordMessage = "Password must be atleast 6 characters"
+export const requiredPasswordMessage = "This field is required"
 export const wrongPhoneMessage = "Number must be at least 5 Numbers"
 export const passwordNotMatchMessage = "Passwords do not match"
 
@@ -36,7 +37,7 @@ export const changePasswordSchema = schemaItems.pick({
 export const confirmOTPSchema = schemaItems.pick({ email: true, otp: true })
 
 export const loginSchema = schemaItems.pick({ email: true }).extend({
-  password: z.string(),
+  password: z.string().min(1, { message: requiredPasswordMessage }),
 })
 
 export const sendOTPSchema = schemaItems.pick({ email: true })

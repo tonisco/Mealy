@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@testing-library/react-native"
 import React from "react"
-import { wrongEmailMessage } from "schema"
+import { requiredPasswordMessage, wrongEmailMessage } from "schema"
 import { LoginScreenUI } from "../../screen"
 import { AuthScreenType } from "../../screenTypes/default"
 
@@ -91,6 +91,11 @@ describe("Login screen UI", () => {
     expect(await screen.findByLabelText("email")).toHaveTextContent(
       wrongEmailMessage,
     )
+
+    expect(await screen.findByLabelText("password")).toHaveTextContent(
+      requiredPasswordMessage,
+    )
+
     expect(props.loginAccount).not.toHaveBeenCalled()
   })
 
