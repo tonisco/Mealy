@@ -2,7 +2,7 @@ import { UseUserState } from "mobile-ui"
 import React from "react"
 
 import AuthNavigator from "./AuthNavigator"
-import HomeNavigator from "./HomeNavigator"
+import MainNavigator from "./MainNavigator"
 import OnboardingNavigator from "./OnboardingNavigator"
 
 const Navigator = () => {
@@ -12,7 +12,7 @@ const Navigator = () => {
 
   if (!user.token) return <AuthNavigator />
 
-  return <HomeNavigator />
+  return <MainNavigator />
 }
 
 export default Navigator
