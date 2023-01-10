@@ -51,12 +51,12 @@ const HomeScreen = (props: Props) => {
         showFilterIcon
         navigate={() => props.navigation.jumpTo("Search")}
       />
-      <View className="mt-6">
+      <View className="mt-5">
         <AddessInput />
       </View>
 
-      <View className="mt-6">
-        <Text className="mb-3 font-bento-bold text-xl capitalize">
+      <View className="mt-5">
+        <Text className="mb-2 font-bento-bold text-xl capitalize">
           Special offers
         </Text>
         <FlatList

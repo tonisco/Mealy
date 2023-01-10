@@ -9,14 +9,14 @@ const AddessInput = () => {
   } = UseUserState()
 
   return (
-    <View className="flex-row items-center gap-x-4 bg-white">
+    <View className="flex-row items-center">
       <Ionicons
         name={IsIos ? "ios-location-sharp" : "location-sharp"}
         size={24}
       />
 
-      <View className="gap-y-1">
-        <Text className="font-bento-med text-xs text-lite-gray">
+      <View className="ml-2">
+        <Text className="mb-1 font-bento-med text-xs text-lite-gray">
           Delivering to
         </Text>
         <Text className="font-bento-med text-xs capitalize text-dark">
