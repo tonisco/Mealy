@@ -5,14 +5,13 @@ import React, { useState } from "react"
 import { transformer } from "./transformer"
 import { trpc } from "./trpc"
 
-export function TrpcProvider({
-  children,
-  port,
-}: {
+type Props = {
   children: React.ReactNode
   port: string
-}) {
-  console.log(port)
+  token?: string
+}
+
+export function TrpcProvider({ children, port, token }: Props) {
   const [queryClient] = useState(() => new QueryClient())
   const [trpcClient] = useState(() =>
     trpc.createClient({
@@ -20,12 +19,13 @@ export function TrpcProvider({
       links: [
         httpBatchLink({
           url: `${port}/api/trpc/`,
-          // optional
-          //   headers() {
-          //     return {
-          //       authorization: getAuthCookie(),
-          //     }
-          //   },
+          headers() {
+            if (token)
+              return {
+                authorization: `Bearer ${token}`,
+              }
+            return {}
+          },
         }),
       ],
     }),

@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import React from "react"
 import { Dimensions, FlatList, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { trpc } from "trpc-client"
 
 import AddessInput from "../../components/AddessInput"
 import SearchBar from "../../components/SearchBar"
@@ -42,6 +43,11 @@ const dummyData = [
 const HomeScreen = (props: Props) => {
   const paddingHorizontal = (Dimensions.get("screen").width * 0.15) / 2
 
+  const [allRestaurants, specialOffers] = trpc.useQueries((t) => [
+    t.food.main.allRestaurants(),
+    t.food.main.specialOffers(),
+  ])
+
   return (
     <SafeAreaView
       className="flex-1 bg-zinc-50 pt-4"
@@ -59,12 +65,16 @@ const HomeScreen = (props: Props) => {
         <Text className="mb-2 font-bento-bold text-xl capitalize">
           Special offers
         </Text>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={dummyData}
-          renderItem={({ item }) => <SpecialOffers {...item} />}
-        />
+        {!specialOffers.isLoading && (
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={specialOffers.data}
+            renderItem={({ item }) => (
+              <SpecialOffers {...item} distanceInTime={10} />
+            )}
+          />
+        )}
       </View>
     </SafeAreaView>
   )

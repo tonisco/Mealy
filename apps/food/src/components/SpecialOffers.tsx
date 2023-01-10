@@ -1,18 +1,10 @@
+import { Food, Restaurant } from "db/src/client"
 import { GradientBackground } from "mobile-ui"
 import React from "react"
-import {
-  View,
-  Text,
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-} from "react-native"
+import { View, Text, Image, StyleSheet } from "react-native"
 
-type Props = {
-  name: string
-  image: ImageSourcePropType
-  restaurant: string
-  rating: number
+type Props = Food & {
+  restaurant: Restaurant
   distanceInTime: number
 }
 
@@ -20,16 +12,16 @@ const SpecialOffers = ({
   name,
   distanceInTime,
   image,
-  rating,
   restaurant,
+  discountPercentage,
 }: Props) => {
   return (
     <View className="mr-4 rounded bg-white">
       <View className="relative mb-1 h-[140px] w-[145px] overflow-hidden rounded-xl">
-        <Image className="h-full w-full" source={image} />
+        <Image className="h-full w-full" source={{ uri: image }} />
         <GradientBackground style={style.gradientText}>
           <Text className="font-bento-bold text-xs capitalize text-white">
-            30% off
+            {`${discountPercentage}`}% off
           </Text>
         </GradientBackground>
       </View>
@@ -43,7 +35,7 @@ const SpecialOffers = ({
           className="mr-2 h-[14px] w-[14px]"
         />
         <Text className="font-bento-reg text-xs capitalize text-dark">
-          {restaurant}
+          {restaurant.name}
         </Text>
       </View>
       <View className="mb-1 flex-row items-center pl-1">
@@ -53,7 +45,9 @@ const SpecialOffers = ({
             resizeMode="contain"
             className="mr-2 h-[14px] w-[14px]"
           />
-          <Text className="font-bento-reg text-xs text-dark">{rating}</Text>
+          <Text className="font-bento-reg text-xs text-dark">
+            {restaurant.ratings}
+          </Text>
         </View>
         <View className="flex-row items-center">
           <Image

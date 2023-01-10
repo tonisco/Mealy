@@ -13,6 +13,8 @@ export const mainRouter = router({
         restaurant: { country, state },
       },
       orderBy: { discountPercentage: "desc", discountPrice: "desc" },
+      take: 5,
+      include: { restaurant: true },
     })
 
     return offers

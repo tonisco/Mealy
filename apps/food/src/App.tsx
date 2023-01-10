@@ -22,7 +22,7 @@ const getBaseUrl = () => {
 const App = () => {
   const [appIsReady, setAppIsReady] = useState(false)
 
-  const { getDetailsFromStorage } = UseUserState()
+  const { getDetailsFromStorage, user } = UseUserState()
 
   useEffect(() => {
     const getAppReady = async () => {
@@ -56,7 +56,7 @@ const App = () => {
   return (
     // eslint-disable-next-line react-native/no-inline-styles
     <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-      <TrpcProvider port={getBaseUrl()}>
+      <TrpcProvider port={getBaseUrl()} token={user.token}>
         <NavigationContainer>
           <Navigator />
         </NavigationContainer>

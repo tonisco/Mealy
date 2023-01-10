@@ -243,6 +243,7 @@ importers:
       '@types/jest': ^29.2.5
       '@types/react': ~18.0.14
       '@types/react-native': ~0.70.6
+      db: workspace:*
       esconfig: workspace:*
       eslint: 8.29.0
       eslint-config-turbo: latest
@@ -327,6 +328,7 @@ importers:
       '@types/jest': 29.2.5
       '@types/react': 18.0.25
       '@types/react-native': 0.70.6
+      db: link:../../packages/db
       esconfig: link:../../packages/esconfig
       eslint: 8.29.0
       eslint-config-turbo: 0.0.7_eslint@8.29.0
