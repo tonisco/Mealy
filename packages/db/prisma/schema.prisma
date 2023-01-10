@@ -99,12 +99,12 @@ model CourierAuth {
 model Food {
   id                 String     @id @default(cuid())
   name               String
-  image              String?
+  image              String
   description        String
   type               String
   price              Float
-  discountPrice      Float?     @default(0.0)
-  discountPercentage Float?     @default(0)
+  discountPrice      Float      @default(0.0)
+  discountPercentage Float      @default(0)
   restaurant         Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   restaurantId       String
   created_at         DateTime   @default(now())
