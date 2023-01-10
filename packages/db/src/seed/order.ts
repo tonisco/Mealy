@@ -9,6 +9,7 @@ import {
   randomItem,
   randomNumber,
   shuffleArray,
+  subtractAYear,
 } from "."
 
 export const allOrders = async (
@@ -36,7 +37,7 @@ export const allOrders = async (
               userId: randomItem(users).id,
               totalPrice: 0.0,
               created_at: faker.date.between(
-                new Date(2022, 1, 1, 0, 0, 0),
+                subtractAYear(new Date()),
                 Date.now(),
               ),
             },
@@ -65,14 +66,26 @@ export const allFoodOrdered = async (orders: Order[], foods: Food[]) => {
         Array.from({ length: n }, async (_, i) => {
           // random number of that particular food ordered
           const numOfFood = randomNumber(3)
+          let priceUsed = restaurantFoods[i].price
+          const discountPrice = restaurantFoods[i].discountPrice
+
+          if (discountPrice && discountPrice > 0) priceUsed = discountPrice
+
           return await prisma.foodOrdered.create({
             data: {
               quantity: numOfFood,
               orderId: order.id,
-              foodTotalPrice: numOfFood * restaurantFoods[i].price,
+              foodTotalPrice: numOfFood * priceUsed,
               food: {
-                connect: {
-                  id: restaurantFoods[i].id,
+                create: {
+                  description: restaurantFoods[i].description,
+                  name: restaurantFoods[i].name,
+                  price: restaurantFoods[i].price,
+                  restaurantId: restaurantFoods[i].restaurantId,
+                  type: restaurantFoods[i].type,
+                  image: restaurantFoods[i].image,
+                  discountPrice,
+                  discountPercentage: restaurantFoods[i].discountPercentage,
                 },
               },
             },

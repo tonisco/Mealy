@@ -97,18 +97,21 @@ model CourierAuth {
 }
 
 model Food {
-  id           String        @id @default(cuid())
-  name         String
-  image        String
-  description  String
-  type         String
-  price        Float
-  restaurant   Restaurant    @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
-  restaurantId String
-  created_at   DateTime      @default(now())
-  updated_at   DateTime      @updatedAt
-  basketFood   BasketFood[]
-  foodOrdered  FoodOrdered[]
+  id                 String     @id @default(cuid())
+  name               String
+  image              String?
+  description        String
+  type               String
+  price              Float
+  discountPrice      Float?     @default(0.0)
+  discountPercentage Float?     @default(0)
+  restaurant         Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  restaurantId       String
+  created_at         DateTime   @default(now())
+  updated_at         DateTime   @updatedAt
+
+  basketFood  BasketFood[]
+  foodOrdered FoodOrdered[]
 }
 
 model BasketFood {
