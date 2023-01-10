@@ -39,7 +39,6 @@ export const allFood = async (restaurants: Restaurant[]) => {
             const discount = parseFloat(
               (price * (discountPercent / 100)).toFixed(2),
             )
-            console.log(discount)
             discountPrice = price - discount
           }
 

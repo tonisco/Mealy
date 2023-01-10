@@ -54,21 +54,27 @@ export const allFoodOrdered = async (orders: Order[], foods: Food[]) => {
   // create food ordered in each order
   await Promise.all(
     orders.map(async (order) => {
-      // random number of food ordered per order
+      // random number of foods ordered per order
       const n = randomNumber(8)
 
-      // shuffle the restaurant food each time
+      // Get all foods from a restaurant
       const foodFromRestaurant = foods.filter(
         (food) => food.restaurantId === order.restaurantId,
       )
+
+      // shuffle the restaurant foods each order
       const restaurantFoods = shuffleArray(foodFromRestaurant)
+
       const orderItems = await Promise.all(
         Array.from({ length: n }, async (_, i) => {
+          const food = restaurantFoods[i]
+
           // random number of that particular food ordered
           const numOfFood = randomNumber(3)
-          let priceUsed = restaurantFoods[i].price
-          const discountPrice = restaurantFoods[i].discountPrice
 
+          // change price used if discount discount
+          let priceUsed = food.price
+          const discountPrice = food.discountPrice
           if (discountPrice && discountPrice > 0) priceUsed = discountPrice
 
           return await prisma.foodOrdered.create({
@@ -76,16 +82,12 @@ export const allFoodOrdered = async (orders: Order[], foods: Food[]) => {
               quantity: numOfFood,
               orderId: order.id,
               foodTotalPrice: numOfFood * priceUsed,
+              orderDiscountPercentage: food.discountPercentage ?? 0,
+              orderDiscountPrice: food.discountPrice ?? 0,
+              orderPrice: food.price ?? 0,
               food: {
-                create: {
-                  description: restaurantFoods[i].description,
-                  name: restaurantFoods[i].name,
-                  price: restaurantFoods[i].price,
-                  restaurantId: restaurantFoods[i].restaurantId,
-                  type: restaurantFoods[i].type,
-                  image: restaurantFoods[i].image,
-                  discountPrice,
-                  discountPercentage: restaurantFoods[i].discountPercentage,
+                connect: {
+                  id: food.id,
                 },
               },
             },

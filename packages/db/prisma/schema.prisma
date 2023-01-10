@@ -132,11 +132,14 @@ model Basket {
 }
 
 model FoodOrdered {
-  id             String @id @default(cuid())
-  quantity       Int
-  food           Food[]
-  order          Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  foodTotalPrice Float
+  id                      String @id @default(cuid())
+  quantity                Int
+  food                    Food[]
+  order                   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  foodTotalPrice          Float
+  orderPrice              Float
+  orderDiscountPrice      Float
+  orderDiscountPercentage Float
 
   orderId String
 }
