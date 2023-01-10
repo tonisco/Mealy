@@ -10,9 +10,9 @@ export const allRestaurants = async (
       const restaurant = await prisma.restaurant.create({
         data: {
           name: shuffleRestaurants[i].name,
-          city: "Ikeja",
-          country: "Nigeria",
-          state: "Lagos",
+          city: "ikeja",
+          country: "nigeria",
+          state: "lagos",
           street: faker.address.streetAddress(),
           phone: faker.phone.number(),
           userFullName: faker.name.fullName(),

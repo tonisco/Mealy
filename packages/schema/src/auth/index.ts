@@ -21,10 +21,22 @@ const schemaItems = z.object({
   otp: z.string().length(4),
   fullName: z.string(),
   phone: z.string().min(5, { message: wrongPhoneMessage }).trim(),
-  street: z.string().trim(),
-  state: z.string().trim(),
-  city: z.string().trim(),
-  country: z.string().trim(),
+  street: z
+    .string()
+    .trim()
+    .transform((arg) => arg.toLocaleLowerCase()),
+  state: z
+    .string()
+    .trim()
+    .transform((arg) => arg.toLocaleLowerCase()),
+  city: z
+    .string()
+    .trim()
+    .transform((arg) => arg.toLocaleLowerCase()),
+  country: z
+    .string()
+    .trim()
+    .transform((arg) => arg.toLocaleLowerCase()),
 })
 
 export const emailExistSchema = schemaItems.pick({ email: true })
@@ -62,8 +74,16 @@ export const changePasswordFormSchema = schemaItems
 export type ChangePasswordFormSchema = z.infer<typeof changePasswordFormSchema>
 
 export const detailsFormSchema = schemaItems.pick({ phone: true }).extend({
-  firstName: z.string().min(3, { message: wrongFirstNameMessage }).trim(),
-  lastName: z.string().min(3, { message: wrongLastNameMessage }).trim(),
+  firstName: z
+    .string()
+    .min(3, { message: wrongFirstNameMessage })
+    .trim()
+    .transform((arg) => arg.toLocaleLowerCase()),
+  lastName: z
+    .string()
+    .min(3, { message: wrongLastNameMessage })
+    .trim()
+    .transform((arg) => arg.toLocaleLowerCase()),
 })
 export type DetailsFormSchema = z.infer<typeof detailsFormSchema>
 
