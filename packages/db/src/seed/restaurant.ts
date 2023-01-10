@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker"
-import { prisma, Restaurant } from "."
+import { prisma, Restaurant, subtractAYear } from "."
 
 export const allRestaurants = async (
   password: string,
@@ -23,7 +23,7 @@ export const allRestaurants = async (
           lat: faker.address.latitude(),
           lng: faker.address.longitude(),
           logo: shuffleRestaurants[i].logo,
-          created_at: new Date(2022, 1, 1, 0, 0, 0),
+          created_at: subtractAYear(new Date()),
           restaurantAuth: { create: { password } },
         },
       })

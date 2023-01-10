@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker"
-import { prisma, Courier } from "."
+import { prisma, Courier, subtractAYear } from "."
 
 export const allCouriers = async (password: string): Promise<Courier[]> =>
   await Promise.all(
@@ -14,7 +14,7 @@ export const allCouriers = async (password: string): Promise<Courier[]> =>
           phone: faker.phone.number(),
           fullName: name,
           email: faker.internet.email(name),
-          created_at: new Date(2022, 1, 1, 0, 0, 0),
+          created_at: subtractAYear(new Date()),
           courierAuth: { create: { password } },
         },
       })

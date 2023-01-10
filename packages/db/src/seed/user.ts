@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker"
-import { prisma, User } from "."
+import { prisma, subtractAYear, User } from "."
 
 export const allUsers = async (password: string): Promise<User[]> =>
   await Promise.all(
@@ -17,6 +17,7 @@ export const allUsers = async (password: string): Promise<User[]> =>
           street: faker.address.streetAddress(),
           lat: faker.address.latitude(),
           lng: faker.address.longitude(),
+          created_at: subtractAYear(new Date()),
           userAuth: {
             create: {
               password,

@@ -18,3 +18,11 @@ export const randomItem = <T>(array: Array<T>) =>
 
 export const randomNumber = (n?: number) =>
   Math.floor(Math.random() * (n || 5)) + 1
+
+export const subtractAYear = (date: Date) => {
+  const dateCopy = new Date(date)
+
+  dateCopy.setFullYear(date.getFullYear() - 1)
+
+  return dateCopy
+}
