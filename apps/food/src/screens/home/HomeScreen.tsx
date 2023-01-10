@@ -1,11 +1,72 @@
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs"
+import { CompositeScreenProps } from "@react-navigation/native"
+import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import React from "react"
-import { View, Text } from "react-native"
+import { Dimensions, FlatList, Text, View } from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
 
-const HomeScreen = () => {
+import AddessInput from "../../components/AddessInput"
+import SearchBar from "../../components/SearchBar"
+import SpecialOffers from "../../components/SpecialOffers"
+import { HomeScreenType, MainScreenType } from "../../screenTypes/home"
+
+type Props = CompositeScreenProps<
+  NativeStackScreenProps<HomeScreenType, "Home">,
+  BottomTabScreenProps<MainScreenType>
+>
+
+const dummyData = [
+  {
+    name: "Salad dish",
+    image: require("../../../assets/image1.png"),
+    restaurant: "the way restaurant",
+    rating: 4.5,
+    distanceInTime: 10,
+  },
+  {
+    name: "Main dish",
+    image: require("../../../assets/image2.png"),
+    restaurant: "lobby way",
+    rating: 3.5,
+    distanceInTime: 12,
+  },
+  {
+    name: "tasty top",
+    image: require("../../../assets/image3.png"),
+    restaurant: "the way restaurant",
+    rating: 4.0,
+    distanceInTime: 13,
+  },
+]
+
+const HomeScreen = (props: Props) => {
+  const paddingHorizontal = (Dimensions.get("screen").width * 0.15) / 2
+
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
+    <SafeAreaView
+      className="flex-1 bg-zinc-50 pt-4"
+      style={{ paddingHorizontal }}
+    >
+      <SearchBar
+        showFilterIcon
+        navigate={() => props.navigation.jumpTo("Search")}
+      />
+      <View className="mt-6">
+        <AddessInput />
+      </View>
+
+      <View className="mt-6">
+        <Text className="mb-3 font-bento-bold text-xl capitalize">
+          Special offers
+        </Text>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={dummyData}
+          renderItem={({ item }) => <SpecialOffers {...item} />}
+        />
+      </View>
+    </SafeAreaView>
   )
 }
 

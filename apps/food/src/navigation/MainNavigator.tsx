@@ -15,7 +15,7 @@ const MainNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { height: 80, paddingHorizontal: 15 },
+        tabBarStyle: { height: 70, paddingHorizontal: 15 },
       }}
     >
       <Tab.Screen
