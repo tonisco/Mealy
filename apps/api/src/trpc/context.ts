@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { inferAsyncReturnType } from "@trpc/server"
 import * as trpcExpress from "@trpc/server/adapters/express"
-import { prisma } from "db/src"
+import { prisma, User } from "db/src"
 
 import { verifyJwt } from "../utils/jwt"
 
@@ -29,11 +29,14 @@ export const createContext = ({
     return null
   }
 
+  let user: User | undefined
+
   return {
+    prisma,
     req,
     res,
+    user,
     userId: getUser(),
-    prisma,
   }
 }
 export type Context = inferAsyncReturnType<typeof createContext>
