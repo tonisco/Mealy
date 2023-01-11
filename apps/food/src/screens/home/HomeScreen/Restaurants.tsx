@@ -1,8 +1,9 @@
 import { Restaurant } from "db/src"
 import React from "react"
-import { View, Text, FlatList } from "react-native"
+import { Text, FlatList } from "react-native"
 
 import LoadingRestaurant from "../../../components/LoadingRestaurant"
+import RestaurantsCard from "../../../components/RestaurantsCard"
 
 type Props = {
   data?: Restaurant[]
@@ -22,9 +23,11 @@ const Restaurants = ({ isLoading, data }: Props) => {
   if (data && data.length === 0) return <Text>I am lower than zero</Text>
 
   return (
-    <View>
-      <Text>These are the Restaurants</Text>
-    </View>
+    <FlatList
+      showsHorizontalScrollIndicator={false}
+      data={data}
+      renderItem={RestaurantsCard}
+    />
   )
 }
 

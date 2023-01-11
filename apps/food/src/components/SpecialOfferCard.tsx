@@ -26,10 +26,10 @@ const SpecialOfferCard = ({
           </Text>
         </GradientBackground>
       </View>
-      <Text className="mb-1 pl-1 font-bento-med text-sm capitalize text-dark">
+      <Text className="mb-1 pl-2 font-bento-med text-sm capitalize text-dark">
         {name}
       </Text>
-      <View className="mb-1 flex-row items-center pl-1">
+      <View className="mb-1 flex-row items-center pl-2">
         <Image
           source={require("../../assets/images/icons/Home1.png")}
           resizeMode="contain"
@@ -39,7 +39,7 @@ const SpecialOfferCard = ({
           {restaurant.name}
         </Text>
       </View>
-      <View className="mb-1 flex-row items-center pl-1">
+      <View className="mb-1 flex-row items-center pl-2">
         <View className="mr-2 flex-row items-center">
           <Image
             source={require("../../assets/images/icons/Star.png")}

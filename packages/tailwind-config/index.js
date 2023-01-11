@@ -14,6 +14,8 @@ module.exports = {
         "lite-gray": "#D9D9D9",
         "bg-color": "#F9F9F9",
         dark: "#3B3B3B",
+        grey: "#838383",
+        "red-color": "#CF142B",
       },
       fontFamily: {
         "bento-bold": ["font-bold"],
