@@ -3,12 +3,12 @@ import React from "react"
 import ContentLoader, { Rect } from "react-content-loader/native"
 import { View, Dimensions } from "react-native"
 
-const LoadingRestaurants = () => {
+const LoadingRestaurant = () => {
   const width = Dimensions.get("screen").width * 0.85
 
   return (
     <View
-      className={`mr-4 h-[300px] w-[${width}px] overflow-hidden rounded-2xl bg-white`}
+      className={`mr-4 h-[300px] w-[${width}px] mb-4 overflow-hidden rounded-2xl bg-white`}
     >
       <ContentLoader
         speed={1}
@@ -27,4 +27,4 @@ const LoadingRestaurants = () => {
   )
 }
 
-export default LoadingRestaurants
+export default LoadingRestaurant

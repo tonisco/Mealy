@@ -1,3 +1,4 @@
+import { IMAGE_URL } from "@env"
 import { Food, Restaurant } from "db/src/client"
 import { GradientBackground } from "mobile-ui"
 import React from "react"
@@ -8,7 +9,7 @@ type Props = Food & {
   distanceInTime: number
 }
 
-const SpecialOffers = ({
+const SpecialOfferCard = ({
   name,
   distanceInTime,
   image,
@@ -16,9 +17,9 @@ const SpecialOffers = ({
   discountPercentage,
 }: Props) => {
   return (
-    <View className="mr-4 rounded bg-white">
+    <View className="mr-4 rounded-xl bg-white">
       <View className="relative mb-1 h-[140px] w-[145px] overflow-hidden rounded-xl">
-        <Image className="h-full w-full" source={{ uri: image }} />
+        <Image className="h-full w-full" source={{ uri: IMAGE_URL + image }} />
         <GradientBackground style={style.gradientText}>
           <Text className="font-bento-bold text-xs capitalize text-white">
             {`${discountPercentage}`}% off
@@ -32,7 +33,7 @@ const SpecialOffers = ({
         <Image
           source={require("../../assets/images/icons/Home1.png")}
           resizeMode="contain"
-          className="mr-2 h-[14px] w-[14px]"
+          className="mr-1 h-[14px] w-[14px]"
         />
         <Text className="font-bento-reg text-xs capitalize text-dark">
           {restaurant.name}
@@ -43,7 +44,7 @@ const SpecialOffers = ({
           <Image
             source={require("../../assets/images/icons/Star.png")}
             resizeMode="contain"
-            className="mr-2 h-[14px] w-[14px]"
+            className="mr-1 h-[14px] w-[14px]"
           />
           <Text className="font-bento-reg text-xs text-dark">
             {restaurant.ratings}
@@ -53,7 +54,7 @@ const SpecialOffers = ({
           <Image
             source={require("../../assets/images/icons/Time.png")}
             resizeMode="contain"
-            className="mr-2 h-[14px] w-[14px]"
+            className="mr-1 h-[14px] w-[14px]"
           />
           <Text className="font-bento-reg text-xs text-lite-gray">
             {distanceInTime} mins
@@ -64,7 +65,7 @@ const SpecialOffers = ({
   )
 }
 
-export default SpecialOffers
+export default SpecialOfferCard
 
 const style = StyleSheet.create({
   gradientText: {
