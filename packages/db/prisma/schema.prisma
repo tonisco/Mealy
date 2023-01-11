@@ -24,8 +24,9 @@ model User {
   lng        String?
   created_at DateTime  @default(now())
 
-  orders Order[]
-  basket Basket?
+  orders  Order[]
+  basket  Basket?
+  ratings RestaurantRatings[]
 }
 
 model UserAuth {
@@ -57,9 +58,10 @@ model Restaurant {
   lng            String?
   created_at     DateTime        @default(now())
 
-  foods  Food[]
-  orders Order[]
-  basket Basket?
+  foods       Food[]
+  orders      Order[]
+  basket      Basket?
+  userRatings RestaurantRatings[]
 }
 
 model RestaurantAuth {
@@ -69,6 +71,14 @@ model RestaurantAuth {
   password     String?
   OTP          String?
   OTPExpires   DateTime?
+}
+
+model RestaurantRatings {
+  id         String       @id @default(cuid())
+  user       User[]
+  comment    String?
+  ratings    Float
+  restaurant Restaurant[]
 }
 
 model Courier {
