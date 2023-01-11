@@ -5,7 +5,7 @@ export const restaurantData = [
   },
   {
     name: "Feast Palace",
-    logo: "image/upload/v1670077269/Mealy/logo/logo8_s3fz9x.png",
+    logo: "/image/upload/v1670077269/Mealy/logo/logo8_s3fz9x.png",
   },
   {
     name: "Deli Divine",

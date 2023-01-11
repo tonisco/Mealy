@@ -27,8 +27,6 @@ export const allFood = async (restaurants: Restaurant[]) => {
       await Promise.all(
         // add all foods and drinks to data base
         restaurantFoods.map(async (restaurantFood) => {
-          const { description, image, name, price, type } = restaurantFood
-
           let discountPercentage = 0
           let discountPrice = 0
 
@@ -37,18 +35,18 @@ export const allFood = async (restaurants: Restaurant[]) => {
             const discountPercent = randomItem(discountPercentages)
             discountPercentage = discountPercent
             const discount = parseFloat(
-              (price * (discountPercent / 100)).toFixed(2),
+              (restaurantFood.price * (discountPercent / 100)).toFixed(2),
             )
-            discountPrice = price - discount
+            discountPrice = restaurantFood.price - discount
           }
 
           const food = await prisma.food.create({
             data: {
-              description,
-              image,
-              name,
-              price,
-              type,
+              description: restaurantFood.description,
+              image: restaurantFood.image,
+              name: restaurantFood.name,
+              price: restaurantFood.price,
+              type: restaurantFood.type,
               restaurantId: restaurant.id,
               discountPercentage,
               discountPrice,

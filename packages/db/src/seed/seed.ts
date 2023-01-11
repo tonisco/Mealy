@@ -8,6 +8,8 @@ import {
   allFoodOrdered,
   allOrders,
   clearData,
+  allRatings,
+  allUserRatings,
 } from "."
 import { encryptPassword } from "../encrypt"
 
@@ -62,6 +64,14 @@ const create = async () => {
   console.time("Finished adding foods to all orders")
   await allFoodOrdered(orders, foods)
   console.timeEnd("Finished adding foods to all orders")
+
+  console.time("Finished adding user ratings to all restaurants")
+  await allUserRatings(users, restaurants)
+  console.timeEnd("Finished adding user ratings to all restaurants")
+
+  console.time("Finished adding ratings to all restaurants")
+  await allRatings()
+  console.timeEnd("Finished adding ratings to all restaurants")
 
   console.timeEnd("Finished all seeding")
 }

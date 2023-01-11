@@ -1,3 +1,5 @@
+import { RestaurantRatings } from "@prisma/client"
+
 export const shuffleArray = <T>(array: Array<T>) => {
   // Fisher yates shuffle
   for (let i = 0; i < array.length; i++) {
@@ -18,6 +20,18 @@ export const randomItem = <T>(array: Array<T>) =>
 
 export const randomNumber = (n?: number) =>
   Math.floor(Math.random() * (n || 5)) + 1
+
+export const randomNumber1N0 = () => Math.round(Math.random() * 10)
+
+export const randomFloatBy2_5 = (n?: number) =>
+  Math.floor(Math.random() * (n || 5)) + 2
+
+export const averageRestaurantRating = (array: RestaurantRatings[]) =>
+  parseFloat(
+    (
+      array.reduce((prev, curr) => prev + curr.ratings, 0) / array.length
+    ).toFixed(1),
+  )
 
 export const subtractAYear = (date: Date) => {
   const dateCopy = new Date(date)
