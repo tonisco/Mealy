@@ -1,7 +1,7 @@
+import { UseUserState } from "@context"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { trpc } from "@trpcConfig"
 import { LoginScreenUI } from "mobile-ui"
-import { UseUserState } from "mobile-ui/src/context/UserStore"
 import React from "react"
 import { Alert } from "react-native"
 import { LoginFormSchema } from "schema"

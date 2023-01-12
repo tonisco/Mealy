@@ -5,7 +5,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@trpcConfig": ["src/trpc/index.ts"]
+      "@trpcConfig": ["src/trpc/index.ts"],
+      "@context": ["src/context/index.ts"]
     }
   }
 }

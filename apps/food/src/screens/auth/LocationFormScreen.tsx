@@ -1,6 +1,7 @@
+import { UseUserState } from "@context"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { trpc } from "@trpcConfig"
-import { LocationFormScreenUI, UseSignUpState, UseUserState } from "mobile-ui"
+import { LocationFormScreenUI, UseSignUpState } from "mobile-ui"
 import React from "react"
 import { Alert } from "react-native"
 import { LocationFormSchema } from "schema"

@@ -1,10 +1,6 @@
+import { UseUserState } from "@context"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import {
-  FailureScreen,
-  SuccessScreen,
-  SignUpStore,
-  UseUserState,
-} from "mobile-ui"
+import { FailureScreen, SuccessScreen, SignUpStore } from "mobile-ui"
 import React from "react"
 
 import { AuthScreenType } from "../screenTypes"

@@ -1,4 +1,4 @@
-import { UseUserState } from "mobile-ui"
+import { UseUserState } from "@context"
 import React from "react"
 
 import AuthNavigator from "./AuthNavigator"

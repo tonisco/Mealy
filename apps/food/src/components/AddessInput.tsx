@@ -1,5 +1,6 @@
+import { UseUserState } from "@context"
 import { Ionicons } from "@expo/vector-icons"
-import { IsIos, UseUserState } from "mobile-ui"
+import { IsIos } from "mobile-ui"
 import React from "react"
 import { View, Text } from "react-native"
 

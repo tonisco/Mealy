@@ -21,7 +21,6 @@ const OnboardingNavigator = () => {
       <Stack.Screen name="Onboarding 1" component={OnboardingOne} />
       <Stack.Screen name="Onboarding 2" component={OnboardingTwo} />
       <Stack.Screen name="Onboarding 3" component={OnboardingThree} />
-      <Stack.Screen name="Auth" component={OnboardingNavigator} />
     </Stack.Navigator>
   )
 }
