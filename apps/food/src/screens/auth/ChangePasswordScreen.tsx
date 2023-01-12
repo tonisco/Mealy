@@ -1,8 +1,8 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
+import { trpc } from "@trpcConfig"
 import { ChangePasswordScreenUI } from "mobile-ui"
 import React from "react"
 import { ChangePasswordFormSchema } from "schema"
-import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
 import { AuthScreenType } from "../../screenTypes"

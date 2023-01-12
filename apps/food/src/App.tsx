@@ -1,12 +1,12 @@
 import { API_URL, PORT } from "@env"
 import { NavigationContainer } from "@react-navigation/native"
+import { TrpcProvider } from "@trpcConfig"
 import Constants from "expo-constants"
 import { loadAsync } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import { UserStore, UseUserState } from "mobile-ui"
 import React, { useCallback, useEffect, useState } from "react"
 import { View } from "react-native"
-import { TrpcProvider } from "trpc-client/index"
 
 import Navigator from "./navigation/Navigator"
 

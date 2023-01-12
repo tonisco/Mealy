@@ -1,9 +1,9 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
+import { trpc } from "@trpcConfig"
 import { LocationFormScreenUI, UseSignUpState, UseUserState } from "mobile-ui"
 import React from "react"
 import { Alert } from "react-native"
 import { LocationFormSchema } from "schema"
-import { trpc } from "trpc-client"
 
 import LoadingUI from "../../components/LoadingUI"
 import { AuthScreenType } from "../../screenTypes"

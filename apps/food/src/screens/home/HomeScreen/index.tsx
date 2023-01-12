@@ -1,15 +1,16 @@
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps } from "@react-navigation/native"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
+import { trpc } from "@trpcConfig"
 import React from "react"
 import { Dimensions, ScrollView, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { trpc } from "trpc-client"
 
 import AddessInput from "../../../components/AddessInput"
 import SearchBar from "../../../components/SearchBar"
 import Wrapper from "../../../components/Wrapper"
 import { HomeScreenType, MainScreenType } from "../../../screenTypes/home"
+import { handleError } from "../../../utils/ErrorHandle"
 import Restaurants from "./Restaurants"
 import SpecialOffers from "./SpecialOffers"
 
@@ -25,6 +26,17 @@ const HomeScreen = (props: Props) => {
     t.food.main.allRestaurants(),
     t.food.main.specialOffers(),
   ])
+
+  if (allRestaurants.error || specialOffers.error)
+    handleError({
+      errorMessage:
+        allRestaurants.error?.message ??
+        specialOffers.error?.message ??
+        "Failed to get all data",
+      errorHeading: "Request error",
+    }).catch(() => {
+      console.log()
+    })
 
   return (
     <SafeAreaView
